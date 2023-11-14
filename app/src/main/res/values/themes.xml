@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Fitfans" parent="Base.Theme.Fitfans" />
+
+    <!-- Splash Screen Settings -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/fitfans</item>
+        <item name="postSplashScreenTheme">@style/Theme.Fitfans</item>
+    </style>
 </resources>
