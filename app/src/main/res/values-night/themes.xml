@@ -1,7 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Fitfans" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+    <!-- Splash Screen Settings -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/fitfans</item>
+        <item name="postSplashScreenTheme">@style/Theme.Fitfans</item>
     </style>
 </resources>

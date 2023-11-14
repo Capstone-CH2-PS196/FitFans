@@ -1,3 +1,25 @@
 <resources>
+
     <string name="app_name">Fitfans</string>
+
+    <!--Welcome Page-->
+    <string name="welcome_image">Welcome Page Image</string>
+    <string name="welcome_title">Welcome to FitFans</string>
+    <string name="welcome_description">Step into a world of fitness with FitFans. Get ready to explore gym equipment and receive usage recommendations for your workouts.</string>
+
+    <!--login & register-->
+    <string name="sign_in">Sign In</string>
+    <string name="signin_description">Welcome back, Please log in to continue your fitness journey.</string>
+    <string name="signin_message">Don’t have an account ?</string>
+    <string name="signin_google">Sign In with Google</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_description">Create your account and get personalized workout recommendations.</string>
+    <string name="signup_message">Already have an account ?</string>
+    <string name="back">Back</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
 </resources>
