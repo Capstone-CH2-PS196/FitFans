@@ -44,10 +44,10 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_title"
-        app:layout_constraintBottom_toTopOf="@id/login_ed_email"/>
+        app:layout_constraintBottom_toTopOf="@id/login_email_layout"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_ed_email"
+        android:id="@+id/login_email_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,9 +58,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_description"
-        app:layout_constraintBottom_toTopOf="@id/login_ed_password">
+        app:layout_constraintBottom_toTopOf="@id/login_password_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_ed_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
@@ -68,7 +69,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_ed_password"
+        android:id="@+id/login_password_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,10 +79,11 @@
         app:errorEnabled="true"
         app:endIconMode="password_toggle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_ed_email"
+        app:layout_constraintTop_toBottomOf="@id/login_email_layout"
         app:layout_constraintBottom_toTopOf="@id/login_message">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_ed_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
@@ -97,7 +99,7 @@
         android:layout_marginHorizontal="29dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/register_navigation"
-        app:layout_constraintTop_toBottomOf="@id/login_ed_password"
+        app:layout_constraintTop_toBottomOf="@id/login_password_layout"
         app:layout_constraintBottom_toTopOf="@id/button_login"/>
 
     <TextView

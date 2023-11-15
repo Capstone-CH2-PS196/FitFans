@@ -18,9 +18,11 @@
     <string name="back">Back</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
+    <string name="email_verification_message">Email Verification has been sent. Please check your email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="register_success_message">User Created</string>
 
     <!--basic information-->
     <string name="basic_information_title">Basic Information</string>
