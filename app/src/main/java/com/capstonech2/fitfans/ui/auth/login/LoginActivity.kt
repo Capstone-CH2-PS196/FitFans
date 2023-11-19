@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
-import com.capstonech2.fitfans.MainActivity
+import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityLoginBinding
+import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
 import com.capstonech2.fitfans.ui.auth.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -34,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
         setFirebaseConfig()
 
         onBack()
@@ -94,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         showLoading(false)
-                        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, BasicInformationActivity::class.java))
                         finish()
                     }
                 }

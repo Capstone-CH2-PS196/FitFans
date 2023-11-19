@@ -16,6 +16,7 @@ class WelcomePageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         navigateToLogin()
         navigateToRegister()

@@ -34,4 +34,8 @@
     <string name="weight">Weight</string>
     <string name="height">Height</string>
     <string name="save">Save</string>
+
+    <!--bottom navigation-->
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
 </resources>
