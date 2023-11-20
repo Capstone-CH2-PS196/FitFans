@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.databinding.FragmentHomeBinding
 import com.capstonech2.fitfans.ui.home.menulist.MenuAdapter
 import com.capstonech2.fitfans.ui.home.menulist.MenuDataSource
+import com.capstonech2.fitfans.ui.home.progressreport.ProgressReportAdapter
+import com.capstonech2.fitfans.ui.home.progressreport.Report
+import com.capstonech2.fitfans.ui.home.progressreport.ReportDataSource
 
 class HomeFragment : Fragment() {
 
@@ -21,15 +24,21 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        showProgressReport(ReportDataSource.report)
         showMenuList()
         return binding.root
     }
 
+    private fun showProgressReport(report : List<Report>){
+        binding.reportList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val adapter = ProgressReportAdapter()
+        adapter.submitList(report)
+        binding.reportList.adapter = adapter
+    }
+
     private fun showMenuList(){
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.menuList.layoutManager = layoutManager
-        val adapter = MenuAdapter(MenuDataSource.menu)
-        binding.menuList.adapter = adapter
+        binding.menuList.layoutManager = LinearLayoutManager(requireContext())
+        binding.menuList.adapter = MenuAdapter(MenuDataSource.menu)
     }
 
     override fun onDestroyView() {

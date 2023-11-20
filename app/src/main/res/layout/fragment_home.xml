@@ -34,6 +34,7 @@
         android:id="@+id/image_profile_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="28dp"
         android:src="@drawable/avatar"
         app:layout_constraintBottom_toTopOf="@+id/progress_report_layout"
@@ -57,7 +58,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="14dp"
             android:text="Progress Report"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/report_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="7dp"
+            android:layout_marginBottom="20dp"
+            tools:listitem="@layout/report_item"/>
 
     </LinearLayout>
 
@@ -65,7 +75,7 @@
         android:id="@+id/text_gym_activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="29dp"
+        android:layout_marginHorizontal="28dp"
         android:layout_marginVertical="28dp"
         android:text="Gym Activity"
         android:textSize="16sp"
