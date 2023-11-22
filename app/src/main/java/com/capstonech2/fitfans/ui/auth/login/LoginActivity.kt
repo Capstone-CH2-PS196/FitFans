@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -57,9 +58,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun navigateToMainMenu(){
-        if (auth.currentUser != null){
+        if (auth.currentUser != null && auth.currentUser!!.isEmailVerified){
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        } else {
+            showToast("")
         }
     }
 
@@ -96,8 +99,12 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         showLoading(false)
-                        startActivity(Intent(this@LoginActivity, BasicInformationActivity::class.java))
-                        finish()
+                        if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
+                            startActivity(Intent(this@LoginActivity, BasicInformationActivity::class.java))
+                            finish()
+                        } else {
+                            showToast("Please Verify your Email First")
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->

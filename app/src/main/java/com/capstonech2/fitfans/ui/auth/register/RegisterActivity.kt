@@ -54,6 +54,9 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful){
                         showLoading(false)
+                        if (auth.currentUser != null){
+                            auth.currentUser!!.sendEmailVerification()
+                        }
                         showToast(getString(R.string.register_success_message))
                         auth.signOut()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
