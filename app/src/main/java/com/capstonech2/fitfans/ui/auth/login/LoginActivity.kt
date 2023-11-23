@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -73,23 +74,16 @@ class LoginActivity : AppCompatActivity() {
                 val email = loginEdEmail.text.toString()
                 val password = loginEdPassword.text.toString()
 
-                when {
-                    email.isEmpty() && password.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Email and password cannot be empty.")
-                        showLoading(false)
-                    }
-                    email.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Email cannot be empty.")
-                        showLoading(false)
-                    }
-                    password.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Password cannot be empty.")
-                        showLoading(false)
-                    }
-                    else -> {
-                        signInWithEmailAndPassword(email, password)
-                        showLoading(false)
-                    }
+                val emailError = if (email.isEmpty()) "Email cannot be empty" else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) "Invalid email format" else null
+                val passwordError = if (password.isEmpty()) "Password cannot be empty" else if (password.length < 8) "Password must be at least 8 characters" else null
+
+                loginEmailLayout.error = emailError
+                loginPasswordLayout.error = passwordError
+
+                if (emailError == null && passwordError == null) {
+                    signInWithEmailAndPassword(email, password)
+                } else {
+                    showLoading(false)
                 }
             }
         }
@@ -107,16 +101,19 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
                         MessageUtils.showToast(context, "Login Success")
+                        showLoading(false)
                         startActivity(
                             Intent(context, BasicInformationActivity::class.java)
                         )
                         finish()
                     } else {
+                        showLoading(false)
                         MessageUtils.showDialog(context, "Please Verify your Email First")
                     }
                 }
             }
             .addOnFailureListener {
+                showLoading(false)
                 MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
             }
     }

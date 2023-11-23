@@ -2,7 +2,7 @@ package com.capstonech2.fitfans.utils
 
 import android.content.Context
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object MessageUtils {
 
@@ -11,12 +11,12 @@ object MessageUtils {
     }
 
     fun showDialog(context: Context, message: String){
-        val alertDialogBuilder = AlertDialog.Builder(context)
-        alertDialogBuilder.setMessage(message)
-        alertDialogBuilder.setPositiveButton("Oke") { dialog, _ ->
-            dialog.dismiss()
-        }
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.show()
+        MaterialAlertDialogBuilder(context)
+            .setTitle("Error")
+            .setMessage(message)
+            .setPositiveButton("Oke"){ dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

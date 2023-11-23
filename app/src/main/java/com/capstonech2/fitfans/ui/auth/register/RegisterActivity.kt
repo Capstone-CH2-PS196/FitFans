@@ -3,6 +3,7 @@ package com.capstonech2.fitfans.ui.auth.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import androidx.core.view.isVisible
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityRegisterBinding
@@ -41,23 +42,16 @@ class RegisterActivity : AppCompatActivity() {
                 val email = registerEdEmail.text.toString()
                 val password = registerEdPassword.text.toString()
 
-                when {
-                    email.isEmpty() && password.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Email and password cannot be empty.")
-                        showLoading(false)
-                    }
-                    email.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Email cannot be empty.")
-                        showLoading(false)
-                    }
-                    password.isEmpty() -> {
-                        MessageUtils.showDialog(context, "Password cannot be empty.")
-                        showLoading(false)
-                    }
-                    else -> {
-                        createUserWithEmailAndPassword(email, password)
-                        showLoading(false)
-                    }
+                val emailError = if (email.isEmpty()) "Email cannot be empty" else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) "Invalid email format" else null
+                val passwordError = if (password.isEmpty()) "Password cannot be empty" else if (password.length < 8) "Password must be at least 8 characters" else null
+
+                registerEmailLayout.error = emailError
+                registerPasswordLayout.error = passwordError
+
+                if (emailError == null && passwordError == null) {
+                    createUserWithEmailAndPassword(email, password)
+                } else {
+                    showLoading(false)
                 }
             }
         }
@@ -77,12 +71,14 @@ class RegisterActivity : AppCompatActivity() {
                         auth.currentUser!!.sendEmailVerification()
                     }
                     MessageUtils.showToast(context, getString(R.string.register_success_message))
+                    showLoading(false)
                     auth.signOut()
                     startActivity(Intent(context, LoginActivity::class.java))
                 }
             }
             .addOnFailureListener {
                 MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
+                showLoading(false)
             }
     }
 
