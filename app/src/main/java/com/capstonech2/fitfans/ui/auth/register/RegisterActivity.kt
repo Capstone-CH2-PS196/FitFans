@@ -36,7 +36,30 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun onClickRegister(){
         binding.buttonRegister.setOnClickListener {
-            register()
+            showLoading(true)
+            binding.apply {
+                val email = registerEdEmail.text.toString()
+                val password = registerEdPassword.text.toString()
+
+                when {
+                    email.isEmpty() && password.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Email and password cannot be empty.")
+                        showLoading(false)
+                    }
+                    email.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Email cannot be empty.")
+                        showLoading(false)
+                    }
+                    password.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Password cannot be empty.")
+                        showLoading(false)
+                    }
+                    else -> {
+                        createUserWithEmailAndPassword(email, password)
+                        showLoading(false)
+                    }
+                }
+            }
         }
     }
 
@@ -46,34 +69,21 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun register(){
-        showLoading(true)
-        binding.apply {
-            val email = registerEdEmail.text.toString()
-            val password = registerEdPassword.text.toString()
-
-            if(email.isNotEmpty() && password.isNotEmpty()){
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful){
-                            showLoading(false)
-                            if (auth.currentUser != null){
-                                auth.currentUser!!.sendEmailVerification()
-                            }
-                            MessageUtils.showToast(context, getString(R.string.register_success_message))
-                            auth.signOut()
-                            startActivity(Intent(context, LoginActivity::class.java))
-                        }
+    private fun createUserWithEmailAndPassword(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    if (auth.currentUser != null){
+                        auth.currentUser!!.sendEmailVerification()
                     }
-                    .addOnFailureListener {
-                        showLoading(false)
-                        MessageUtils.showDialog(context, "Register Failed")
-                    }
-            } else {
-                showLoading(false)
+                    MessageUtils.showToast(context, getString(R.string.register_success_message))
+                    auth.signOut()
+                    startActivity(Intent(context, LoginActivity::class.java))
+                }
+            }
+            .addOnFailureListener {
                 MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
             }
-        }
     }
 
     private fun showLoading(state: Boolean){

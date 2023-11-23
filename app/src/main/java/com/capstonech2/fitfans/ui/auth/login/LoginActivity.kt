@@ -68,7 +68,30 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onClickLogin(){
         binding.buttonLogin.setOnClickListener {
-            auth()
+            showLoading(true)
+            binding.apply {
+                val email = loginEdEmail.text.toString()
+                val password = loginEdPassword.text.toString()
+
+                when {
+                    email.isEmpty() && password.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Email and password cannot be empty.")
+                        showLoading(false)
+                    }
+                    email.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Email cannot be empty.")
+                        showLoading(false)
+                    }
+                    password.isEmpty() -> {
+                        MessageUtils.showDialog(context, "Password cannot be empty.")
+                        showLoading(false)
+                    }
+                    else -> {
+                        signInWithEmailAndPassword(email, password)
+                        showLoading(false)
+                    }
+                }
+            }
         }
     }
 
@@ -78,38 +101,24 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun auth(){
-        showLoading(true)
-        binding.apply {
-            val email = loginEdEmail.text.toString()
-            val password = loginEdPassword.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()){
-                auth.signInWithEmailAndPassword(email,password)
-                    .addOnCompleteListener { task ->
-                        if(task.isSuccessful){
-                            showLoading(false)
-                            if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
-                                MessageUtils.showToast(context, "Login Success")
-                                startActivity(
-                                    Intent(context, BasicInformationActivity::class.java)
-                                )
-                                finish()
-                            } else {
-                                showLoading(false)
-                                MessageUtils.showDialog(context, "Please Verify your Email First")
-                            }
-                        }
+    private fun signInWithEmailAndPassword(email: String, password: String){
+        auth.signInWithEmailAndPassword(email,password)
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
+                        MessageUtils.showToast(context, "Login Success")
+                        startActivity(
+                            Intent(context, BasicInformationActivity::class.java)
+                        )
+                        finish()
+                    } else {
+                        MessageUtils.showDialog(context, "Please Verify your Email First")
                     }
-                    .addOnFailureListener {
-                        showLoading(false)
-                        MessageUtils.showDialog(context, "Login Failed")
-                    }
-            } else {
-                showLoading(false)
+                }
+            }
+            .addOnFailureListener {
                 MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
             }
-        }
     }
 
     private fun authWithGoogle(idToken: String) {
