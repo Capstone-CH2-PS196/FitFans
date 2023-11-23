@@ -3,17 +3,19 @@ package com.capstonech2.fitfans.ui.auth.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.view.isVisible
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityRegisterBinding
 import com.capstonech2.fitfans.ui.auth.login.LoginActivity
+import com.capstonech2.fitfans.utils.MessageUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private val context = this@RegisterActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -40,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun navigateToLogin(){
         binding.loginNavigation.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 
@@ -50,28 +52,28 @@ class RegisterActivity : AppCompatActivity() {
             val email = registerEdEmail.text.toString()
             val password = registerEdPassword.text.toString()
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful){
-                        showLoading(false)
-                        if (auth.currentUser != null){
-                            auth.currentUser!!.sendEmailVerification()
+            if(email.isNotEmpty() && password.isNotEmpty()){
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful){
+                            showLoading(false)
+                            if (auth.currentUser != null){
+                                auth.currentUser!!.sendEmailVerification()
+                            }
+                            MessageUtils.showToast(context, getString(R.string.register_success_message))
+                            auth.signOut()
+                            startActivity(Intent(context, LoginActivity::class.java))
                         }
-                        showToast(getString(R.string.register_success_message))
-                        auth.signOut()
-                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     }
-                }
-                .addOnFailureListener { exception ->
-                    exception.localizedMessage?.let {
-                        showToast(it)
+                    .addOnFailureListener {
+                        showLoading(false)
+                        MessageUtils.showDialog(context, "Register Failed")
                     }
-                }
+            } else {
+                showLoading(false)
+                MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
+            }
         }
-    }
-
-    private fun showToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun showLoading(state: Boolean){
