@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.FragmentProfileBinding
+import com.capstonech2.fitfans.ui.welcomepage.WelcomePageActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
@@ -34,23 +36,29 @@ class ProfileFragment : Fragment() {
     }
 
     private fun settingsMenu(){
-        binding.profileSetting.setOnClickListener {
-            val popUpMenu = PopupMenu(requireContext(), view)
-            popUpMenu.menuInflater.inflate(R.menu.settings_menu, popUpMenu.menu)
+        binding.profileSetting.setOnClickListener { view ->
+            val popup = PopupMenu(requireContext(), view)
+            popup.menuInflater.inflate(R.menu.settings_menu, popup.menu)
 
-            popUpMenu.setOnMenuItemClickListener {
-                when(it.itemId){
+            popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+                when(menuItem.itemId){
                     R.id.menu_edit_profile ->{
                         startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
                         true
                     }
                     R.id.menu_logout -> {
                         auth.signOut()
+                        startActivity(Intent(requireActivity(), WelcomePageActivity::class.java))
+                        requireActivity().finish()
                         true
                     }
                     else -> false
                 }
             }
+            popup.setOnDismissListener { menu ->
+                menu.dismiss()
+            }
+            popup.show()
         }
     }
 }

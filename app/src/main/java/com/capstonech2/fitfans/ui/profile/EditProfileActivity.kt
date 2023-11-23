@@ -3,10 +3,10 @@ package com.capstonech2.fitfans.ui.profile
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstonech2.fitfans.databinding.ActivityEditProfileBinding
+import com.capstonech2.fitfans.utils.MessageUtils
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -18,7 +18,20 @@ class EditProfileActivity : AppCompatActivity() {
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setUpTopBar()
         changeImageProfile()
+    }
+
+    private fun setUpTopBar(){
+        supportActionBar?.apply {
+            title = "Edit Profile"
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     private fun changeImageProfile(){
@@ -34,15 +47,11 @@ class EditProfileActivity : AppCompatActivity() {
             currentImageUri = uri
             binding.previewEditImage.setImageURI(currentImageUri)
         } else {
-            showToast("No Image selected")
+            MessageUtils.showToast(this, "No Image selected")
         }
     }
 
     private fun startGallery() {
         launcherPhotoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
-    private fun showToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

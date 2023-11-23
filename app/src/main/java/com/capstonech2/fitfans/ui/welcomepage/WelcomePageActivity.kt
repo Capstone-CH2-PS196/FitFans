@@ -12,7 +12,6 @@ class WelcomePageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWelcomePageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -25,12 +24,14 @@ class WelcomePageActivity : AppCompatActivity() {
     private fun navigateToLogin(){
         binding.welcomeButtonLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 
     private fun navigateToRegister(){
         binding.welcomeButtonRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
         }
     }
 }

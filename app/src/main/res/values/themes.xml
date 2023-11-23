@@ -2,6 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Fitfans" parent="Theme.Material3.DayNight">
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleTextStyle</item>
+    </style>
+
+    <style name="MyActionBarTitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Theme.Fitfans" parent="Base.Theme.Fitfans" />

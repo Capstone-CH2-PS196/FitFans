@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -15,18 +16,32 @@ import androidx.navigation.ui.setupWithNavController
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityMainBinding
 import com.capstonech2.fitfans.ui.camera.CameraActivity
+import com.capstonech2.fitfans.ui.welcomepage.WelcomePageActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
         navigationConfig()
         startCameraX()
+        checkUserStatus()
+    }
+
+    private fun checkUserStatus(){
+        auth = FirebaseAuth.getInstance()
+        if(auth.currentUser == null){
+            startActivity(Intent(this@MainActivity, WelcomePageActivity::class.java))
+            finish()
+        }
     }
 
     private fun navigationConfig(){

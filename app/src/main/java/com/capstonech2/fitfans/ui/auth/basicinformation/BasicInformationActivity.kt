@@ -27,6 +27,7 @@ class BasicInformationActivity : AppCompatActivity() {
     private fun onSaveInfoClick(){
         binding.infoButtonSave.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
