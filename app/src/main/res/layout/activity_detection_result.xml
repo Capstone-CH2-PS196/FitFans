@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toTopOf="@id/result_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Dumbbell"/>
+            tools:text="@string/detection_title"/>
 
         <TextView
             android:id="@+id/result_description"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/result_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Type of exercise equipment used in physical fitness to train muscles, especially those in the arms, shoulders, chest, and back. Dumbbells typically consist of a metal bar with removable weight plates that can be adjusted to vary the load to be lifted."/>
+            tools:text="@string/tools_description"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/guidance_result"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:layout_marginHorizontal="18dp"
-                    android:text="How To Use"
+                    android:text="@string/tips_title"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -83,7 +83,7 @@
                     android:layout_margin="18dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    tools:text="1. Pick dumbbells with a weight that you can lift with proper form."/>
+                    tools:text="@string/tips_description"/>
 
             </LinearLayout>
 
@@ -96,7 +96,7 @@
             android:layout_marginHorizontal="36dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="6dp"
-            android:text="Recommendation"
+            android:text="@string/recommend"
             android:textStyle="bold"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/guidance_result"
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="36dp"
             android:layout_marginVertical="20dp"
-            android:text="Share"
+            android:text="@string/share"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recommendation_list" />
