@@ -23,6 +23,11 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="register_success_message">User Created</string>
+    <string name="email_empty">Email cannot be empty</string>
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="password_format">Password must be at least 8 characters</string>
+    <string name="login_check">Invalid email or password. Please check and try again.</string>
 
     <!--basic information-->
     <string name="basic_information_title">Basic Information</string>
@@ -55,9 +60,16 @@
     <string name="calories">00.0</string>
     <string name="cal">cal</string>
     <string name="beginner">Beginner :</string>
+    <string name="detection_title">Dumbbell</string>
+    <string name="no_image">No Image selected</string>
+
 
     <!--bottom navigation-->
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
-    <string name="detection_title">Dumbbell</string>
+
+    <!--actionbar title-->
+    <string name="timer">Timer</string>
+    <string name="detection_result">Detection Result</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

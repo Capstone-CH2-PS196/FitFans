@@ -3,7 +3,6 @@ package com.capstonech2.fitfans.ui.welcomepage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.capstonech2.fitfans.databinding.ActivityWelcomePageBinding
 import com.capstonech2.fitfans.ui.auth.login.LoginActivity
 import com.capstonech2.fitfans.ui.auth.register.RegisterActivity

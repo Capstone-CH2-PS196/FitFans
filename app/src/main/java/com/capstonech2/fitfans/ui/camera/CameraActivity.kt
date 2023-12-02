@@ -70,10 +70,10 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    // To Do
+                    // ToDo
                 }
                 override fun onError(exc: ImageCaptureException) {
-                    // To Do
+                    // ToDo
                 }
             }
         )

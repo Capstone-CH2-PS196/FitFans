@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(){
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        // To Do
+        // ToDo
     }
 
     companion object {

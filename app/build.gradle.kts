@@ -56,6 +56,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    // Cardview
+    implementation ("androidx.cardview:cardview:1.0.0")
+
     // Camera X
     implementation("androidx.camera:camera-camera2:1.3.0")
     implementation("androidx.camera:camera-lifecycle:1.3.0")

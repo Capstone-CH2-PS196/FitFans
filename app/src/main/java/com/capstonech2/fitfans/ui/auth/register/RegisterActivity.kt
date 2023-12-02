@@ -42,8 +42,13 @@ class RegisterActivity : AppCompatActivity() {
                 val email = registerEdEmail.text.toString()
                 val password = registerEdPassword.text.toString()
 
-                val emailError = if (email.isEmpty()) "Email cannot be empty" else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) "Invalid email format" else null
-                val passwordError = if (password.isEmpty()) "Password cannot be empty" else if (password.length < 8) "Password must be at least 8 characters" else null
+                val emailError = if (email.isEmpty()) getString(R.string.email_empty)
+                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) getString(R.string.invalid_email)
+                    else null
+
+                val passwordError = if (password.isEmpty()) getString(R.string.password_empty)
+                else if (password.length < 8) getString(R.string.password_format)
+                    else null
 
                 registerEmailLayout.error = emailError
                 registerPasswordLayout.error = passwordError
@@ -77,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener {
-                MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
+                MessageUtils.showDialog(context, getString(R.string.login_check))
                 showLoading(false)
             }
     }

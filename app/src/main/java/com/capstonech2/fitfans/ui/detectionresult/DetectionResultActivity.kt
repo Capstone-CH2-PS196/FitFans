@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.data.model.Recommendation
+import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityDetectionResultBinding
 
 class DetectionResultActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class DetectionResultActivity : AppCompatActivity() {
 
     private fun setUpTopBar(){
         supportActionBar?.apply {
-            title = "Detection Result"
+            title = getString(R.string.detection_result)
             setDisplayHomeAsUpEnabled(true)
         }
     }
