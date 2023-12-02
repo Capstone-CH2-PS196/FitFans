@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.EditProfileActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/preview_edit_image"
         android:layout_width="80dp"
         android:layout_height="80dp"

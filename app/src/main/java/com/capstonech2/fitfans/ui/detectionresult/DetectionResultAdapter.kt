@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.databinding.RecommendationListBinding
-import com.capstonech2.fitfans.model.Recommendation
 
 class DetectionResultAdapter : ListAdapter<Recommendation, DetectionResultAdapter.MyViewHolder>(DIFF_CALLBACK) {
 

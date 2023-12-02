@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(){
         installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        auth = FirebaseAuth.getInstance()
         setContentView(binding.root)
         supportActionBar?.hide()
 
@@ -37,8 +38,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun checkUserStatus(){
-        auth = FirebaseAuth.getInstance()
-        if(auth.currentUser == null){
+        if(auth.currentUser?.email == null){
             startActivity(Intent(this@MainActivity, WelcomePageActivity::class.java))
             finish()
         }

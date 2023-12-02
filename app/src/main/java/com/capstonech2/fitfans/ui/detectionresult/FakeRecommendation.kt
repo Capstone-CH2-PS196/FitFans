@@ -1,6 +1,6 @@
 package com.capstonech2.fitfans.ui.detectionresult
 
-import com.capstonech2.fitfans.model.Recommendation
+import com.capstonech2.fitfans.data.model.Recommendation
 
 object FakeRecommendation {
     val recommendation = listOf(

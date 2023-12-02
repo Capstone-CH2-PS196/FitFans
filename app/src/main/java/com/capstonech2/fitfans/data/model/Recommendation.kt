@@ -1,4 +1,4 @@
-package com.capstonech2.fitfans.model
+package com.capstonech2.fitfans.data.model
 
 data class Recommendation(
     val level: String,

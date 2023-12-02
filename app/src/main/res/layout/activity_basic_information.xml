@@ -10,7 +10,7 @@
         android:id="@+id/info_button_back"
         android:layout_width="60dp"
         android:layout_height="42dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="42dp"
         android:layout_marginStart="12dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/back"
@@ -43,18 +43,39 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/info_title"
-        app:layout_constraintBottom_toTopOf="@id/info_gender"/>
+        app:layout_constraintBottom_toTopOf="@id/info_ed_name_layout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/info_ed_name_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="29dp"
+        android:hint="@string/name"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/info_description"
+        app:layout_constraintBottom_toTopOf="@id/info_gender">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/info_ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/info_gender"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="29dp"
         android:text="@string/gender"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_description"
+        app:layout_constraintTop_toBottomOf="@id/info_ed_name_layout"
         app:layout_constraintBottom_toTopOf="@id/info_rbg_gender"/>
     
     <RadioGroup
@@ -65,7 +86,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/info_gender"
-        app:layout_constraintBottom_toTopOf="@id/info_ed_age">
+        app:layout_constraintBottom_toTopOf="@id/info_ed_age_layout">
         <RadioButton
             android:id="@+id/rb_male"
             android:layout_width="wrap_content"
@@ -80,7 +101,7 @@
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/info_ed_age"
+        android:id="@+id/info_ed_age_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,17 +112,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/info_rbg_gender"
-        app:layout_constraintBottom_toTopOf="@id/info_ed_weight">
+        app:layout_constraintBottom_toTopOf="@id/info_ed_weight_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/info_ed_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/info_ed_weight"
+        android:id="@+id/info_ed_weight_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,18 +133,19 @@
         app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_ed_age"
-        app:layout_constraintBottom_toTopOf="@id/info_ed_height">
+        app:layout_constraintTop_toBottomOf="@id/info_ed_age_layout"
+        app:layout_constraintBottom_toTopOf="@id/info_ed_height_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/info_ed_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/info_ed_height"
+        android:id="@+id/info_ed_height_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,13 +155,14 @@
         app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_ed_weight"
+        app:layout_constraintTop_toBottomOf="@id/info_ed_weight_layout"
         app:layout_constraintBottom_toTopOf="@id/info_button_save">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/info_ed_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,11 +171,11 @@
         android:backgroundTint="@color/primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="29dp"
         android:text="@string/save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_ed_height"/>
+        app:layout_constraintTop_toBottomOf="@id/info_ed_height_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityLoginBinding
+import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
 import com.capstonech2.fitfans.ui.auth.register.RegisterActivity
 import com.capstonech2.fitfans.utils.MessageUtils
+import com.capstonech2.fitfans.utils.State
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,12 +26,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+
+    private val viewModel: LoginViewModel by viewModel()
     private val context = this@LoginActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,9 +107,7 @@ class LoginActivity : AppCompatActivity() {
                     if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
                         MessageUtils.showToast(context, "Login Success")
                         showLoading(false)
-                        startActivity(
-                            Intent(context, BasicInformationActivity::class.java)
-                        )
+                        checkUserData()
                         finish()
                     } else {
                         showLoading(false)
@@ -125,7 +128,6 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 showLoading(false)
                 MessageUtils.showToast(context, "Login with Google Success")
-                startActivity(Intent(context, BasicInformationActivity::class.java))
                 finish()
             } else {
                 showLoading(false)
@@ -142,8 +144,29 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val account: GoogleSignInAccount = task.getResult(ApiException::class.java)!!
                 authWithGoogle(account.idToken!!)
+                checkUserData()
             } catch (e: ApiException) {
                 MessageUtils.showDialog(context, "Google sign in failed")
+            }
+        }
+    }
+
+    private fun checkUserData(){
+        val email = FirebaseAuth.getInstance().currentUser?.email
+        viewModel.checkUserData(email.toString()).observe(context){ state ->
+            if(state != null){
+                when(state){
+                    is State.Loading -> {}
+                    is State.Success -> {
+                        val intent = if (state.data.isNotEmpty()){
+                            Intent(this, MainActivity::class.java)
+                        } else {
+                            Intent(this, BasicInformationActivity::class.java)
+                        }
+                        startActivity(intent)
+                    }
+                    is State.Error -> {}
+                }
             }
         }
     }
