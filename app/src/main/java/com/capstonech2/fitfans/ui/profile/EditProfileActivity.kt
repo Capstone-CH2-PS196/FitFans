@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityEditProfileBinding
 import com.capstonech2.fitfans.utils.MessageUtils
 
@@ -24,7 +25,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun setUpTopBar(){
         supportActionBar?.apply {
-            title = "Edit Profile"
+            title = getString(R.string.edit_profile)
             setDisplayHomeAsUpEnabled(true)
         }
     }
@@ -47,7 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
             currentImageUri = uri
             binding.previewEditImage.setImageURI(currentImageUri)
         } else {
-            MessageUtils.showToast(this, "No Image selected")
+            MessageUtils.showToast(this, getString(R.string.no_image))
         }
     }
 
