@@ -55,7 +55,7 @@ class CameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                // To Do
+                // ToDo
             }
         }, ContextCompat.getMainExecutor(this))
     }

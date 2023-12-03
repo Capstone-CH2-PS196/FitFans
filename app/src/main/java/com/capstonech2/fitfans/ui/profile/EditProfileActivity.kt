@@ -7,7 +7,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityEditProfileBinding
-import com.capstonech2.fitfans.utils.MessageUtils
+import com.capstonech2.fitfans.utils.showToast
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -48,7 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
             currentImageUri = uri
             binding.previewEditImage.setImageURI(currentImageUri)
         } else {
-            MessageUtils.showToast(this, getString(R.string.no_image))
+            showToast(this, getString(R.string.no_image))
         }
     }
 

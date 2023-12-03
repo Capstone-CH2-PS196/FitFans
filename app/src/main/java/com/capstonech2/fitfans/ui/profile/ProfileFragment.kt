@@ -12,18 +12,19 @@ import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.databinding.FragmentProfileBinding
 import com.capstonech2.fitfans.ui.welcomepage.WelcomePageActivity
-import com.capstonech2.fitfans.utils.MessageUtils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.pow
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModel()
-    private lateinit var auth: FirebaseAuth
+    private var lastKnownEmail: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +34,11 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         settingsMenu()
-        showUserData(auth.currentUser?.email.toString())
+        val currentUserEmail = auth.currentUser?.email.toString()
+        if (lastKnownEmail != currentUserEmail) {
+            lastKnownEmail = currentUserEmail
+            showUserData(currentUserEmail)
+        }
         return binding.root
     }
 
@@ -73,12 +78,14 @@ class ProfileFragment : Fragment() {
         viewModel.getUserDataByEmail(email).observe(requireActivity()){
             if(it != null){
                 when(it){
-                    is State.Loading -> {}
+                    is State.Loading -> {
+                        // TODO
+                    }
                     is State.Success -> {
-                        setData(it.data[0])
+                        setData(it.data.usersResponse[0])
                     }
                     is State.Error -> {
-
+                        // TODO
                     }
                 }
             }

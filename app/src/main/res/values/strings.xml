@@ -23,11 +23,15 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="register_success_message">User Created</string>
+    <string name="login_success_message">Login Success</string>
+    <string name="login_google_success_message">Login with Google Success</string>
+    <string name="login_google_failed_message">Login with Google Failed</string>
     <string name="email_empty">Email cannot be empty</string>
+    <string name="email_verify_null">Please Verify your Email First</string>
     <string name="password_empty">Password cannot be empty</string>
     <string name="invalid_email">Invalid email format</string>
     <string name="password_format">Password must be at least 8 characters</string>
-    <string name="login_check">Invalid email or password. Please check and try again.</string>
+    <string name="auth_check">Invalid email or password. Please check and try again.</string>
 
     <!--basic information-->
     <string name="basic_information_title">Basic Information</string>
@@ -39,37 +43,45 @@
     <string name="weight">Weight</string>
     <string name="height">Height</string>
     <string name="save">Save</string>
+
+    <!--Detection Result-->
     <string name="tools_description">Type of exercise equipment used in physical fitness to train muscles, especially those in the arms, shoulders, chest, and back. Dumbbells typically consist of a metal bar with removable weight plates that can be adjusted to vary the load to be lifted.</string>
     <string name="tips_title">How To Use</string>
     <string name="tips_description">1. Pick dumbbells with a weight that you can lift with proper form.</string>
     <string name="recommend">Recommendation</string>
     <string name="share">Share</string>
-    <string name="home_title">Hello,</string>
-    <string name="username">Nama User</string>
-    <string name="progress_title">Progress Report</string>
-    <string name="gym_activity_title">Gym Activity</string>
+    <string name="usage_time">15 Minutes</string>
+    <string name="try_out">Try Out</string>
+    <string name="beginner">Beginner :</string>
+    <string name="detection_title">Dumbbell</string>
+
+    <!--Profile-->
     <string name="profile_email">name@gmail.com</string>
     <string name="user_age">22</string>
     <string name="user_weight">80 Kg</string>
     <string name="user_height">180 m</string>
     <string name="bmi">BMI</string>
     <string name="user_bmi">23,5 Kg/m</string>
-    <string name="usage_time">15 Minutes</string>
-    <string name="try_out">Try Out</string>
-    <string name="calories_title">Calories Burn</string>
-    <string name="calories">00.0</string>
-    <string name="cal">cal</string>
-    <string name="beginner">Beginner :</string>
-    <string name="detection_title">Dumbbell</string>
     <string name="no_image">No Image selected</string>
-
 
     <!--bottom navigation-->
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
 
+    <!--Home-->
+    <string name="home_title">Hello,</string>
+    <string name="username">User Name</string>
+    <string name="progress_title">Progress Report</string>
+    <string name="calories_title">Calories Burn</string>
+    <string name="calories">00.0</string>
+    <string name="cal">cal</string>
+    <string name="gym_activity_title">Gym Activity</string>
+
     <!--actionbar title-->
     <string name="timer">Timer</string>
     <string name="detection_result">Detection Result</string>
     <string name="edit_profile">Edit Profile</string>
+
+    <!--Timer-->
+
 </resources>

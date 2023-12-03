@@ -4,11 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import androidx.core.view.isVisible
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityRegisterBinding
 import com.capstonech2.fitfans.ui.auth.login.LoginActivity
-import com.capstonech2.fitfans.utils.MessageUtils
+import com.capstonech2.fitfans.utils.show
+import com.capstonech2.fitfans.utils.showToast
+import com.capstonech2.fitfans.utils.showDialog
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -36,28 +37,29 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun onClickRegister(){
-        binding.buttonRegister.setOnClickListener {
-            showLoading(true)
-            binding.apply {
+        binding.apply {
+            buttonRegister.setOnClickListener {
+                progressBarRegister.show(true)
+
                 val email = registerEdEmail.text.toString()
                 val password = registerEdPassword.text.toString()
 
                 val emailError = if (email.isEmpty()) getString(R.string.email_empty)
-                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) getString(R.string.invalid_email)
+                    else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) getString(R.string.invalid_email)
                     else null
 
                 val passwordError = if (password.isEmpty()) getString(R.string.password_empty)
-                else if (password.length < 8) getString(R.string.password_format)
+                    else if (password.length < 8) getString(R.string.password_format)
                     else null
 
                 registerEmailLayout.error = emailError
                 registerPasswordLayout.error = passwordError
 
-                if (emailError == null && passwordError == null) {
-                    createUserWithEmailAndPassword(email, password)
-                } else {
-                    showLoading(false)
-                }
+                if (emailError == null && passwordError == null) createUserWithEmailAndPassword(
+                    email,
+                    password
+                )
+                else progressBarRegister.show(false)
             }
         }
     }
@@ -75,19 +77,15 @@ class RegisterActivity : AppCompatActivity() {
                     if (auth.currentUser != null){
                         auth.currentUser!!.sendEmailVerification()
                     }
-                    MessageUtils.showToast(context, getString(R.string.register_success_message))
-                    showLoading(false)
+                    binding.progressBarRegister.show(false)
+                    showToast(context, getString(R.string.register_success_message))
                     auth.signOut()
                     startActivity(Intent(context, LoginActivity::class.java))
                 }
             }
             .addOnFailureListener {
-                MessageUtils.showDialog(context, getString(R.string.login_check))
-                showLoading(false)
+                binding.progressBarRegister.show(false)
+                showDialog(context, getString(R.string.auth_check))
             }
-    }
-
-    private fun showLoading(state: Boolean){
-        binding.progressBarRegister.isVisible = state
     }
 }

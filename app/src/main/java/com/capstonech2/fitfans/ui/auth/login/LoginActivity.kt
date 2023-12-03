@@ -7,14 +7,15 @@ import android.os.Bundle
 import android.util.Patterns
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityLoginBinding
 import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
 import com.capstonech2.fitfans.ui.auth.register.RegisterActivity
-import com.capstonech2.fitfans.utils.MessageUtils
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.show
+import com.capstonech2.fitfans.utils.showToast
+import com.capstonech2.fitfans.utils.showDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -73,23 +74,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onClickLogin(){
-        binding.buttonLogin.setOnClickListener {
-            showLoading(true)
-            binding.apply {
+        binding.apply {
+            buttonLogin.setOnClickListener {
+                progressBarLogin.show(true)
+
                 val email = loginEdEmail.text.toString()
                 val password = loginEdPassword.text.toString()
 
-                val emailError = if (email.isEmpty()) "Email cannot be empty" else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) "Invalid email format" else null
-                val passwordError = if (password.isEmpty()) "Password cannot be empty" else if (password.length < 8) "Password must be at least 8 characters" else null
+                val emailError = if (email.isEmpty()) getString(R.string.email_empty)
+                    else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) getString(R.string.invalid_email)
+                    else null
+
+                val passwordError = if (password.isEmpty()) getString(R.string.password_empty)
+                    else if (password.length < 8) getString(R.string.password_format)
+                    else null
 
                 loginEmailLayout.error = emailError
                 loginPasswordLayout.error = passwordError
 
-                if (emailError == null && passwordError == null) {
-                    signInWithEmailAndPassword(email, password)
-                } else {
-                    showLoading(false)
-                }
+                if (emailError == null && passwordError == null) signInWithEmailAndPassword(
+                    email,
+                    password
+                )
+                else progressBarLogin.show(false)
             }
         }
     }
@@ -105,33 +112,33 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
-                        MessageUtils.showToast(context, "Login Success")
-                        showLoading(false)
+                        showToast(context, getString(R.string.login_success_message))
+                        binding.progressBarLogin.show(false)
                         checkUserData()
                         finish()
                     } else {
-                        showLoading(false)
-                        MessageUtils.showDialog(context, "Please Verify your Email First")
+                        binding.progressBarLogin.show(false)
+                        showDialog(context, getString(R.string.email_verify_null))
                     }
                 }
             }
             .addOnFailureListener {
-                showLoading(false)
-                MessageUtils.showDialog(context, "Invalid email or password. Please check and try again.")
+                binding.progressBarLogin.show(false)
+                showDialog(context, getString(R.string.auth_check))
             }
     }
 
     private fun authWithGoogle(idToken: String) {
-        showLoading(true)
+        binding.progressBarLogin.show(true)
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                showLoading(false)
-                MessageUtils.showToast(context, "Login with Google Success")
+                binding.progressBarLogin.show(false)
+                showToast(context, getString(R.string.login_google_success_message))
                 finish()
             } else {
-                showLoading(false)
-                MessageUtils.showToast(context, "Login with Google Failed")
+                binding.progressBarLogin.show(false)
+                showToast(context, getString(R.string.login_google_failed_message))
             }
         }
     }
@@ -146,7 +153,7 @@ class LoginActivity : AppCompatActivity() {
                 authWithGoogle(account.idToken!!)
                 checkUserData()
             } catch (e: ApiException) {
-                MessageUtils.showDialog(context, "Google sign in failed")
+                showDialog(context, getString(R.string.login_google_failed_message))
             }
         }
     }
@@ -156,22 +163,22 @@ class LoginActivity : AppCompatActivity() {
         viewModel.checkUserData(email.toString()).observe(context){ state ->
             if(state != null){
                 when(state){
-                    is State.Loading -> {}
+                    is State.Loading -> {
+                        // TODO
+                    }
                     is State.Success -> {
-                        val intent = if (state.data.isNotEmpty()){
+                        val intent = if (state.data.usersResponse.isNotEmpty()){
                             Intent(this, MainActivity::class.java)
                         } else {
                             Intent(this, BasicInformationActivity::class.java)
                         }
                         startActivity(intent)
                     }
-                    is State.Error -> {}
+                    is State.Error -> {
+                        // TODO
+                    }
                 }
             }
         }
-    }
-
-    private fun showLoading(state: Boolean){
-        binding.progressBarLogin.isVisible = state
     }
 }

@@ -4,11 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
-import android.widget.Toast
-import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
+import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.databinding.ActivityBasicInformationBinding
 import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.show
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -40,8 +40,7 @@ class BasicInformationActivity : AppCompatActivity() {
 
     private fun getSelectedRadioButton(){
         binding.infoRbgGender.setOnCheckedChangeListener { _, checked ->
-            val rbChecked: RadioButton = findViewById(checked)
-            gender = rbChecked.text.toString()
+            gender = findViewById<RadioButton>(checked).text.toString()
         }
     }
 
@@ -53,8 +52,8 @@ class BasicInformationActivity : AppCompatActivity() {
             val weight = binding.infoEdWeight.text.toString()
             val height = binding.infoEdHeight.text.toString()
             if (email != null) {
-                val data = UsersResponseItem(
-                    fullName = name,
+                val data = User(
+                    full_name = name,
                     gender = gender,
                     age = age.toInt(),
                     weight = weight.toDouble(),
@@ -63,13 +62,15 @@ class BasicInformationActivity : AppCompatActivity() {
                 )
                 viewModel.insertUser(data).observe(this){
                     when(it){
-                        is State.Loading -> {}
+                        is State.Loading -> binding.progressBarInfo.show(true)
                         is State.Success -> {
+                            binding.progressBarInfo.show(false)
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }
                         is State.Error -> {
-                            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                            binding.progressBarInfo.show(false)
+                            // TODO
                         }
                     }
                 }

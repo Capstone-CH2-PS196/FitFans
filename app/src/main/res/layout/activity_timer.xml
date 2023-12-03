@@ -27,12 +27,14 @@
         android:layout_marginStart="50dp"
         android:padding="6dp"
         android:text="Recommendation: 2 set x 12 times"
+        android:textColor="@color/gray_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
     
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/tv_recommendation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -51,10 +53,10 @@
 
                 <ImageView
                     android:id="@+id/iv_alert"
-                    android:layout_width="21dp"
+                    android:layout_width="20dp"
                     android:layout_height="18dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="12dp"
                     android:src="@drawable/ic_alert"
                     />
 
@@ -62,9 +64,9 @@
                     android:id="@+id/tv_alert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
                     android:textSize="12sp"
                     android:text="Please follow the usage instructions and avoid excessive exercise"
                     android:textColor="@color/white"
@@ -76,9 +78,9 @@
                     android:layout_height="38dp"
                     android:layout_below="@id/tv_alert"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_alignParentEnd="true"
                     android:text="Ok"
                     android:textSize="14sp"
                     android:textAlignment="gravity"
@@ -121,19 +123,19 @@
         android:layout_height="wrap_content"
         android:text="10  :  00"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/gray_text"
+        android:textColor="@color/white"
         android:textSize="57sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bt_pause"
-        android:layout_width="304dp"
-        android:layout_height="52dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="52dp"
         android:backgroundTint="@color/primary_variant"
         android:text="Pause"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,8 +144,11 @@
 
     <Button
         android:id="@+id/bt_start"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="4dp"
         android:backgroundTint="@color/primary_variant"
         android:text="Start"
         app:layout_constraintEnd_toStartOf="@id/bt_reset"
@@ -152,8 +157,11 @@
 
     <Button
         android:id="@+id/bt_reset"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="@color/primary_variant"
         android:text="Stop"
         app:layout_constraintEnd_toEndOf="parent"
