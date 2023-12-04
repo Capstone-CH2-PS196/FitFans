@@ -43,10 +43,10 @@
             android:name=".ui.auth.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.welcomepage.WelcomePageActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.welcomepage.WelcomePageActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

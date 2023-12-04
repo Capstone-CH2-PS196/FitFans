@@ -58,10 +58,10 @@
     <!--Profile-->
     <string name="profile_email">name@gmail.com</string>
     <string name="user_age">22</string>
-    <string name="user_weight">80 Kg</string>
-    <string name="user_height">180 m</string>
+    <string name="user_weight">%1\$s Kg</string>
+    <string name="user_height">%1\$s Cm</string>
     <string name="bmi">BMI</string>
-    <string name="user_bmi">23,5 Kg/m</string>
+    <string name="user_bmi">%1\$s Kg/m²</string>
     <string name="no_image">No Image selected</string>
 
     <!--bottom navigation-->

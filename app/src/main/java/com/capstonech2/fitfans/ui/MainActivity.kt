@@ -23,25 +23,14 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        auth = FirebaseAuth.getInstance()
         setContentView(binding.root)
         supportActionBar?.hide()
 
         navigationConfig()
         startCameraX()
-        checkUserStatus()
-    }
-
-    private fun checkUserStatus(){
-        if(auth.currentUser?.email == null){
-            startActivity(Intent(this@MainActivity, WelcomePageActivity::class.java))
-            finish()
-        }
     }
 
     private fun navigationConfig(){

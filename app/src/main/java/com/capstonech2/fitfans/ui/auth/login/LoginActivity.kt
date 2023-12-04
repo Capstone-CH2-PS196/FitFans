@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstonech2.fitfans.R
+import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.databinding.ActivityLoginBinding
 import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
@@ -159,26 +161,35 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkUserData(){
-        val email = FirebaseAuth.getInstance().currentUser?.email
-        viewModel.checkUserData(email.toString()).observe(context){ state ->
-            if(state != null){
-                when(state){
-                    is State.Loading -> {
-                        // TODO
-                    }
-                    is State.Success -> {
-                        val intent = if (state.data.usersResponse.isNotEmpty()){
-                            Intent(this, MainActivity::class.java)
-                        } else {
-                            Intent(this, BasicInformationActivity::class.java)
-                        }
-                        startActivity(intent)
-                    }
-                    is State.Error -> {
-                        // TODO
-                    }
+        viewModel.checkUserData(auth.currentUser?.email.toString())
+        viewModel.userData.observe(this){ state ->
+            when(state){
+                is State.Loading -> handleLoadingState()
+                is State.Success -> {
+                    handleSuccessState(state.data)
+                    finish()
                 }
+                is State.Error -> handleErrorState(state.error)
             }
         }
+    }
+
+    private fun handleLoadingState() {
+        binding.progressBarLogin.show(true)
+    }
+
+    private fun handleSuccessState(data: List<UsersResponseItem>) {
+        binding.progressBarLogin.show(false)
+        val intent = if (data.isNotEmpty()) {
+            Intent(this, MainActivity::class.java)
+        } else {
+            Intent(this, BasicInformationActivity::class.java)
+        }
+        startActivity(intent)
+    }
+
+    private fun handleErrorState(errorMessage: String) {
+        binding.progressBarLogin.show(false)
+        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
 }

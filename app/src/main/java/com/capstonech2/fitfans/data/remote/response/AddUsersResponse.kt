@@ -25,3 +25,9 @@ data class AddUsersResponse(
 	@field:SerializedName("info")
 	val info: String
 )
+
+data class ErrorResponse(
+
+	@field:SerializedName("error")
+	val error: String
+)

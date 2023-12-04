@@ -6,6 +6,7 @@ import com.capstonech2.fitfans.data.GymRepository
 import com.capstonech2.fitfans.data.remote.service.ApiService
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationViewModel
 import com.capstonech2.fitfans.ui.auth.login.LoginViewModel
+import com.capstonech2.fitfans.ui.home.HomeViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,6 +48,7 @@ class MainApplication : Application() {
             }
             single { GymRepository(get()) }
 
+            viewModel { HomeViewModel(get()) }
             viewModel { BasicInformationViewModel(get()) }
             viewModel { LoginViewModel(get()) }
             viewModel { ProfileViewModel(get())}

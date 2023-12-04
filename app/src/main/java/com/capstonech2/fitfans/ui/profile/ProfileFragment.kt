@@ -17,6 +17,7 @@ import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.pow
+import kotlin.math.round
 
 class ProfileFragment : Fragment() {
 
@@ -24,7 +25,6 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModel()
-    private var lastKnownEmail: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +34,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         settingsMenu()
-        val currentUserEmail = auth.currentUser?.email.toString()
-        if (lastKnownEmail != currentUserEmail) {
-            lastKnownEmail = currentUserEmail
-            showUserData(currentUserEmail)
-        }
+        showUserData(auth.currentUser?.email.toString())
         return binding.root
     }
 
@@ -67,42 +63,40 @@ class ProfileFragment : Fragment() {
                     else -> false
                 }
             }
-            popup.setOnDismissListener { menu ->
-                menu.dismiss()
-            }
+            popup.setOnDismissListener { menu -> menu.dismiss() }
             popup.show()
         }
     }
 
     private fun showUserData(email: String){
-        viewModel.getUserDataByEmail(email).observe(requireActivity()){
+        viewModel.checkUserData(email)
+        viewModel.userData.observe(viewLifecycleOwner){
             if(it != null){
                 when(it){
-                    is State.Loading -> {
-                        // TODO
-                    }
-                    is State.Success -> {
-                        setData(it.data.usersResponse[0])
-                    }
-                    is State.Error -> {
-                        // TODO
-                    }
+                    is State.Loading -> {}
+                    is State.Success -> { setData(it.data) }
+                    is State.Error -> {}
                 }
             }
         }
     }
 
     private fun calculateBMI(weight: Double, height: Double): Double {
-        return weight / (height / 100).pow(2)
+        return round((weight / (height/100).pow(2)) * 10) / 10.0
     }
 
-    private fun setData(data: UsersResponseItem){
-        binding.profileName.text = data.fullName.capitalizeFirstLetter()
-        binding.profileEmail.text = data.email
-        binding.userAge.text = data.age.toString()
-        binding.userGender.text = data.gender
-        binding.userWeight.text = data.weight.toString()
-        binding.userHeight.text = data.height.toString()
-        binding.userBmi.text = calculateBMI(data.weight, data.height).toString()
+    private fun setData(data: List<UsersResponseItem>){
+        binding.profileName.text = data[0].fullName.capitalizeFirstLetter()
+        binding.profileEmail.text = data[0].email
+        binding.userAge.text = data[0].age.toString()
+        binding.userGender.text = data[0].gender
+
+        val bmi = calculateBMI(data[0].weight, data[0].height)
+        val weight = data[0].weight.toString()
+        val height = data[0].height.toString()
+
+        binding.userWeight.text = String.format(getString(R.string.user_weight), weight)
+        binding.userHeight.text = String.format(getString(R.string.user_height), height)
+        binding.userBmi.text = String.format(getString(R.string.user_bmi), bmi)
     }
 }

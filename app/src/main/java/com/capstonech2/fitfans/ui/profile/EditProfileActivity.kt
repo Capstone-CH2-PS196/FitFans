@@ -55,4 +55,12 @@ class EditProfileActivity : AppCompatActivity() {
     private fun startGallery() {
         launcherPhotoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
+
+    private fun saveChanges() {
+        binding.apply {
+            profileButtonSave.setOnClickListener {
+                val image = currentImageUri
+            }
+        }
+    }
 }

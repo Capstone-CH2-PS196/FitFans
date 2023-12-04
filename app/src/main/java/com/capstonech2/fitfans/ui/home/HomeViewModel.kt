@@ -1,18 +1,15 @@
-package com.capstonech2.fitfans.ui.profile
+package com.capstonech2.fitfans.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstonech2.fitfans.data.GymRepository
-import com.capstonech2.fitfans.data.model.User
-import com.capstonech2.fitfans.data.remote.response.UsersResponse
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.utils.State
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(private val repository: GymRepository): ViewModel(){
-
+class HomeViewModel(private val repository: GymRepository) : ViewModel() {
     private val _userData = MutableLiveData<State<List<UsersResponseItem>>>()
     val userData: LiveData<State<List<UsersResponseItem>>> get() = _userData
 
@@ -26,6 +23,4 @@ class ProfileViewModel(private val repository: GymRepository): ViewModel(){
             _userData.value = State.Error(errorMessage)
         }
     }
-
-    fun updateUserByEmail(email: String, data: User) = repository.updateUserByEmail(email, data)
 }

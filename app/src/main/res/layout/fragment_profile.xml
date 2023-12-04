@@ -22,23 +22,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:layout_marginStart="20dp"
-        android:text="Name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/profile_image"/>
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        tools:text="Name"/>
 
     <TextView
         android:id="@+id/profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="name@gmail.com"
         android:textColor="@color/gray_text"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintTop_toBottomOf="@id/profile_name"
-        app:layout_constraintStart_toEndOf="@id/profile_image"/>
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        tools:text="name@gmail.com"/>
 
     <ImageButton
         android:id="@+id/profile_setting"
@@ -77,8 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="Male"
-            android:textColor="@color/gray_text"/>
+            android:textColor="@color/gray_text"
+            tools:text="Male"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -94,8 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="22"
-            android:textColor="@color/gray_text"/>
+            android:textColor="@color/gray_text"
+            tools:text="22"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -111,8 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="80 Kg"
-            android:textColor="@color/gray_text"/>
+            android:textColor="@color/gray_text"
+            tools:text="80 Kg"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -128,8 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="180 m"
-            android:textColor="@color/gray_text"/>
+            android:textColor="@color/gray_text"
+            tools:text="180 m"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
-            android:text="23,5 Kg/m"
-            android:textColor="@color/gray_text"/>
+            android:textColor="@color/gray_text"
+            tools:text="23,5 Kg/m"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
