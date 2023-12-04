@@ -20,6 +20,7 @@ class WelcomePageActivity : AppCompatActivity() {
         binding = ActivityWelcomePageBinding.inflate(layoutInflater)
         auth = FirebaseAuth.getInstance()
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         navigateToLogin()
         navigateToRegister()

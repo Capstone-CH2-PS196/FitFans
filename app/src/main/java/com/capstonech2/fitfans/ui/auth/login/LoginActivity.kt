@@ -115,9 +115,8 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
                         showToast(context, getString(R.string.login_success_message))
-                        binding.progressBarLogin.show(false)
                         checkUserData()
-                        finish()
+                        binding.progressBarLogin.show(false)
                     } else {
                         binding.progressBarLogin.show(false)
                         showDialog(context, getString(R.string.email_verify_null))
@@ -137,7 +136,7 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 binding.progressBarLogin.show(false)
                 showToast(context, getString(R.string.login_google_success_message))
-                finish()
+                checkUserData()
             } else {
                 binding.progressBarLogin.show(false)
                 showToast(context, getString(R.string.login_google_failed_message))
@@ -153,7 +152,6 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val account: GoogleSignInAccount = task.getResult(ApiException::class.java)!!
                 authWithGoogle(account.idToken!!)
-                checkUserData()
             } catch (e: ApiException) {
                 showDialog(context, getString(R.string.login_google_failed_message))
             }
@@ -165,9 +163,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel.userData.observe(this){ state ->
             when(state){
                 is State.Loading -> handleLoadingState()
-                is State.Success -> {
-                    handleSuccessState(state.data)
-                }
+                is State.Success -> handleSuccessState(state.data)
                 is State.Error -> handleErrorState(state.error)
             }
         }
