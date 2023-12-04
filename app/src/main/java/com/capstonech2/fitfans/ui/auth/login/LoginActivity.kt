@@ -167,7 +167,6 @@ class LoginActivity : AppCompatActivity() {
                 is State.Loading -> handleLoadingState()
                 is State.Success -> {
                     handleSuccessState(state.data)
-                    finish()
                 }
                 is State.Error -> handleErrorState(state.error)
             }
@@ -181,9 +180,13 @@ class LoginActivity : AppCompatActivity() {
     private fun handleSuccessState(data: List<UsersResponseItem>) {
         binding.progressBarLogin.show(false)
         val intent = if (data.isNotEmpty()) {
-            Intent(this, MainActivity::class.java)
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         } else {
-            Intent(this, BasicInformationActivity::class.java)
+            Intent(this, BasicInformationActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         }
         startActivity(intent)
     }

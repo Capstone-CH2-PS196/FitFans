@@ -1,5 +1,9 @@
 package com.capstonech2.fitfans.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     val full_name: String,
     val gender: String,
@@ -8,4 +12,4 @@ data class User(
     val height: Double,
     val email: String,
     val image: String? = null
-)
+) : Parcelable

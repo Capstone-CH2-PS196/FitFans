@@ -12,7 +12,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="65dp"
         android:layout_marginStart="35dp"
-        android:src="@drawable/avatar"
+        android:src="@drawable/ic_profile_user"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

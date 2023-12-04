@@ -17,3 +17,13 @@ fun showDialog(context: Context, message: String){
         }
         .show()
 }
+
+fun showDialogWithAction(context: Context, title: String, message: String, positiveAction: () -> Unit){
+    MaterialAlertDialogBuilder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton("Oke") { _, _ ->
+            positiveAction.invoke()
+        }
+        .show()
+}

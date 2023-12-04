@@ -2,7 +2,7 @@ package com.capstonech2.fitfans.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class AddUsersResponse(
+data class UpdateUserResponse(
 
 	@field:SerializedName("fieldCount")
 	val fieldCount: Int,

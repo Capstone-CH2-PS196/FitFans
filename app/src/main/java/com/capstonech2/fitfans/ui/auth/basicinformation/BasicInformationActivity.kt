@@ -16,8 +16,8 @@ class BasicInformationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBasicInformationBinding
     private lateinit var auth: FirebaseAuth
-    private val viewModel: BasicInformationViewModel by viewModel()
 
+    private val viewModel: BasicInformationViewModel by viewModel()
     private var gender: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,7 @@ class BasicInformationActivity : AppCompatActivity() {
 
     private fun onSaveInfoClick(){
         binding.infoButtonSave.setOnClickListener {
+            binding.progressBarInfo.show(true)
             val email = auth.currentUser?.email
             val name = binding.infoEdName.text.toString()
             val age = binding.infoEdAge.text.toString()

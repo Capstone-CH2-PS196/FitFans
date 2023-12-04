@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="@id/preview_edit_image"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_ed_name"
+        android:id="@+id/profile_ed_name_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,6 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@id/preview_edit_image">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_ed_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -66,7 +67,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_gender"
-        app:layout_constraintBottom_toTopOf="@id/profile_ed_age">
+        app:layout_constraintBottom_toTopOf="@id/profile_ed_age_layout">
         <RadioButton
             android:id="@+id/rb_male"
             android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_ed_age"
+        android:id="@+id/profile_ed_age_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,9 +93,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_rbg_gender"
-        app:layout_constraintBottom_toTopOf="@id/profile_ed_weight">
+        app:layout_constraintBottom_toTopOf="@id/profile_ed_weight_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_ed_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -102,7 +104,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_ed_weight"
+        android:id="@+id/profile_ed_weight_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -112,11 +114,12 @@
         android:hint="@string/weight"
         app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/profile_ed_height"
-        app:layout_constraintTop_toBottomOf="@id/profile_ed_age"
-        app:layout_constraintBottom_toTopOf="@id/profile_ed_height">
+        app:layout_constraintEnd_toStartOf="@id/profile_ed_height_layout"
+        app:layout_constraintTop_toBottomOf="@id/profile_ed_age_layout"
+        app:layout_constraintBottom_toTopOf="@id/profile_ed_height_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_ed_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -124,7 +127,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_ed_height"
+        android:id="@+id/profile_ed_height_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -132,12 +135,13 @@
         android:layout_marginEnd="29dp"
         android:hint="@string/height"
         app:errorEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/profile_ed_weight"
+        app:layout_constraintStart_toEndOf="@id/profile_ed_weight_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_ed_age"
-        app:layout_constraintBottom_toBottomOf="@id/profile_ed_weight">
+        app:layout_constraintTop_toBottomOf="@id/profile_ed_age_layout"
+        app:layout_constraintBottom_toBottomOf="@id/profile_ed_weight_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_ed_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -154,6 +158,18 @@
         android:text="@string/save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_ed_height"/>
+        app:layout_constraintTop_toBottomOf="@id/profile_ed_height_layout"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:id="@+id/progress_bar_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

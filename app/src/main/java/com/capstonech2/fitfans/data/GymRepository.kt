@@ -1,6 +1,5 @@
 package com.capstonech2.fitfans.data
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.data.remote.service.ApiService

@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.widget.ImageView
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
@@ -100,6 +101,14 @@ fun File.reduceFileImage(): File {
     } while (streamLength > MAXIMAL_SIZE)
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
+}
+
+fun encodeImageToBase64(image: File): String {
+    val byteArrayOutputStream = ByteArrayOutputStream()
+    val bitmap = BitmapFactory.decodeFile(image.absolutePath)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+    val byteArray = byteArrayOutputStream.toByteArray()
+    return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }
 
 fun Bitmap.getRotatedBitmap(file: File): Bitmap {
