@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(){
         supportActionBar?.hide()
 
         navigationConfig()
-        startCameraX()
+        binding.buttonCamera.setOnClickListener { intentCamera() }
     }
 
     private fun navigationConfig(){
@@ -47,41 +47,7 @@ class MainActivity : AppCompatActivity(){
         binding.bottomNavigation.itemActiveIndicatorColor = getColorStateList(R.color.white)
     }
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
-
-    private fun startCameraX() {
-        binding.buttonCamera.setOnClickListener {
-            if (!allPermissionsGranted()) {
-                requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-            } else {
-                val intent = Intent(this, CameraActivity::class.java)
-                launcherIntentCameraX.launch(intent)
-            }
-        }
-    }
-
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        // TODO
-    }
-
-    companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+    private fun intentCamera(){
+        startActivity(Intent(this, CameraActivity::class.java))
     }
 }

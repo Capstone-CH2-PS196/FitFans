@@ -1,121 +1,53 @@
 package com.capstonech2.fitfans.ui.camera
 
-import android.os.Build
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.OrientationEventListener
-import android.view.Surface
-import android.view.WindowInsets
-import android.view.WindowManager
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
+import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import com.capstonech2.fitfans.databinding.ActivityCameraBinding
-import com.capstonech2.fitfans.utils.createCustomTempFile
+import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
+import com.capstonech2.fitfans.utils.getImageUri
 
 class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var imageCapture: ImageCapture? = null
+    private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.captureImage.setOnClickListener { takePhoto() }
-    }
-
-    public override fun onResume() {
-        super.onResume()
-        hideSystemUI()
-        startCamera()
-    }
-
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder().build().also {
-                it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-            }
-            imageCapture = ImageCapture.Builder().build()
-
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
-            } catch (exc: Exception) {
-                // ToDo
-            }
-        }, ContextCompat.getMainExecutor(this))
-    }
-
-    private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
-        val photoFile = createCustomTempFile(application)
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    // ToDo
-                }
-                override fun onError(exc: ImageCaptureException) {
-                    // ToDo
-                }
-            }
-        )
-    }
-
-    private fun hideSystemUI() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+        supportActionBar?.apply {
+            title = "Take Photo"
+            setDisplayHomeAsUpEnabled(true)
         }
-        supportActionBar?.hide()
+
+        binding.buttonCamera.setOnClickListener { takePhoto() }
+        binding.buttonDetect.setOnClickListener { detectPhoto() }
     }
 
-    private val orientationEventListener by lazy {
-        object : OrientationEventListener(this) {
-            override fun onOrientationChanged(orientation: Int) {
-                if (orientation == ORIENTATION_UNKNOWN) {
-                    return
-                }
-                val rotation = when (orientation) {
-                    in 45 until 135 -> Surface.ROTATION_270
-                    in 135 until 225 -> Surface.ROTATION_180
-                    in 225 until 315 -> Surface.ROTATION_90
-                    else -> Surface.ROTATION_0
-                }
-                imageCapture?.targetRotation = rotation
-            }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
+    private val launcherCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSuccess ->
+        if (isSuccess) {
+            binding.previewImage.setImageURI(currentImageUri)
+            binding.previewImageText.visibility = View.GONE
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        orientationEventListener.enable()
+    private fun takePhoto(){
+        currentImageUri = getImageUri(this)
+        launcherCamera.launch(currentImageUri)
     }
 
-    override fun onStop() {
-        super.onStop()
-        orientationEventListener.disable()
+    private fun detectPhoto(){
+        startActivity(Intent(this, DetectionResultActivity::class.java))
     }
 }

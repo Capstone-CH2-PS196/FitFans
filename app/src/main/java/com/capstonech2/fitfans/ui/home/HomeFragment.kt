@@ -15,6 +15,7 @@ import com.capstonech2.fitfans.ui.home.progressreport.Report
 import com.capstonech2.fitfans.ui.home.progressreport.ReportDataSource
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
+import com.capstonech2.fitfans.utils.loadImage
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -65,6 +66,7 @@ class HomeFragment : Fragment() {
 
     private fun setData(data: List<UsersResponseItem>){
         binding.textUsername.text = data[0].fullName.capitalizeFirstLetter()
+        binding.imageProfileUser.loadImage(data[0].image)
     }
 
     override fun onDestroyView() {

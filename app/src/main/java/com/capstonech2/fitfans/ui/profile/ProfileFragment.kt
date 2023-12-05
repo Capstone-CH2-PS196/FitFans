@@ -16,6 +16,7 @@ import com.capstonech2.fitfans.ui.welcomepage.WelcomePageActivity
 import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
+import com.capstonech2.fitfans.utils.loadImage
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.pow
@@ -30,7 +31,6 @@ class ProfileFragment : Fragment() {
 
     private var weight: Double = 0.0
     private var height: Double = 0.0
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,6 +92,7 @@ class ProfileFragment : Fragment() {
 
     private fun setData(data: List<UsersResponseItem>){
         binding.apply {
+            profileImage.loadImage(data[0].image)
             profileName.text = data[0].fullName.capitalizeFirstLetter()
             profileEmail.text = data[0].email
             userAge.text = data[0].age.toString()

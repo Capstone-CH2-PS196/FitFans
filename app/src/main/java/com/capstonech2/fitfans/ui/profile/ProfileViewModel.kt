@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstonech2.fitfans.data.GymRepository
 import com.capstonech2.fitfans.data.model.User
-import com.capstonech2.fitfans.data.remote.response.UsersResponse
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.utils.State
 import kotlinx.coroutines.launch

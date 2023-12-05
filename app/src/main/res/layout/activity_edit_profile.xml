@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="29dp"
         android:layout_marginStart="29dp"
-        android:src="@drawable/avatar"
+        android:src="@drawable/ic_profile_user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -144,7 +144,7 @@
             android:id="@+id/profile_ed_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,15 +161,17 @@
         app:layout_constraintTop_toBottomOf="@id/profile_ed_height_layout"/>
 
     <ProgressBar
-        style="?android:attr/progressBarStyle"
         android:id="@+id/progress_bar_edit_profile"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible"/>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.585"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

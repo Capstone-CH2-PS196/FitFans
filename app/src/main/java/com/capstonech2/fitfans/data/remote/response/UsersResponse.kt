@@ -26,5 +26,8 @@ data class UsersResponseItem(
 	val email: String,
 
 	@field:SerializedName("height")
-	val height: Double
+	val height: Double,
+
+	@field:SerializedName("image")
+	val image: String
 )

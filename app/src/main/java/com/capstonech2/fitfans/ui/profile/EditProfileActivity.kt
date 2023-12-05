@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.widget.RadioButton
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.content.res.AppCompatResources
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.databinding.ActivityEditProfileBinding
 import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.loadImage
 import com.capstonech2.fitfans.utils.show
 import com.capstonech2.fitfans.utils.showDialogWithAction
 import com.capstonech2.fitfans.utils.showToast
@@ -58,6 +58,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         if (data != null){
             binding.apply {
+                previewEditImage.loadImage(data.image.toString())
                 profileEdName.setText(data.full_name)
                 profileEdAge.setText(data.age.toString())
                 profileEdWeight.setText(data.weight.toString())

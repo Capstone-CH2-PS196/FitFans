@@ -5,10 +5,15 @@ import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.data.remote.service.ApiService
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.utils.State
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class GymRepository(private val apiService: ApiService) {
 
-    suspend fun getUserByEmail(email: String):  List<UsersResponseItem> = apiService.getUserByEmail(email)
+    suspend fun getUserByEmail(email: String):  List<UsersResponseItem> =
+        withContext(Dispatchers.IO){
+            apiService.getUserByEmail(email)
+        }
 
     fun insertUser(data: User) = liveData {
         emit(State.Loading)
