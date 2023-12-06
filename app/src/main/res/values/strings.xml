@@ -2,7 +2,7 @@
 
     <string name="app_name">Fitfans</string>
 
-    <!--Welcome Page-->
+    <!--welcome page-->
     <string name="welcome_image">Welcome Page Image</string>
     <string name="welcome_title">Welcome to FitFans</string>
     <string name="welcome_description">Step into a world of fitness with FitFans. Get ready to explore gym equipment and receive usage recommendations for your workouts.</string>
@@ -44,7 +44,7 @@
     <string name="height">Height</string>
     <string name="save">Save</string>
 
-    <!--Detection Result-->
+    <!--detection result-->
     <string name="tools_description">Type of exercise equipment used in physical fitness to train muscles, especially those in the arms, shoulders, chest, and back. Dumbbells typically consist of a metal bar with removable weight plates that can be adjusted to vary the load to be lifted.</string>
     <string name="tips_title">How To Use</string>
     <string name="tips_description">1. Pick dumbbells with a weight that you can lift with proper form.</string>
@@ -54,21 +54,24 @@
     <string name="try_out">Try Out</string>
     <string name="beginner">Beginner :</string>
     <string name="detection_title">Dumbbell</string>
+    <string name="detection_image">Detection Image</string>
 
-    <!--Profile-->
+    <!--profile-->
     <string name="profile_email">name@gmail.com</string>
     <string name="user_age">22</string>
     <string name="user_weight">%1\$s Kg</string>
     <string name="user_height">%1\$s Cm</string>
     <string name="bmi">BMI</string>
     <string name="user_bmi">%1\$s Kg/m²</string>
+    <string name="setting_profile">Setting Profile</string>
     <string name="no_image">No Image selected</string>
+    <string name="change_image">Change Image</string>
 
     <!--bottom navigation-->
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
 
-    <!--Home-->
+    <!--home-->
     <string name="home_title">Hello,</string>
     <string name="username">User Name</string>
     <string name="progress_title">Progress Report</string>
@@ -78,11 +81,29 @@
     <string name="bmi_unit">Kg/m²</string>
     <string name="gym_activity_title">Gym Activity</string>
 
+    <!--camera-->
+    <string name="preview_image">Preview Image</string>
+    <string name="detect_image">Detect Image</string>
+
     <!--actionbar title-->
-    <string name="timer">Timer</string>
     <string name="detection_result">Detection Result</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="timer">Timer</string>
+    <string name="take_picture">Take Picture</string>
 
-    <!--Timer-->
+    <!--basic error-->
+    <string name="name_empty">Name cannot be empty</string>
+    <string name="age_empty">Age cannot be empty</string>
+    <string name="weight_empty">Weight cannot be empty</string>
+    <string name="height_empty">Height cannot be empty</string>
+
+    <!--dialog title-->
+    <string name="success">Success</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+
+    <!--dialog content-->
+    <string name="update_profile_success">Your profile has been updated</string>
+    <string name="save_user_success">Failed to save the Data, Please try again</string>
 
 </resources>

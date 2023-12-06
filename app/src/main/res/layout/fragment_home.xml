@@ -127,6 +127,7 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:contentDescription="@string/calories_title"
                             android:src="@drawable/ic_fire"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -185,6 +186,7 @@
 
                         <ImageView
                             android:id="@+id/bmi_icon"
+                            android:contentDescription="@string/bmi"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"

@@ -12,6 +12,7 @@
 
         <ImageView
             android:id="@+id/result_image"
+            android:contentDescription="@string/detection_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="36dp"

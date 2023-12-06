@@ -48,6 +48,7 @@
 
     <ImageButton
         android:id="@+id/profile_setting"
+        android:contentDescription="@string/setting_profile"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="82dp"
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="Gender"
+                android:text="@string/gender"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -96,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="Age"
+                android:text="@string/age"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 
@@ -113,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="Weight"
+                android:text="@string/weight"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 
@@ -130,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="Height"
+                android:text="@string/height"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 
@@ -147,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="BMI"
+                android:text="@string/bmi"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 
@@ -159,6 +160,9 @@
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/gray_text"
                 tools:text="23,5 Kg/m"/>
+
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

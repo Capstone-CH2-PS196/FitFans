@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityCameraBinding
 import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
 import com.capstonech2.fitfans.utils.getImageUri
@@ -20,7 +21,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.apply {
-            title = "Take Photo"
+            title = getString(R.string.take_picture)
             setDisplayHomeAsUpEnabled(true)
         }
 

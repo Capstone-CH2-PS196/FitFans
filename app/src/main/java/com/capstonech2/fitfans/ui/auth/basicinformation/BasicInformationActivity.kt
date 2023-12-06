@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
+import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.databinding.ActivityBasicInformationBinding
 import com.capstonech2.fitfans.ui.MainActivity
@@ -56,10 +57,10 @@ class BasicInformationActivity : AppCompatActivity() {
                 val weight = infoEdWeight.text.toString()
                 val height = infoEdHeight.text.toString()
 
-                val nameError = if (name.isEmpty()) "Name cannot be empty" else null
-                val ageError = if (age.isEmpty()) "Age cannot be empty" else null
-                val weightError = if (weight.isEmpty()) "Weight cannot be empty" else null
-                val heightError = if (height.isEmpty()) "Height cannot be empty" else null
+                val nameError = if (name.isEmpty()) getString(R.string.name_empty) else null
+                val ageError = if (age.isEmpty()) getString(R.string.age_empty) else null
+                val weightError = if (weight.isEmpty()) getString(R.string.weight_empty) else null
+                val heightError = if (height.isEmpty()) getString(R.string.height_empty) else null
 
                 if (nameError == null && ageError == null && weightError == null && heightError == null) {
                     val data = User(
@@ -100,6 +101,6 @@ class BasicInformationActivity : AppCompatActivity() {
 
     private fun handleErrorState(){
         binding.progressBarInfo.show(false)
-        showDialog(this, "Failed to save the Data, Please try again")
+        showDialog(this, getString(R.string.save_user_success))
     }
 }

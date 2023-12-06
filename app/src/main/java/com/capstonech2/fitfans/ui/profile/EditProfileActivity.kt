@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.RadioButton
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -65,8 +64,8 @@ class EditProfileActivity : AppCompatActivity() {
                 profileEdWeight.setText(data.weight.toString())
                 profileEdHeight.setText(data.height.toString())
                 when(data.gender){
-                    "Male" -> rbMale.isChecked = true
-                    "Female" -> rbFemale.isChecked = true
+                    getString(R.string.male_label) -> rbMale.isChecked = true
+                    getString(R.string.female_label) -> rbFemale.isChecked = true
                 }
             }
         }
@@ -117,10 +116,10 @@ class EditProfileActivity : AppCompatActivity() {
                     val weight = profileEdWeight.text.toString()
                     val height = profileEdHeight.text.toString()
 
-                    val nameError = if (name.isEmpty()) "Name cannot be empty" else null
-                    val ageError = if (age.isEmpty()) "Age cannot be empty" else null
-                    val weightError = if (weight.isEmpty()) "Weight cannot be empty" else null
-                    val heightError = if (height.isEmpty()) "Height cannot be empty" else null
+                    val nameError = if (name.isEmpty()) getString(R.string.name_empty) else null
+                    val ageError = if (age.isEmpty()) getString(R.string.age_empty) else null
+                    val weightError = if (weight.isEmpty()) getString(R.string.weight_empty) else null
+                    val heightError = if (height.isEmpty()) getString(R.string.height_empty) else null
 
                     if (nameError == null && ageError == null && weightError == null &&
                         heightError == null){
@@ -147,7 +146,6 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun updateUser(email: String, data: User){
-        Log.e("Anomali 3", "unknown")
         viewModel.updateUserByEmail(email, data).observe(this){ state ->
             if(state != null){
                 when(state){
@@ -156,7 +154,7 @@ class EditProfileActivity : AppCompatActivity() {
                     }
                     is State.Success -> {
                         binding.progressBarEditProfile.show(false)
-                        showDialogWithAction(this, "Success", "Your Profile has been Updated"){
+                        showDialogWithAction(this, getString(R.string.success), getString(R.string.update_profile_success)){
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }
