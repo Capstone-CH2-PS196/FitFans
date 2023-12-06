@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.RadioButton
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -115,23 +116,39 @@ class EditProfileActivity : AppCompatActivity() {
                     val age = profileEdAge.text.toString()
                     val weight = profileEdWeight.text.toString()
                     val height = profileEdHeight.text.toString()
-                    val data = User(
-                        full_name = name,
-                        gender = gender,
-                        age = age.toInt(),
-                        weight = weight.toDouble(),
-                        height = height.toDouble(),
-                        email = email,
-                        image = image
-                    )
-                    updateUser(email, data)
+
+                    val nameError = if (name.isEmpty()) "Name cannot be empty" else null
+                    val ageError = if (age.isEmpty()) "Age cannot be empty" else null
+                    val weightError = if (weight.isEmpty()) "Weight cannot be empty" else null
+                    val heightError = if (height.isEmpty()) "Height cannot be empty" else null
+
+                    if (nameError == null && ageError == null && weightError == null &&
+                        heightError == null){
+                        val data = User(
+                            full_name = name,
+                            gender = gender,
+                            age = age.toInt(),
+                            weight = weight.toDouble(),
+                            height = height.toDouble(),
+                            email = email,
+                            image = image
+                        )
+                        updateUser(email, data)
+                    } else {
+                        progressBarEditProfile.show(false)
+                        profileEdNameLayout.error = nameError
+                        profileEdAgeLayout.error = ageError
+                        profileEdWeightLayout.error = weightError
+                        profileEdHeightLayout.error = heightError
+                    }
                 }
             }
         }
     }
 
     private fun updateUser(email: String, data: User){
-        viewModel.updateUserByEmail(email, data).observe(this@EditProfileActivity){ state ->
+        Log.e("Anomali 3", "unknown")
+        viewModel.updateUserByEmail(email, data).observe(this){ state ->
             if(state != null){
                 when(state){
                     is State.Loading -> {

@@ -15,6 +15,7 @@ import com.capstonech2.fitfans.databinding.FragmentProfileBinding
 import com.capstonech2.fitfans.ui.welcomepage.WelcomePageActivity
 import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.loadImage
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +29,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModel()
+    private var currentImage: String? = null
 
     private var weight: Double = 0.0
     private var height: Double = 0.0
@@ -87,12 +89,10 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun calculateBMI(weight: Double, height: Double): Double =
-        round((weight / (height / 100).pow(2)) * 10) / 10.0
-
     private fun setData(data: List<UsersResponseItem>){
         binding.apply {
-            profileImage.loadImage(data[0].image)
+            currentImage = data[0].image
+            profileImage.loadImage(currentImage!!)
             profileName.text = data[0].fullName.capitalizeFirstLetter()
             profileEmail.text = data[0].email
             userAge.text = data[0].age.toString()
@@ -110,6 +110,7 @@ class ProfileFragment : Fragment() {
 
     private fun navigateToEdit(){
         binding.apply {
+            val image = currentImage
             val name = profileName.text.toString()
             val email = profileEmail.text.toString()
             val gender = userGender.text.toString()
@@ -121,7 +122,8 @@ class ProfileFragment : Fragment() {
                 gender = gender,
                 age = age.toInt(),
                 weight = weight,
-                height = height
+                height = height,
+                image = image
             )
             val intent = Intent(requireActivity(), EditProfileActivity::class.java)
             intent.putExtra(EXTRA_PROFILE_KEY, data)

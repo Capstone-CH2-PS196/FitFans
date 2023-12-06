@@ -73,8 +73,9 @@
     <string name="username">User Name</string>
     <string name="progress_title">Progress Report</string>
     <string name="calories_title">Calories Burn</string>
-    <string name="calories">00.0</string>
-    <string name="cal">cal</string>
+    <string name="cal_unit">cal</string>
+    <string name="bmi_title">BMI</string>
+    <string name="bmi_unit">Kg/m²</string>
     <string name="gym_activity_title">Gym Activity</string>
 
     <!--actionbar title-->

@@ -10,10 +10,8 @@ import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.databinding.FragmentHomeBinding
 import com.capstonech2.fitfans.ui.home.menulist.MenuAdapter
 import com.capstonech2.fitfans.ui.home.menulist.MenuDataSource
-import com.capstonech2.fitfans.ui.home.progressreport.ProgressReportAdapter
-import com.capstonech2.fitfans.ui.home.progressreport.Report
-import com.capstonech2.fitfans.ui.home.progressreport.ReportDataSource
 import com.capstonech2.fitfans.utils.State
+import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.loadImage
 import com.google.firebase.auth.FirebaseAuth
@@ -32,18 +30,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        showProgressReport(ReportDataSource.report)
         auth = FirebaseAuth.getInstance()
         showMenuList()
         getUserData()
         return binding.root
-    }
-
-    private fun showProgressReport(report : List<Report>){
-        binding.reportList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val adapter = ProgressReportAdapter()
-        adapter.submitList(report)
-        binding.reportList.adapter = adapter
     }
 
     private fun showMenuList(){
@@ -67,6 +57,8 @@ class HomeFragment : Fragment() {
     private fun setData(data: List<UsersResponseItem>){
         binding.textUsername.text = data[0].fullName.capitalizeFirstLetter()
         binding.imageProfileUser.loadImage(data[0].image)
+        binding.caloriesValue.text = "00.0"
+        binding.bmiValue.text = calculateBMI(data[0].weight, data[0].height).toString()
     }
 
     override fun onDestroyView() {

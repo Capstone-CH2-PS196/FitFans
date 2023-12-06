@@ -162,15 +162,11 @@ class LoginActivity : AppCompatActivity() {
         viewModel.checkUserData(auth.currentUser?.email.toString())
         viewModel.userData.observe(this){ state ->
             when(state){
-                is State.Loading -> handleLoadingState()
+                is State.Loading -> binding.progressBarLogin.show(true)
                 is State.Success -> handleSuccessState(state.data)
                 is State.Error -> handleErrorState(state.error)
             }
         }
-    }
-
-    private fun handleLoadingState() {
-        binding.progressBarLogin.show(true)
     }
 
     private fun handleSuccessState(data: List<UsersResponseItem>) {
