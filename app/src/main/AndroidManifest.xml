@@ -10,7 +10,6 @@
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_fitfans"
@@ -18,7 +17,14 @@
         android:roundIcon="@mipmap/ic_fitfans_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitfans"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.collection.CollectionActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.timer.TimerActivity"
             android:exported="false" />
