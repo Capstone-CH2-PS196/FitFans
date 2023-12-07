@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.history.HistoryActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="22dp"
+        android:layout_marginHorizontal="14dp"
+        tools:listitem="@layout/history_item"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

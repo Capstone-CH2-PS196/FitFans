@@ -81,6 +81,10 @@
     <string name="bmi_unit">Kg/m²</string>
     <string name="gym_activity_title">Gym Activity</string>
 
+    <!--history list-->
+    <string name="result">Result : </string>
+    <string name="time">Time : </string>
+
     <!--camera-->
     <string name="preview_image">Preview Image</string>
     <string name="detect_image">Detect Image</string>
@@ -89,6 +93,8 @@
     <string name="detection_result">Detection Result</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="timer">Timer</string>
+    <string name="collection">Collection</string>
+    <string name="history">History</string>
     <string name="take_picture">Take Picture</string>
 
     <!--basic error-->
