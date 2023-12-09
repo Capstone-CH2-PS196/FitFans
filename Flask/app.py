@@ -6,7 +6,6 @@ import tensorflow as tf
 
 app = Flask(__name__)
 
-# Load pre-trained model
 model = tf.keras.models.load_model('Gym_Tools_Multi.h5')
 
 # Nama kelas untuk prediksi
