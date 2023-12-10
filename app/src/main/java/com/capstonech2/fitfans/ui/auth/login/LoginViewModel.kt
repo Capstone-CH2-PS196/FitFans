@@ -20,7 +20,7 @@ class LoginViewModel(private val repository: GymRepository) :ViewModel(){
             val response = repository.getUserByEmail(email)
             _userData.value = State.Success(response)
         } catch (e: Exception) {
-            val errorMessage = e.localizedMessage ?: "Terjadi kesalahan yang tidak diketahui"
+            val errorMessage = e.localizedMessage ?: "Unknown error occurred"
             _userData.value = State.Error(errorMessage)
         }
     }

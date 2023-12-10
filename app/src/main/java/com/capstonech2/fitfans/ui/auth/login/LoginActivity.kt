@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstonech2.fitfans.R
@@ -164,7 +163,7 @@ class LoginActivity : AppCompatActivity() {
             when(state){
                 is State.Loading -> startLoadingState()
                 is State.Success -> handleSuccessState(state.data)
-                is State.Error -> handleErrorState(state.error)
+                is State.Error -> handleErrorState()
             }
         }
     }
@@ -183,9 +182,9 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun handleErrorState(errorMessage: String) {
+    private fun handleErrorState() {
         finishLoadingState()
-        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+        showDialog(this, getString(R.string.connection_error))
     }
 
     private fun startLoadingState(){
