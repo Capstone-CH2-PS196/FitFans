@@ -74,6 +74,7 @@
                     />
 
                 <Button
+                    android:id="@+id/bt_ok"
                     android:layout_width="100dp"
                     android:layout_height="38dp"
                     android:layout_below="@id/tv_alert"
