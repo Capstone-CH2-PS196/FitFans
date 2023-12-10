@@ -74,12 +74,12 @@ class HomeFragment : Fragment() {
     private fun handleErrorState() {
         binding.apply {
             progressBarHome.show(false)
-            textUsername.text = "n/a"
+            textUsername.text = getString(R.string.empty)
             imageProfileUser.setImageResource(R.drawable.ic_profile_user)
-            caloriesValue.text = "n/a"
-            bmiValue.text = "n/a"
+            caloriesValue.text = getString(R.string.empty)
+            bmiValue.text = getString(R.string.empty)
         }
-        showDialog(requireActivity(), "Failed to load data, Please check your connection !")
+        showDialog(requireActivity(), getString(R.string.connection_error))
     }
 
     private fun handleSuccessState(data: List<UsersResponseItem>) {

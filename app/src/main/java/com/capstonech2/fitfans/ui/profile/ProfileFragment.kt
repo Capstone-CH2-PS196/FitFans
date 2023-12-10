@@ -136,14 +136,14 @@ class ProfileFragment : Fragment() {
         binding.apply {
             progressBarProfile.show(false)
             profileImage.setImageResource(R.drawable.ic_profile_user)
-            profileName.text = "n/a"
-            profileEmail.text = "n/a"
-            userAge.text = "n/a"
-            userGender.text = "n/a"
-            userWeight.text = "n/a"
-            userHeight.text = "n/a"
-            userBmi.text = "n/a"
+            profileName.text = getString(R.string.empty)
+            profileEmail.text = getString(R.string.empty)
+            userAge.text = getString(R.string.empty)
+            userGender.text = getString(R.string.empty)
+            userWeight.text = getString(R.string.empty)
+            userHeight.text = getString(R.string.empty)
+            userBmi.text = getString(R.string.empty)
         }
-        showDialog(requireActivity(), "Failed to load data, Please check your connection !")
+        showDialog(requireActivity(), getString(R.string.connection_error))
     }
 }

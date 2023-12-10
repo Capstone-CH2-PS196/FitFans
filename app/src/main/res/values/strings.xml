@@ -102,6 +102,8 @@
     <string name="age_empty">Age cannot be empty</string>
     <string name="weight_empty">Weight cannot be empty</string>
     <string name="height_empty">Height cannot be empty</string>
+    <string name="connection_error">Failed to load data, Please check your connection !</string>
+    <string name="empty">n/a</string>
 
     <!--dialog title-->
     <string name="success">Success</string>

@@ -196,6 +196,6 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun handleErrorState() {
         finishLoadingState()
-        showDialog(this, "Failed to save data")
+        showDialog(this, getString(R.string.save_user_success))
     }
 }
