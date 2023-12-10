@@ -3,8 +3,8 @@
     <style name="Base.Theme.Fitfans" parent="Theme.Material3.DayNight">
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_variant</item>
     </style>
+
     <!-- Splash Screen Settings -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>

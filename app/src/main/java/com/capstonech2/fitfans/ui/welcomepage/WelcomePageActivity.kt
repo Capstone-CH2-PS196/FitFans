@@ -14,6 +14,7 @@ class WelcomePageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWelcomePageBinding
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)

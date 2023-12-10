@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun onClickRegister(){
         binding.apply {
             buttonRegister.setOnClickListener {
-                progressBarRegister.show(true)
+                startLoadingState()
 
                 val email = registerEdEmail.text.toString()
                 val password = registerEdPassword.text.toString()
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
                     email,
                     password
                 )
-                else progressBarRegister.show(false)
+                else finishLoadingState()
             }
         }
     }
@@ -77,15 +77,33 @@ class RegisterActivity : AppCompatActivity() {
                     if (auth.currentUser != null){
                         auth.currentUser!!.sendEmailVerification()
                     }
-                    binding.progressBarRegister.show(false)
-                    showToast(context, getString(R.string.register_success_message))
+                    finishLoadingState()
                     auth.signOut()
                     startActivity(Intent(context, LoginActivity::class.java))
+                    showToast(context, getString(R.string.register_success_message))
                 }
             }
             .addOnFailureListener {
-                binding.progressBarRegister.show(false)
+                finishLoadingState()
                 showDialog(context, getString(R.string.auth_check))
             }
+    }
+
+    private fun startLoadingState() {
+        binding.apply {
+            progressBarRegister.show(true)
+            registerEdEmail.isEnabled = false
+            registerEdPassword.isEnabled = false
+            buttonRegister.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState() {
+        binding.apply {
+            progressBarRegister.show(false)
+            registerEdEmail.isEnabled = true
+            registerEdPassword.isEnabled = true
+            buttonRegister.isEnabled = true
+        }
     }
 }

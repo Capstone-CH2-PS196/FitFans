@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.RadioButton
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.databinding.ActivityEditProfileBinding
@@ -16,6 +17,7 @@ import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.loadImage
 import com.capstonech2.fitfans.utils.show
+import com.capstonech2.fitfans.utils.showDialog
 import com.capstonech2.fitfans.utils.showDialogWithAction
 import com.capstonech2.fitfans.utils.showToast
 import com.google.firebase.auth.FirebaseAuth
@@ -58,11 +60,14 @@ class EditProfileActivity : AppCompatActivity() {
 
         if (data != null){
             binding.apply {
+                currentImageUri = data.image?.toUri()
                 previewEditImage.loadImage(data.image.toString())
+
                 profileEdName.setText(data.full_name)
                 profileEdAge.setText(data.age.toString())
                 profileEdWeight.setText(data.weight.toString())
                 profileEdHeight.setText(data.height.toString())
+
                 when(data.gender){
                     getString(R.string.male_label) -> rbMale.isChecked = true
                     getString(R.string.female_label) -> rbFemale.isChecked = true
@@ -145,25 +150,52 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUser(email: String, data: User){
+    private fun updateUser(email: String, data: User) {
         viewModel.updateUserByEmail(email, data).observe(this){ state ->
             if(state != null){
                 when(state){
-                    is State.Loading -> {
-                        binding.progressBarEditProfile.show(true)
-                    }
-                    is State.Success -> {
-                        binding.progressBarEditProfile.show(false)
-                        showDialogWithAction(this, getString(R.string.success), getString(R.string.update_profile_success)){
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
-                        }
-                    }
-                    is State.Error -> {
-                        binding.progressBarEditProfile.show(false)
-                    }
+                    is State.Loading -> startLoadingState()
+                    is State.Success -> handleSuccessState()
+                    is State.Error -> handleErrorState()
                 }
             }
         }
+    }
+
+    private fun startLoadingState() {
+        binding.apply {
+            progressBarEditProfile.show(true)
+            buttonChangeImage.isEnabled = false
+            profileEdName.isEnabled = false
+            profileEdAge.isEnabled = false
+            profileEdWeight.isEnabled = false
+            profileEdHeight.isEnabled = false
+            profileButtonSave.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState() {
+        binding.apply {
+            progressBarEditProfile.show(false)
+            buttonChangeImage.isEnabled = true
+            profileEdName.isEnabled = true
+            profileEdAge.isEnabled = true
+            profileEdWeight.isEnabled = true
+            profileEdHeight.isEnabled = true
+            profileButtonSave.isEnabled = true
+        }
+    }
+
+    private fun handleSuccessState() {
+        finishLoadingState()
+        showDialogWithAction(this, getString(R.string.success), getString(R.string.update_profile_success)){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun handleErrorState() {
+        finishLoadingState()
+        showDialog(this, "Failed to save data")
     }
 }

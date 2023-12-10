@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
     private fun onClickLogin(){
         binding.apply {
             buttonLogin.setOnClickListener {
-                progressBarLogin.show(true)
+                startLoadingState()
 
                 val email = loginEdEmail.text.toString()
                 val password = loginEdPassword.text.toString()
@@ -98,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
                     email,
                     password
                 )
-                else progressBarLogin.show(false)
+                else finishLoadingState()
             }
         }
     }
@@ -114,17 +114,17 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     if(auth.currentUser != null && auth.currentUser!!.isEmailVerified){
-                        showToast(context, getString(R.string.login_success_message))
+                        finishLoadingState()
                         checkUserData()
-                        binding.progressBarLogin.show(false)
+                        showToast(context, getString(R.string.login_success_message))
                     } else {
-                        binding.progressBarLogin.show(false)
+                        finishLoadingState()
                         showDialog(context, getString(R.string.email_verify_null))
                     }
                 }
             }
             .addOnFailureListener {
-                binding.progressBarLogin.show(false)
+                finishLoadingState()
                 showDialog(context, getString(R.string.auth_check))
             }
     }
@@ -134,11 +134,11 @@ class LoginActivity : AppCompatActivity() {
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                binding.progressBarLogin.show(false)
-                showToast(context, getString(R.string.login_google_success_message))
+                finishLoadingState()
                 checkUserData()
+                showToast(context, getString(R.string.login_google_success_message))
             } else {
-                binding.progressBarLogin.show(false)
+                finishLoadingState()
                 showToast(context, getString(R.string.login_google_failed_message))
             }
         }
@@ -162,7 +162,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel.checkUserData(auth.currentUser?.email.toString())
         viewModel.userData.observe(this){ state ->
             when(state){
-                is State.Loading -> binding.progressBarLogin.show(true)
+                is State.Loading -> startLoadingState()
                 is State.Success -> handleSuccessState(state.data)
                 is State.Error -> handleErrorState(state.error)
             }
@@ -184,7 +184,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleErrorState(errorMessage: String) {
-        binding.progressBarLogin.show(false)
+        finishLoadingState()
         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+    }
+
+    private fun startLoadingState(){
+        binding.apply {
+            progressBarLogin.show(true)
+            loginEdEmail.isEnabled = false
+            loginEdPassword.isEnabled = false
+            loginButtonBack.isEnabled = false
+            buttonLogin.isEnabled = false
+            buttonLoginWithGoogle.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState(){
+        binding.apply {
+            progressBarLogin.show(false)
+            loginEdEmail.isEnabled = true
+            loginEdPassword.isEnabled = true
+            loginButtonBack.isEnabled = true
+            buttonLogin.isEnabled = true
+            buttonLoginWithGoogle.isEnabled = true
+        }
     }
 }

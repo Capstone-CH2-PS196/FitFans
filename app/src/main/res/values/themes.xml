@@ -3,7 +3,6 @@
     <style name="Base.Theme.Fitfans" parent="Theme.Material3.DayNight">
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_variant</item>;
     </style>
 
     <style name="Theme.Fitfans" parent="Base.Theme.Fitfans" />

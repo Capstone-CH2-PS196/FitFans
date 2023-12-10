@@ -18,10 +18,10 @@ import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.loadImage
+import com.capstonech2.fitfans.utils.show
+import com.capstonech2.fitfans.utils.showDialog
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.pow
-import kotlin.math.round
 
 class ProfileFragment : Fragment() {
 
@@ -81,30 +81,11 @@ class ProfileFragment : Fragment() {
         viewModel.userData.observe(viewLifecycleOwner){
             if(it != null){
                 when(it){
-                    is State.Loading -> {}
-                    is State.Success -> { setData(it.data) }
-                    is State.Error -> {}
+                    is State.Loading -> binding.progressBarProfile.show(true)
+                    is State.Success -> handleSuccessState(it.data)
+                    is State.Error -> handleErrorState()
                 }
             }
-        }
-    }
-
-    private fun setData(data: List<UsersResponseItem>){
-        binding.apply {
-            currentImage = data[0].image
-            profileImage.loadImage(currentImage!!)
-            profileName.text = data[0].fullName.capitalizeFirstLetter()
-            profileEmail.text = data[0].email
-            userAge.text = data[0].age.toString()
-            userGender.text = data[0].gender
-
-            weight = data[0].weight
-            height = data[0].height
-            val bmi = calculateBMI(data[0].weight, data[0].height)
-
-            userWeight.text = String.format(getString(R.string.user_weight), weight.toString())
-            userHeight.text = String.format(getString(R.string.user_height), height.toString())
-            userBmi.text = String.format(getString(R.string.user_bmi), bmi)
         }
     }
 
@@ -129,5 +110,40 @@ class ProfileFragment : Fragment() {
             intent.putExtra(EXTRA_PROFILE_KEY, data)
             startActivity(intent)
         }
+    }
+
+    private fun handleSuccessState(data: List<UsersResponseItem>){
+        binding.apply {
+            progressBarProfile.show(false)
+            currentImage = data[0].image
+            profileImage.loadImage(currentImage!!)
+            profileName.text = data[0].fullName.capitalizeFirstLetter()
+            profileEmail.text = data[0].email
+            userAge.text = data[0].age.toString()
+            userGender.text = data[0].gender
+
+            weight = data[0].weight
+            height = data[0].height
+            val bmi = calculateBMI(data[0].weight, data[0].height)
+
+            userWeight.text = String.format(getString(R.string.user_weight), weight.toString())
+            userHeight.text = String.format(getString(R.string.user_height), height.toString())
+            userBmi.text = String.format(getString(R.string.user_bmi), bmi)
+        }
+    }
+
+    private fun handleErrorState(){
+        binding.apply {
+            progressBarProfile.show(false)
+            profileImage.setImageResource(R.drawable.ic_profile_user)
+            profileName.text = "n/a"
+            profileEmail.text = "n/a"
+            userAge.text = "n/a"
+            userGender.text = "n/a"
+            userWeight.text = "n/a"
+            userHeight.text = "n/a"
+            userBmi.text = "n/a"
+        }
+        showDialog(requireActivity(), "Failed to load data, Please check your connection !")
     }
 }

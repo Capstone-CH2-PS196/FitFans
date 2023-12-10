@@ -34,22 +34,23 @@ class BasicInformationActivity : AppCompatActivity() {
         onSaveInfoClick()
     }
 
-    private fun onBack(){
+    private fun onBack() {
         binding.infoButtonBack.setOnClickListener {
+            auth.signOut()
             onBackPressedDispatcher.onBackPressed()
         }
     }
 
-    private fun getSelectedRadioButton(){
+    private fun getSelectedRadioButton() {
         binding.infoRbgGender.setOnCheckedChangeListener { _, checked ->
             gender = findViewById<RadioButton>(checked).text.toString()
         }
     }
 
-    private fun onSaveInfoClick(){
+    private fun onSaveInfoClick() {
         binding.apply {
             infoButtonSave.setOnClickListener {
-                progressBarInfo.show(true)
+                startLoadingState()
 
                 val email = auth.currentUser?.email
                 val name = infoEdName.text.toString()
@@ -73,7 +74,7 @@ class BasicInformationActivity : AppCompatActivity() {
                     )
                     insertData(data)
                 } else {
-                    progressBarInfo.show(false)
+                    finishLoadingState()
                     infoEdNameLayout.error = nameError
                     infoEdAgeLayout.error = ageError
                     infoEdWeightLayout.error = weightError
@@ -83,24 +84,44 @@ class BasicInformationActivity : AppCompatActivity() {
         }
     }
 
-    private fun insertData(data: User){
+    private fun insertData(data: User) {
         viewModel.insertUser(data).observe(this){
             when(it){
-                is State.Loading -> binding.progressBarInfo.show(true)
+                is State.Loading -> startLoadingState()
                 is State.Success -> handleSuccessState()
                 is State.Error -> handleErrorState()
             }
         }
     }
 
-    private fun handleSuccessState(){
-        binding.progressBarInfo.show(false)
+    private fun handleSuccessState() {
+        finishLoadingState()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
-    private fun handleErrorState(){
-        binding.progressBarInfo.show(false)
+    private fun handleErrorState() {
+        finishLoadingState()
         showDialog(this, getString(R.string.save_user_success))
+    }
+
+    private fun startLoadingState() {
+        binding.apply {
+            progressBarInfo.show(true)
+            infoEdName.isEnabled = false
+            infoEdAge.isEnabled = false
+            infoEdWeight.isEnabled = false
+            infoEdHeight.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState() {
+        binding.apply {
+            progressBarInfo.show(false)
+            infoEdName.isEnabled = true
+            infoEdAge.isEnabled = true
+            infoEdWeight.isEnabled = true
+            infoEdHeight.isEnabled = true
+        }
     }
 }

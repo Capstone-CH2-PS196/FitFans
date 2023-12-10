@@ -1,9 +1,12 @@
 package com.capstonech2.fitfans.ui.home.menulist
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.databinding.MenuListItemBinding
+import com.capstonech2.fitfans.ui.collection.CollectionActivity
+import com.capstonech2.fitfans.ui.history.HistoryActivity
 
 class MenuAdapter(private val menuList: List<Menu>)
     : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
@@ -24,6 +27,17 @@ class MenuAdapter(private val menuList: List<Menu>)
         fun bind(data: Menu){
             itemBinding.iconMenu.setImageResource(data.icon)
             itemBinding.titleMenu.text = data.name
+
+            itemView.setOnClickListener {
+                when(data.name){
+                    "Collection" -> it.context.startActivity(
+                        Intent(it.context, CollectionActivity::class.java)
+                    )
+                    "History" -> it.context.startActivity(
+                        Intent(it.context, HistoryActivity::class.java)
+                    )
+                }
+            }
         }
     }
 }
