@@ -51,4 +51,10 @@ def predict_endpoint():
     return jsonify({'prediction': predicted_class})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Ganti host menjadi '0.0.0.0' untuk mendengarkan semua IP
+    # Ganti port sesuai dengan port yang Anda inginkan (misalnya, port 5000)
+    app.run(host='0.0.0.0', port=5000, debug=False)
+
+
+#if __name__ == '__main__':
+ #   app.run(debug=True)
