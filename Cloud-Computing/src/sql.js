@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const config = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  user: "root",
+  password: "pass-dbfitfans-ch2-ps196",
+  database: "fitfans",
+  host: "34.128.112.155",
+  port: "3306",
 };
 
 // Fungsi untuk membuat koneksi ke Google Cloud SQL
@@ -85,7 +85,15 @@ async function addUser(user) {
     const connection = await getConnection();
 
     // Menambahkan data ke tabel users
-    const [result] = await connection.execute("INSERT INTO users (full_name, age, weight, height, gender, email, image) VALUES (?, ?, ?, ?, ?, ?, ?)", [user.full_name, user.age, user.weight, user.height, user.gender, user.email, user.image]);
+    const [result] = await connection.execute("INSERT INTO users (full_name, age, weight, height, gender, email, image) VALUES (?, ?, ?, ?, ?, ?, ?)", [
+      user.full_name,
+      user.age,
+      user.weight,
+      user.height,
+      user.gender,
+      user.email,
+      user.image,
+    ]);
 
     // Menutup koneksi setelah menambahkan data
     connection.release();

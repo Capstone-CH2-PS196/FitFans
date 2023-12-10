@@ -1,6 +1,6 @@
 const Hapi = require("@hapi/hapi");
 const { loadModel, predict } = require("./ml");
-const { getUsers, addUser, editUserById,editUserByEmail, deleteUser, getUserById, getUsersByEmail } = require("./sql");
+const { getUsers, addUser, editUserById, editUserByEmail, deleteUser, getUserById, getUsersByEmail } = require("./sql");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -58,7 +58,7 @@ dotenv.config();
         const newUser = request.payload;
 
         // Validasi minimal pada data yang dikirimkan
-        if (!newUser || !newUser.full_name || !newUser.age || !newUser.weight || !newUser.height || !newUser.gender || !newUser.email || !newUser.image ) {
+        if (!newUser || !newUser.full_name || !newUser.age || !newUser.weight || !newUser.height || !newUser.gender || !newUser.email) {
           return h.response({ error: "Bad Request - Invalid User Data" }).code(400);
         }
 
@@ -87,7 +87,7 @@ dotenv.config();
         const updatedUser = request.payload;
 
         // Validasi minimal pada data yang dikirimkan
-        if (!updatedUser || !updatedUser.full_name || !updatedUser.age || !updatedUser.weight || !updatedUser.height || !updatedUser.gender || !updatedUser.email || !updatedUser.image) {
+        if (!updatedUser || !updatedUser.full_name || !updatedUser.age || !updatedUser.weight || !updatedUser.height || !updatedUser.gender || !updatedUser.email) {
           return h.response({ error: "Bad Request - Invalid User Data" }).code(400);
         }
 
