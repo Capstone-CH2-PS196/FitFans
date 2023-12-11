@@ -230,7 +230,7 @@ def predict_image_class(img_path):
     #  }
 
     #   return recommendations.get(tool_name, 'unknown')
-    ##
+    #
 # Endpoint for image prediction
 @app.route('/predict', methods=['POST'])
 def predict_endpoint():
