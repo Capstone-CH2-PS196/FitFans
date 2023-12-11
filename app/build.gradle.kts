@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
     id("kotlin-parcelize")
 }
@@ -56,11 +57,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-    // Media3
-    implementation("androidx.media3:media3-exoplayer:1.2.0")
-    implementation("androidx.media3:media3-ui:1.2.0")
-    implementation("androidx.media3:media3-session:1.2.0")
-
     // Cardview
     implementation ("androidx.cardview:cardview:1.0.0")
 
@@ -88,6 +84,12 @@ dependencies {
 
     // Dependency Injection Koin
     implementation("io.insert-koin:koin-android:3.5.0")
+
+    // Room
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-paging:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     // Unit Test
     testImplementation("junit:junit:4.13.2")

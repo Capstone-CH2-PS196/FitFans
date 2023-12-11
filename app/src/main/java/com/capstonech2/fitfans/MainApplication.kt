@@ -1,13 +1,16 @@
 package com.capstonech2.fitfans
 
 import android.app.Application
+import androidx.room.Room
 import com.capstonech2.fitfans.BuildConfig.DEBUG
 import com.capstonech2.fitfans.data.GymRepository
+import com.capstonech2.fitfans.data.local.FitfansDatabase
 import com.capstonech2.fitfans.data.remote.service.ApiService
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationViewModel
 import com.capstonech2.fitfans.ui.auth.login.LoginViewModel
 import com.capstonech2.fitfans.ui.home.HomeViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
+import com.capstonech2.fitfans.utils.DB_NAME
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
@@ -45,6 +48,10 @@ class MainApplication : Application() {
             single {
                 Retrofit.Builder().baseUrl(BuildConfig.API_URL).addConverterFactory(converter).client(client)
                     .build().create(ApiService::class.java)
+            }
+            single {
+                Room.databaseBuilder(get(), FitfansDatabase::class.java, DB_NAME)
+                    .fallbackToDestructiveMigration().build()
             }
             single { GymRepository(get()) }
 
