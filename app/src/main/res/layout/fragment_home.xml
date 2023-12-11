@@ -65,20 +65,21 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="14dp"
                 android:text="@string/progress_title"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/calories_card"
-                    android:layout_width="155dp"
-                    android:layout_height="91dp"
-                    android:layout_marginEnd="20dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -124,12 +125,14 @@
 
                         <ImageView
                             android:id="@+id/calories_icon"
-                            android:layout_width="60dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:contentDescription="@string/calories_title"
+                            android:padding="5dp"
                             android:src="@drawable/ic_fire"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/calories_value"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -139,8 +142,9 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/bmi_card"
-                    android:layout_width="155dp"
-                    android:layout_height="91dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -152,6 +156,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginStart="10dp"
+
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:text="@string/bmi_title"
@@ -187,11 +192,13 @@
                         <ImageView
                             android:id="@+id/bmi_icon"
                             android:contentDescription="@string/bmi"
-                            android:layout_width="60dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:padding="5dp"
                             android:src="@drawable/ic_bmi"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/bmi_value"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -212,7 +219,7 @@
         android:layout_marginHorizontal="28dp"
         android:layout_marginVertical="28dp"
         android:text="@string/gym_activity_title"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

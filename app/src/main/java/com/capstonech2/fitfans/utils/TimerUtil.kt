@@ -36,7 +36,6 @@ class TimerUtil {
             editor.apply()
         }
 
-
         private const val SECONDS_REMAINING_ID = "SECONDS_REMAINING"
 
         fun getSecondsRemaining(context: Context): Long{

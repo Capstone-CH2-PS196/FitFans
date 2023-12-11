@@ -70,7 +70,8 @@ class BasicInformationActivity : AppCompatActivity() {
                         age = age.toInt(),
                         weight = weight.toDouble(),
                         height = height.toDouble(),
-                        email = email.toString()
+                        email = email.toString(),
+                        image = ""
                     )
                     insertData(data)
                 } else {

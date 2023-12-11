@@ -116,7 +116,6 @@ class ProfileFragment : Fragment() {
         binding.apply {
             progressBarProfile.show(false)
             currentImage = data[0].image
-            profileImage.loadImage(currentImage!!)
             profileName.text = data[0].fullName.capitalizeFirstLetter()
             profileEmail.text = data[0].email
             userAge.text = data[0].age.toString()
@@ -129,6 +128,9 @@ class ProfileFragment : Fragment() {
             userWeight.text = String.format(getString(R.string.user_weight), weight.toString())
             userHeight.text = String.format(getString(R.string.user_height), height.toString())
             userBmi.text = String.format(getString(R.string.user_bmi), bmi)
+
+            if (currentImage == null || currentImage == "") profileImage.setImageResource(R.drawable.ic_profile_user)
+            else profileImage.loadImage(currentImage!!)
         }
     }
 

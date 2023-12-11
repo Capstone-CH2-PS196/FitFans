@@ -61,7 +61,10 @@ class EditProfileActivity : AppCompatActivity() {
         if (data != null){
             binding.apply {
                 currentImageUri = data.image?.toUri()
-                previewEditImage.loadImage(data.image.toString())
+
+                if (currentImageUri == null || currentImageUri.toString() == "")
+                    previewEditImage.setImageResource(R.drawable.ic_profile_user)
+                else previewEditImage.loadImage(currentImageUri.toString())
 
                 profileEdName.setText(data.full_name)
                 profileEdAge.setText(data.age.toString())
@@ -92,7 +95,7 @@ class EditProfileActivity : AppCompatActivity() {
     ) { uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
-            binding.previewEditImage.setImageURI(currentImageUri)
+            binding.previewEditImage.loadImage(currentImageUri.toString())
         } else {
             showToast(this, getString(R.string.no_image))
         }
