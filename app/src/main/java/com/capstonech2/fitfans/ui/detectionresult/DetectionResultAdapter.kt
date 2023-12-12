@@ -1,5 +1,6 @@
 package com.capstonech2.fitfans.ui.detectionresult
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.databinding.RecommendationListBinding
+import com.capstonech2.fitfans.ui.timer.TimerActivity
 
 class DetectionResultAdapter : ListAdapter<Recommendation, DetectionResultAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -25,6 +27,11 @@ class DetectionResultAdapter : ListAdapter<Recommendation, DetectionResultAdapte
             fun bind(data : Recommendation){
                 itemBinding.recommendationLevel.text = data.level
                 itemBinding.recommendationTime.text = data.time
+
+                itemBinding.buttonTimer.setOnClickListener {
+                    val intent = Intent(it.context, TimerActivity::class.java)
+                    it.context.startActivity(intent)
+                }
             }
         }
 

@@ -37,7 +37,7 @@
             tools:text="15 Minutes"/>
 
         <Button
-            android:id="@+id/button_"
+            android:id="@+id/button_timer"
             android:backgroundTint="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

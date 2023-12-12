@@ -1,7 +1,7 @@
 package com.capstonech2.fitfans.utils
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.capstonech2.fitfans.ui.timer.TimerActivity
 
 class TimerUtil {
@@ -26,7 +26,7 @@ class TimerUtil {
         fun getTimerState(context: Context): TimerActivity.TimerState{
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             val ordinal = preferences.getInt(TIMER_STATE_ID, 0)
-            return TimerActivity.TimerState.values()[ordinal]
+            return TimerActivity.TimerState.entries[ordinal]
         }
 
         fun setTimerState(state: TimerActivity.TimerState, context: Context){
