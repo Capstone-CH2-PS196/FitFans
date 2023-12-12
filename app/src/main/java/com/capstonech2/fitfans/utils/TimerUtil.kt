@@ -20,7 +20,6 @@ class TimerUtil {
             editor.apply()
         }
 
-
         private const val TIMER_STATE_ID = "TIMER_STATE"
 
         fun getTimerState(context: Context): TimerActivity.TimerState{
