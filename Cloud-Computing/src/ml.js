@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 function loadModel() {
-  const modelUrl = `https://storage.googleapis.com/bucket-capstone-ch2-ps196/model.json`;
+  const modelUrl = process.env.MODEL_URL;
   return tfjs.loadLayersModel(modelUrl);
 }
 
