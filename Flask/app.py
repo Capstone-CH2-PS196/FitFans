@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 model = tf.keras.models.load_model('Gym_Tools_Multi.h5')
 
-# Class names for predictions
+# Nama kelas untuk prediksi
 class_names = ['barbell', 'dumbell', 'gym-ball', 'kattle-ball', 'leg-press', 'punching-bag', 'roller-abs', 'statis-bicycle', 'step', 'treadmill']
 
 # Fungsi untuk memprediksi kelas gambar
@@ -21,10 +21,10 @@ def predict_image_class(img_path):
     predictions = model.predict(img)
     max_probability = np.max(predictions)
     if max_probability < 0.5:
-        return {"error": "Image not recognized"}
+        return "Gambar tidak dikenali"
     else:
         predicted_class = np.argmax(predictions)
-        tool_name = class_names[predicted_class]
+        return class_names[predicted_class]
 
 # Endpoint untuk prediksi gambar
 @app.route('/predict', methods=['POST'])
@@ -37,20 +37,22 @@ def predict_endpoint():
     if file.filename == '':
         return jsonify({'error': 'No selected file'})
 
-    # Save the uploaded image
+    # Simpan gambar yang diunggah
     upload_path = 'uploads'
     if not os.path.exists(upload_path):
         os.makedirs(upload_path)
     file_path = os.path.join(upload_path, file.filename)
     file.save(file_path)
 
-    # Predict the class for the uploaded image
-    prediction_result = predict_image_class(file_path)
+    # Prediksi kelas untuk gambar yang diunggah
+    predicted_class = predict_image_class(file_path)
 
     # Kembalikan hasil prediksi
     return jsonify({'prediction': predicted_class})
 
 if __name__ == '__main__':
+    # Ganti host menjadi '0.0.0.0' untuk mendengarkan semua IP
+    # Ganti port sesuai dengan port yang Anda inginkan (misalnya, port 5000)
     app.run(host='0.0.0.0', port=5000, debug=False)
 
 

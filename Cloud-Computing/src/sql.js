@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const config = {
-  user: Process.env.DB_USER,
-  password: Process.env.DB_PASSWORD,
-  database: Process.env.DB_NAME,
-  host: Process.env.DB_HOST,
-  port: Process.env.DB_PORT,
+  user: "root",
+  password: "pass-dbfitfans-ch2-ps196",
+  database: "fitfans",
+  host: "34.128.112.155",
+  port: "3306",
 };
 
 // Fungsi untuk membuat koneksi ke Google Cloud SQL
