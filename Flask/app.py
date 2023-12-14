@@ -267,24 +267,6 @@ def predict_image_class(img_path):
         }
         return result
 
-    # Function to get a recommendation based on tool name
-    #def get_recommendation(tool_name):
-    # Define specific recommendations for each tool
-    # recommendations = {
-        #   'barbell': 'expert',
-        #  'dumbell': 'beginner',
-        # 'gym-ball': ['beginner','ideal','expert'],
-            #'kattle-ball': 'beginner',
-            #'leg-press': 'expert',
-        # 'punching-bag': 'ideal',
-        #  'roller-abs': 'beginner',
-        #   'statis-bicycle': 'ideal',
-        #    'step': 'beginner',
-    #     'treadmill': 'expert'
-    #  }
-
-    #   return recommendations.get(tool_name, 'unknown')
-    #
 # Endpoint for image prediction
 @app.route('/predict', methods=['POST'])
 def predict_endpoint():
