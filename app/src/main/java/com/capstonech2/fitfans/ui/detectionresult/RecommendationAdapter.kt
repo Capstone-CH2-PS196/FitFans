@@ -10,7 +10,7 @@ import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.databinding.RecommendationListBinding
 import com.capstonech2.fitfans.ui.timer.TimerActivity
 
-class DetectionResultAdapter : ListAdapter<Recommendation, DetectionResultAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class RecommendationAdapter : ListAdapter<Recommendation, RecommendationAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = RecommendationListBinding.inflate(LayoutInflater.from(parent.context), parent, false)

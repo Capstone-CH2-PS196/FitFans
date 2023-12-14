@@ -69,6 +69,11 @@ class TimerActivity : AppCompatActivity() {
         TimerUtil.setTimerState(timerState, this)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
     private fun initTimer() {
         timerState = TimerUtil.getTimerState(this)
 

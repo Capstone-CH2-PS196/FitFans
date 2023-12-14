@@ -3,12 +3,15 @@ package com.capstonech2.fitfans
 import android.app.Application
 import androidx.room.Room
 import com.capstonech2.fitfans.BuildConfig.DEBUG
-import com.capstonech2.fitfans.data.GymRepository
+import com.capstonech2.fitfans.data.UsersRepository
 import com.capstonech2.fitfans.data.NoteRepository
+import com.capstonech2.fitfans.data.PredictsRepository
 import com.capstonech2.fitfans.data.local.FitfansDatabase
 import com.capstonech2.fitfans.data.remote.service.ApiService
+import com.capstonech2.fitfans.data.remote.service.ModelApiService
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationViewModel
 import com.capstonech2.fitfans.ui.auth.login.LoginViewModel
+import com.capstonech2.fitfans.ui.camera.CameraViewModel
 import com.capstonech2.fitfans.ui.home.HomeViewModel
 import com.capstonech2.fitfans.ui.note.NoteViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
@@ -52,13 +55,19 @@ class MainApplication : Application() {
                     .build().create(ApiService::class.java)
             }
             single {
+                Retrofit.Builder().baseUrl(BuildConfig.MODEL_API_URL).addConverterFactory(converter).client(client)
+                    .build().create(ModelApiService::class.java)
+            }
+            single {
                 Room.databaseBuilder(get(), FitfansDatabase::class.java, DB_NAME)
                     .fallbackToDestructiveMigration().build()
             }
-            single { GymRepository(get()) }
+            single { UsersRepository(get()) }
             single { NoteRepository(get()) }
+            single { PredictsRepository(get()) }
 
             viewModel { HomeViewModel(get()) }
+            viewModel { CameraViewModel(get()) }
             viewModel { NoteViewModel(get()) }
             viewModel { BasicInformationViewModel(get()) }
             viewModel { LoginViewModel(get()) }

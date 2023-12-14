@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstonech2.fitfans.data.GymRepository
+import com.capstonech2.fitfans.data.UsersRepository
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.utils.State
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: GymRepository) : ViewModel() {
+class HomeViewModel(private val repository: UsersRepository) : ViewModel() {
     private val _userData = MutableLiveData<State<List<UsersResponseItem>>>()
     val userData: LiveData<State<List<UsersResponseItem>>> get() = _userData
 

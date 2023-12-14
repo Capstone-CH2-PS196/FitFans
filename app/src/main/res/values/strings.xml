@@ -47,7 +47,7 @@
     <!--detection result-->
     <string name="tools_description">Type of exercise equipment used in physical fitness to train muscles, especially those in the arms, shoulders, chest, and back. Dumbbells typically consist of a metal bar with removable weight plates that can be adjusted to vary the load to be lifted.</string>
     <string name="tips_title">How To Use</string>
-    <string name="tips_description">1. Pick dumbbells with a weight that you can lift with proper form.</string>
+    <string name="tips_description">Pick dumbbells with a weight that you can lift with proper form.</string>
     <string name="recommend">Recommendation</string>
     <string name="share">Share</string>
     <string name="usage_time">15 Minutes</string>

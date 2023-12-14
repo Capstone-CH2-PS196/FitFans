@@ -6,13 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import com.capstonech2.fitfans.data.model.Predicts
+import com.capstonech2.fitfans.data.model.TimerRecommendation
 import com.capstonech2.fitfans.databinding.ActivityCameraBinding
 import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
+import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.getImageUri
+import com.capstonech2.fitfans.utils.reduceFileImage
+import com.capstonech2.fitfans.utils.show
+import com.capstonech2.fitfans.utils.showDialog
+import com.capstonech2.fitfans.utils.uriToFile
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
+    private val viewModel: CameraViewModel by viewModel()
     private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +56,62 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun detectPhoto(){
-        startActivity(Intent(this, DetectionResultActivity::class.java))
+        startLoadingState()
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, this).reduceFileImage()
+            viewModel.uploadImage(imageFile).observe(this){ result ->
+                if (result != null){
+                    when(result){
+                        is State.Loading -> startLoadingState()
+                        is State.Success -> {
+                            val recommendation = TimerRecommendation(
+                                expert = result.data.timerRecomendation.expert,
+                                ideal = result.data.timerRecomendation.ideal,
+                                beginner = result.data.timerRecomendation.beginner
+                            )
+                            val resultPredict = Predicts(
+                                image = currentImageUri.toString(),
+                                timerRecommendation = recommendation,
+                                toolName = result.data.toolName,
+                                howToUse = result.data.howToUse,
+                                toolDescription = result.data.toolDescription
+                            )
+                            detectionResult(resultPredict)
+                            finishLoadingState()
+                        }
+                        is State.Error -> {
+                            showDialog(this, "Failed to detect image, Please check your connection and try again")
+                            finishLoadingState()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun detectionResult(data: Predicts){
+        val intent = Intent(this, DetectionResultActivity::class.java)
+        intent.putExtra(EXTRA_DETECT_RESULT, data)
+        startActivity(intent)
+    }
+
+    private fun startLoadingState(){
+        binding.apply {
+            progressBarCamera.show(true)
+            buttonCamera.isEnabled = false
+            buttonDetect.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState(){
+        binding.apply {
+            progressBarCamera.show(false)
+            buttonCamera.isEnabled = true
+            buttonDetect.isEnabled = true
+        }
+    }
+
+    companion object{
+        const val EXTRA_DETECT_RESULT = "extra_detect_result"
     }
 }

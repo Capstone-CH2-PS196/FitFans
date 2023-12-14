@@ -8,7 +8,7 @@ import com.capstonech2.fitfans.utils.State
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class GymRepository(private val apiService: ApiService) {
+class UsersRepository(private val apiService: ApiService) {
 
     suspend fun getUserByEmail(email: String):  List<UsersResponseItem> =
         withContext(Dispatchers.IO){
