@@ -25,8 +25,14 @@ tool_info = {
             'Exhale and push the barbell back up to the starting position, fully extending your arms',
             'Repeat for the desired number of repetitions, maintaining control and proper form',
             'Ensure a stable grip and engage your chest muscles throughout the movement',
-            'Safely rack the barbell when you have completed your set or need a break.'
-        ]
+            'Safely rack the barbell when you have completed your set or need a break.',
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
+            
     },
     'dumbell': {
         'id': 2,
@@ -38,7 +44,13 @@ tool_info = {
             'Inhale and slowly lower the dumbbells back to the starting position with controlled movement',
             'Repeat for the desired number of repetitions, maintaining proper form and avoiding swinging motions',
             'Adjust the weight of the dumbbells based on your fitness level, gradually increasing as you get stronger.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
+
     },
     'gym-ball': {
         'id': 3,
@@ -54,7 +66,12 @@ tool_info = {
             'Ensure controlled movements, focusing on the contraction and extension of your core muscles',
             'Adjust the difficulty by experimenting with different exercises and the level of inflation of the gym ball',
             'Remember to consult with a fitness professional or healthcare provider before starting a new exercise routine, especially if you have any pre-existing health conditions.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'treadmill': {
         'id': 4,
@@ -70,7 +87,12 @@ tool_info = {
             'To stop, gradually reduce the speed, and wait for the treadmill to come to a complete stop',
             'Cool down by walking at a slower pace and stretching your muscles',
             'Always follow the treadmill safety guidelines and consult with a fitness professional or healthcare provider before starting a new exercise routine, especially if you have any pre-existing health conditions.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'step': {
         'id': 5,
@@ -87,7 +109,12 @@ tool_info = {
             'To stop, reduce the speed gradually and wait for the machine to come to a complete stop',
             'Cool down by stepping at a slower pace for a few minutes',
             'Always follow the manufacturer guidelines for the specific step machine you are using and consult with a fitness professional or healthcare provider if you have any concerns or health conditions.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'kattle-ball': {
         'id': 6,
@@ -104,7 +131,12 @@ tool_info = {
             'Allow the kettlebell to swing back between your legs, and repeat the motion for the desired number of reps',
             'Maintain a strong core throughout the movement and engage your glutes at the top of the swing',
             'Control the kettlebell throughout the exercise, and avoid overextending your lower back.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'leg-press': {
         'id': 7,
@@ -121,7 +153,12 @@ tool_info = {
             'Repeat: Perform the desired number of repetitions, maintaining controlled and smooth movements',
             'Adjustments: If your machine allows, you can vary your foot placement to target different muscle groups (higher for emphasis on quads, lower for emphasis on hamstrings and glutes)',
             'Cool Down: After completing your leg press workout, cool down by stretching your legs.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'punching-bag': {
         'id': 8,
@@ -142,7 +179,12 @@ tool_info = {
             'Intensity and Speed: Vary the intensity and speed of your punches to mimic different aspects of a real fight',
             'Breathing: Focus on controlled breathing to maintain stamina and composure',
             'Cooldown: After your session, stretch your arms, shoulders, and legs to prevent stiffness.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'roller-abs': {
         'id': 9,
@@ -163,7 +205,12 @@ tool_info = {
             'Exhale as you roll out and inhale as you return to the starting position',
             'Include ab wheel exercises in your regular core workout routine for best results',
             'After completing your ab wheel workout, stretch your core and back muscles.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     },
     'statis-bicycle': {
         'id': 10,
@@ -182,7 +229,12 @@ tool_info = {
             'Include intervals of higher resistance or faster pedaling for more challenging workouts',
             'Aim for a duration that aligns with your fitness goals, and be consistent in your workouts',
             'Gradually reduce the resistance and pedal at a slower pace for a few minutes to cool down.'
-        ]
+        ],
+        'timer_recomendation': {
+            'beginner': 10,
+            'ideal': 15,
+            'expert': 20,
+        }
     }
 }
 
@@ -210,6 +262,8 @@ def predict_image_class(img_path):
             'tool_name': tool_info_result.get('tool_name', ''),
             'tool_description': tool_info_result.get('tool_description', ''),
             'how_to_use': tool_info_result.get('how_to_use', []),
+            'timer_recomendation': tool_info_result.get('timer_recomendation', ''),
+            
         }
         return result
 
@@ -257,7 +311,7 @@ def predict_endpoint():
         'tool_name': prediction_result.get('tool_name', ''),
         'tool_description': prediction_result.get('tool_description', ''),
         'how_to_use': prediction_result.get('how_to_use', []),
-    # 'recommendation': prediction_result.get('recommendation', 'unknown')
+        'timer_recomendation': prediction_result.get('timer_recomendation', ''),
     })
 
 if __name__ == '__main__':
