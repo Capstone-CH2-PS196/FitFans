@@ -13,6 +13,7 @@ import com.capstonech2.fitfans.databinding.FragmentHomeBinding
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
 import com.capstonech2.fitfans.ui.home.menulist.MenuAdapter
 import com.capstonech2.fitfans.ui.home.menulist.MenuDataSource
+import com.capstonech2.fitfans.ui.profile.EditProfileActivity
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
@@ -38,6 +39,11 @@ class HomeFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         showMenuList()
         getUserData()
+
+        binding.imageProfileUser.setOnClickListener {
+            startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
+        }
+
         return binding.root
     }
 
@@ -86,7 +92,7 @@ class HomeFragment : Fragment() {
         binding.apply {
             progressBarHome.show(false)
             textUsername.text = data[0].fullName.capitalizeFirstLetter()
-            caloriesValue.text = "00.0"
+            caloriesValue.text = "30.0"
             bmiValue.text = calculateBMI(data[0].weight, data[0].height).toString()
             if (data[0].image == null || data[0].image == "") imageProfileUser.setImageResource(R.drawable.ic_profile_user)
             else imageProfileUser.loadImage(data[0].image)

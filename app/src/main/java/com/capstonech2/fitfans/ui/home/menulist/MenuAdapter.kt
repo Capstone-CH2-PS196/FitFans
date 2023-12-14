@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.databinding.MenuListItemBinding
 import com.capstonech2.fitfans.ui.collection.CollectionActivity
 import com.capstonech2.fitfans.ui.history.HistoryActivity
+import com.capstonech2.fitfans.ui.note.NoteActivity
 
 class MenuAdapter(private val menuList: List<Menu>)
     : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
@@ -30,6 +31,9 @@ class MenuAdapter(private val menuList: List<Menu>)
 
             itemView.setOnClickListener {
                 when(data.name){
+                    "Note" -> it.context.startActivity(
+                        Intent(it.context, NoteActivity::class.java)
+                    )
                     "Collection" -> it.context.startActivity(
                         Intent(it.context, CollectionActivity::class.java)
                     )

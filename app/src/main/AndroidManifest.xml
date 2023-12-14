@@ -20,6 +20,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.note.edit.EditNoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.note.detail.DetailNoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.note.add.AddNoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.note.NoteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.history.HistoryActivity"
             android:exported="false" />
         <activity

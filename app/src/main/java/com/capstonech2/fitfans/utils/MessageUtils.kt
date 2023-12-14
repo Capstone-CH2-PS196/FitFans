@@ -28,3 +28,15 @@ fun showDialogWithAction(context: Context, title: String, message: String, posit
         }
         .show()
 }
+
+fun dialogDeleteAction(context: Context, title: String, message: String, positiveAction: () -> Unit){
+    MaterialAlertDialogBuilder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setNegativeButton("No"){ dialog, _ ->
+            dialog.dismiss()
+        }
+        .setPositiveButton("Yes") { _, _ ->
+            positiveAction.invoke()
+        }.show()
+}

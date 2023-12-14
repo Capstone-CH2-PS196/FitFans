@@ -4,11 +4,13 @@ import android.app.Application
 import androidx.room.Room
 import com.capstonech2.fitfans.BuildConfig.DEBUG
 import com.capstonech2.fitfans.data.GymRepository
+import com.capstonech2.fitfans.data.NoteRepository
 import com.capstonech2.fitfans.data.local.FitfansDatabase
 import com.capstonech2.fitfans.data.remote.service.ApiService
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationViewModel
 import com.capstonech2.fitfans.ui.auth.login.LoginViewModel
 import com.capstonech2.fitfans.ui.home.HomeViewModel
+import com.capstonech2.fitfans.ui.note.NoteViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
 import com.capstonech2.fitfans.utils.DB_NAME
 import okhttp3.OkHttpClient
@@ -54,8 +56,10 @@ class MainApplication : Application() {
                     .fallbackToDestructiveMigration().build()
             }
             single { GymRepository(get()) }
+            single { NoteRepository(get()) }
 
             viewModel { HomeViewModel(get()) }
+            viewModel { NoteViewModel(get()) }
             viewModel { BasicInformationViewModel(get()) }
             viewModel { LoginViewModel(get()) }
             viewModel { ProfileViewModel(get())}

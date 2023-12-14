@@ -95,6 +95,7 @@
     <string name="timer">Timer</string>
     <string name="collection">Collection</string>
     <string name="history">History</string>
+    <string name="note">Note</string>
     <string name="take_picture">Take Picture</string>
 
     <!--basic error-->
@@ -115,4 +116,12 @@
     <string name="save_user_success">Failed to save the Data, Please try again</string>
     <string name="oke">Oke</string>
 
+    <!--Note-->
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="detail_note">Detail Note</string>
+    <string name="create_note">Create Note</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="delete_note_message">Are you sure you want to delete this note?</string>
 </resources>

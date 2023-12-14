@@ -5,7 +5,7 @@ import kotlin.math.round
 
 fun calculateBMI(weight: Double, height: Double): Double = round((weight / (height / 100).pow(2)) * 10) / 10.0
 
-fun calculateCalories(minutes: Int, equipment: String, level: String, weight: Double): Double {
+fun calculateCalories(minutes: Long, equipment: String, level: String, weight: Double): Double {
     val met: Double = when (equipment) {
         "Barbell", "Dumbell" -> {
             when (level) {
