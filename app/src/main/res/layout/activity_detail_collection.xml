@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detectionresult.DetectionResultActivity">
+    tools:context=".ui.collection.detail.DetailCollectionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/result_image"
+            android:id="@+id/collect_image"
             android:contentDescription="@string/detection_image"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -23,27 +23,27 @@
             tools:src="@drawable/result_sample_image"/>
 
         <TextView
-            android:id="@+id/result_name"
+            android:id="@+id/collect_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:layout_marginHorizontal="36dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/result_image"
-            app:layout_constraintBottom_toTopOf="@id/result_description"
+            app:layout_constraintTop_toBottomOf="@id/collect_image"
+            app:layout_constraintBottom_toTopOf="@id/collect_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/detection_title"/>
 
         <TextView
-            android:id="@+id/result_description"
+            android:id="@+id/collect_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginHorizontal="36dp"
             android:lineSpacingExtra="10sp"
-            app:layout_constraintTop_toBottomOf="@id/result_name"
+            app:layout_constraintTop_toBottomOf="@id/collect_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/tools_description"/>
@@ -58,7 +58,7 @@
             app:layout_constraintBottom_toTopOf="@id/recommendation_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/result_description"
+            app:layout_constraintTop_toBottomOf="@id/collect_description"
             app:cardCornerRadius="8dp">
 
             <LinearLayout

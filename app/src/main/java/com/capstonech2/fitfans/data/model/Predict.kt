@@ -14,7 +14,7 @@ data class Predicts(
 
 @Parcelize
 data class TimerRecommendation(
-    val expert: Int,
-    val ideal: Int,
-    val beginner: Int
+    val expert: Long,
+    val ideal: Long,
+    val beginner: Long
 ) : Parcelable

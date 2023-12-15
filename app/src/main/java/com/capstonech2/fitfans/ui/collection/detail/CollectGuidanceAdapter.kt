@@ -1,4 +1,4 @@
-package com.capstonech2.fitfans.ui.detectionresult
+package com.capstonech2.fitfans.ui.collection.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,19 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.databinding.GuidanceItemBinding
 
-class GuidanceAdapter : ListAdapter<String, GuidanceAdapter.MyViewHolder>(DIFF_CALLBACK) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+class CollectGuidanceAdapter : ListAdapter<String, CollectGuidanceAdapter.ViewHolder>(DIFF_CALLBACK) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = GuidanceItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
         holder.bind(position + 1, data)
     }
 
-    class MyViewHolder(private val itemBinding : GuidanceItemBinding)
+    class ViewHolder(private val itemBinding : GuidanceItemBinding)
         : RecyclerView.ViewHolder(itemBinding.root){
         fun bind(number: Int, data : String){
             itemBinding.textViewNumber.text = number.toString()

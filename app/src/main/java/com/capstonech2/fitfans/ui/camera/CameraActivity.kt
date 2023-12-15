@@ -65,9 +65,9 @@ class CameraActivity : AppCompatActivity() {
                         is State.Loading -> startLoadingState()
                         is State.Success -> {
                             val recommendation = TimerRecommendation(
-                                expert = result.data.timerRecomendation.expert,
-                                ideal = result.data.timerRecomendation.ideal,
-                                beginner = result.data.timerRecomendation.beginner
+                                expert = result.data.timerRecomendation.expert.toLong(),
+                                ideal = result.data.timerRecomendation.ideal.toLong(),
+                                beginner = result.data.timerRecomendation.beginner.toLong()
                             )
                             val resultPredict = Predicts(
                                 image = currentImageUri.toString(),
@@ -80,7 +80,7 @@ class CameraActivity : AppCompatActivity() {
                             finishLoadingState()
                         }
                         is State.Error -> {
-                            showDialog(this, "Failed to detect image, Please check your connection and try again")
+                            showDialog(this, "Failed to detect image")
                             finishLoadingState()
                         }
                     }

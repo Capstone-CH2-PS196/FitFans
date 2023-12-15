@@ -3,6 +3,7 @@ package com.capstonech2.fitfans
 import android.app.Application
 import androidx.room.Room
 import com.capstonech2.fitfans.BuildConfig.DEBUG
+import com.capstonech2.fitfans.data.CollectionRepository
 import com.capstonech2.fitfans.data.UsersRepository
 import com.capstonech2.fitfans.data.NoteRepository
 import com.capstonech2.fitfans.data.PredictsRepository
@@ -12,6 +13,7 @@ import com.capstonech2.fitfans.data.remote.service.ModelApiService
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationViewModel
 import com.capstonech2.fitfans.ui.auth.login.LoginViewModel
 import com.capstonech2.fitfans.ui.camera.CameraViewModel
+import com.capstonech2.fitfans.ui.collection.CollectionViewModel
 import com.capstonech2.fitfans.ui.home.HomeViewModel
 import com.capstonech2.fitfans.ui.note.NoteViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
@@ -64,11 +66,13 @@ class MainApplication : Application() {
             }
             single { UsersRepository(get()) }
             single { NoteRepository(get()) }
+            single { CollectionRepository(get()) }
             single { PredictsRepository(get()) }
 
             viewModel { HomeViewModel(get()) }
             viewModel { CameraViewModel(get()) }
             viewModel { NoteViewModel(get()) }
+            viewModel { CollectionViewModel(get()) }
             viewModel { BasicInformationViewModel(get()) }
             viewModel { LoginViewModel(get()) }
             viewModel { ProfileViewModel(get())}

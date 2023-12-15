@@ -15,10 +15,12 @@ class NoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteBinding
     private val viewModel: NoteViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         supportActionBar?.apply {
             title = getString(R.string.note)
             setDisplayHomeAsUpEnabled(true)
