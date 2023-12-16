@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.databinding.RecommendationListBinding
 import com.capstonech2.fitfans.ui.timer.TimerActivity
+import com.capstonech2.fitfans.utils.EXTRA_PREDICT
+import com.capstonech2.fitfans.utils.EXTRA_RECOMMENDATION
 
-class RecommendationAdapter : ListAdapter<Recommendation, RecommendationAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class RecommendationAdapter(private val predict: Predicts) : ListAdapter<Recommendation, RecommendationAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = RecommendationListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,17 +22,18 @@ class RecommendationAdapter : ListAdapter<Recommendation, RecommendationAdapter.
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = getItem(position)
-        holder.bind(data)
+        holder.bind(data, predict)
     }
 
-    class MyViewHolder(private val itemBinding : RecommendationListBinding)
+    inner class MyViewHolder(private val itemBinding : RecommendationListBinding)
         : RecyclerView.ViewHolder(itemBinding.root){
-            fun bind(data : Recommendation){
+            fun bind(data : Recommendation, result: Predicts){
                 itemBinding.recommendationLevel.text = data.level
-                itemBinding.recommendationTime.text = data.time
-
+                itemBinding.recommendationTime.text = data.time.toString()
                 itemBinding.buttonTimer.setOnClickListener {
                     val intent = Intent(it.context, TimerActivity::class.java)
+                    intent.putExtra(EXTRA_PREDICT, result)
+                    intent.putExtra(EXTRA_RECOMMENDATION, data)
                     it.context.startActivity(intent)
                 }
             }

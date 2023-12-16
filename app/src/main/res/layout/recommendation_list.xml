@@ -23,7 +23,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Beginner :"/>
+            tools:text="Beginner"/>
+
+        <TextView
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/recommendation_level" />
 
         <TextView
             android:id="@+id/recommendation_time"
@@ -33,8 +44,19 @@
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/recommendation_level"
-            tools:text="15 Minutes"/>
+            app:layout_constraintStart_toEndOf="@id/separator"
+            tools:text="15"/>
+
+        <TextView
+            android:id="@+id/time_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:text="Minutes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/recommendation_time"/>
 
         <Button
             android:id="@+id/button_timer"

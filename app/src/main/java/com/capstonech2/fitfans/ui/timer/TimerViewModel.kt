@@ -38,18 +38,30 @@ class TimerViewModel : ViewModel() {
         }
     }
 
-    private val _eventCountDownPause = MutableLiveData<Boolean>()
-    val eventCountDownPause: LiveData<Boolean> = _eventCountDownPause
+    private fun continueTime(currentTimeValue: Long?) {
+        if (currentTimeValue != null){
+            timer = object : CountDownTimer(currentTimeValue, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    currentTime.value = millisUntilFinished
+                }
+                override fun onFinish() {
+                    resetTimer()
+                }
+            }
+        }
+    }
 
     private var isPaused = false
 
     fun pauseTimer() {
         timer?.cancel()
         isPaused = true
-        _eventCountDownPause.value = true
     }
 
     fun startTimer() {
+        if(isPaused == true){
+            continueTime(currentTime.value)
+        }
         timer?.start()
     }
 
@@ -62,8 +74,5 @@ class TimerViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         timer?.cancel()
-    }
-
-    private fun updateAlert() {
     }
 }

@@ -17,6 +17,7 @@ import com.capstonech2.fitfans.ui.collection.CollectionViewModel
 import com.capstonech2.fitfans.ui.home.HomeViewModel
 import com.capstonech2.fitfans.ui.note.NoteViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
+import com.capstonech2.fitfans.ui.timer.TimerViewModel
 import com.capstonech2.fitfans.utils.DB_NAME
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -72,6 +73,7 @@ class MainApplication : Application() {
             viewModel { HomeViewModel(get()) }
             viewModel { CameraViewModel(get()) }
             viewModel { NoteViewModel(get()) }
+            viewModel { TimerViewModel() }
             viewModel { CollectionViewModel(get()) }
             viewModel { BasicInformationViewModel(get()) }
             viewModel { LoginViewModel(get()) }

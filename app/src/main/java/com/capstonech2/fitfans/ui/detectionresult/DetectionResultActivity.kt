@@ -121,16 +121,19 @@ class DetectionResultActivity : AppCompatActivity() {
                 showGuidanceList(data.howToUse)
                 val recommendation = listOf(
                     Recommendation(
-                        level = "Beginner : ",
-                        time = "${data.timerRecommendation.beginner} minutes"
+                        level = "Beginner",
+                        set = "2 set x 12 times",
+                        time = data.timerRecommendation.beginner
                     ),
                     Recommendation(
-                        level = "Ideal    : ",
-                        time = "${data.timerRecommendation.ideal} minutes"
+                        level = "Ideal",
+                        set = "3 set x 12 times",
+                        time = data.timerRecommendation.ideal
                     ),
                     Recommendation(
-                        level = "Expert   : ",
-                        time = "${data.timerRecommendation.expert} minutes"
+                        level = "Expert",
+                        set = "4 set x 12 times",
+                        time = data.timerRecommendation.expert
                     ),
                 )
                 showRecommendationList(recommendation)
@@ -141,10 +144,18 @@ class DetectionResultActivity : AppCompatActivity() {
     }
 
     private fun showRecommendationList(data :List<Recommendation>) {
+        val result = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            intent.getParcelableExtra(EXTRA_DETECT_RESULT, Predicts::class.java)
+        } else {
+            intent.getParcelableExtra(EXTRA_DETECT_RESULT)
+        }
         binding.recommendationList.layoutManager = LinearLayoutManager(this@DetectionResultActivity)
-        val adapter = RecommendationAdapter()
-        adapter.submitList(data)
-        binding.recommendationList.adapter = adapter
+
+        if (result != null) {
+            val adapter = RecommendationAdapter(result)
+            adapter.submitList(data)
+            binding.recommendationList.adapter = adapter
+        }
     }
 
     private fun showGuidanceList(data :List<String>) {
