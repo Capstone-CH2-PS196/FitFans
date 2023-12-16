@@ -14,7 +14,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="28dp"
         android:padding="6dp"
-        android:text="Beginner"
+        android:text="@string/timer_title"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:padding="6dp"
-        android:text="Recommendation: 2 set x 12 times"
+        android:text="@string/timer_recom"
         android:textColor="@color/gray_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
     
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -45,11 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:cardBackgroundColor="@color/red"
+            android:padding="16dp"
             app:cardCornerRadius="8dp">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="120dp">
 
                 <ImageView
                     android:id="@+id/iv_alert"
@@ -58,6 +60,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="12dp"
                     android:src="@drawable/ic_alert"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     />
 
                 <TextView
@@ -68,28 +72,29 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
                     android:textSize="12sp"
-                    android:text="Please follow the usage instructions and avoid excessive exercise"
+                    android:text="@string/alert_msg"
                     android:textColor="@color/white"
-                    android:layout_below="@id/iv_alert"
+                    app:layout_constraintTop_toBottomOf="@id/iv_alert"
                     />
 
                 <Button
                     android:id="@+id/bt_ok"
-                    android:layout_width="100dp"
+                    android:layout_width="82dp"
                     android:layout_height="38dp"
-                    android:layout_below="@id/tv_alert"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_alignParentEnd="true"
-                    android:text="Ok"
+                    android:text="@string/ok"
                     android:textSize="14sp"
                     android:textAlignment="gravity"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/red"
+                    app:layout_constraintTop_toBottomOf="@id/tv_alert"
+                    app:layout_constraintEnd_toEndOf="parent"
                     />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
@@ -113,7 +118,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="52dp"
         android:backgroundTint="@color/primary_variant"
-        android:text="Pause"
+        android:text="@string/pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
@@ -126,7 +131,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@color/primary_variant"
-        android:text="Start"
+        android:text="@string/start"
         app:layout_constraintEnd_toStartOf="@id/bt_reset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bt_pause" />
@@ -139,7 +144,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="52dp"
         android:backgroundTint="@color/primary_variant"
-        android:text="Stop"
+        android:text="@string/stop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/bt_start"
         app:layout_constraintTop_toBottomOf="@id/bt_pause" />
@@ -150,6 +155,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="452dp" />
+        app:layout_constraintGuide_begin="520dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,7 +59,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // Cardview
-    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.cardview:cardview:1.0.0")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))

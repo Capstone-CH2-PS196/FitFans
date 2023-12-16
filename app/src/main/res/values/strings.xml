@@ -114,6 +114,7 @@
     <string name="success">Success</string>
     <string name="warning">Warning</string>
     <string name="error">Error</string>
+    <string name="timer_title">Beginner</string>
 
     <!--dialog content-->
     <string name="update_profile_success">Your profile has been updated</string>
@@ -135,5 +136,13 @@
     <string name="delete_collection_message">Are you sure you want to delete Detection Result ?</string>
     <string name="success_delete_collection">Success delete result from collection</string>
     <string name="save_collection">Save to collection</string>
+
+    <!--Timer-->
+    <string name="alert_msg">Please follow the usage instructions and avoid excessive exercise</string>
+    <string name="timer_recom">Recommendation: 2 set x 12 times</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="ok">Ok</string>
 
 </resources>
