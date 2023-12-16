@@ -11,9 +11,6 @@ class CollectionRepository(private val database: FitfansDatabase) {
     fun getAllCollection() : LiveData<List<Collection>> =
         database.collectionDao().getAllCollection()
 
-    fun getCollectionById(colId: Int) : LiveData<Collection> =
-        database.collectionDao().getCollectionById(colId)
-
     fun getCollectionByImage(image: String) : LiveData<Collection> =
         database.collectionDao().getCollectionByImage(image)
 

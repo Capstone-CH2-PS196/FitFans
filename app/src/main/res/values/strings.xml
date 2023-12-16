@@ -133,6 +133,7 @@
     <!--Collection-->
     <string name="delete_collection">Delete Collection</string>
     <string name="delete_collection_message">Are you sure you want to delete Detection Result ?</string>
+    <string name="success_delete_collection">Success delete result from collection</string>
     <string name="save_collection">Save to collection</string>
 
 </resources>

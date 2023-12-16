@@ -95,12 +95,9 @@ class DetectionResultActivity : AppCompatActivity() {
             }
             R.id.action_delete_collection -> {
                 if (data != null){
-                    viewModel.getCollectionByImage(data.image).observe(this){ result ->
-                        if (result != null){
-                            dialogDeleteAction(this, getString(R.string.delete_collection), getString(R.string.delete_collection_message)) {
-                                viewModel.deleteCollection(result.image)
-                            }
-                        }
+                    dialogDeleteAction(this, getString(R.string.delete_collection), getString(R.string.delete_collection_message)) {
+                        viewModel.deleteCollection(data.image)
+                        showToast(this, getString(R.string.success_delete_collection))
                     }
                 }
                 true

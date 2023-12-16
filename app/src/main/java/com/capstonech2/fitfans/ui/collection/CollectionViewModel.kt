@@ -9,8 +9,6 @@ import kotlinx.coroutines.launch
 class CollectionViewModel(private val repository: CollectionRepository) : ViewModel(){
     fun getAllCollection() = repository.getAllCollection()
 
-    fun getCollectionById(colId: Int) = repository.getCollectionById(colId)
-
     fun getCollectionByImage(image: String) = repository.getCollectionByImage(image)
 
     fun insertResult(collection: Collection) = viewModelScope.launch {
