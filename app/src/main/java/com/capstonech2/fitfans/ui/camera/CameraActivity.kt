@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendation
 import com.capstonech2.fitfans.databinding.ActivityCameraBinding
 import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
+import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.getImageUri
 import com.capstonech2.fitfans.utils.reduceFileImage
@@ -80,7 +82,7 @@ class CameraActivity : AppCompatActivity() {
                             finishLoadingState()
                         }
                         is State.Error -> {
-                            showDialog(this, "Failed to detect image")
+                            showDialog(this, getString(R.string.failed_detect_image))
                             finishLoadingState()
                         }
                     }
@@ -109,9 +111,5 @@ class CameraActivity : AppCompatActivity() {
             buttonCamera.isEnabled = true
             buttonDetect.isEnabled = true
         }
-    }
-
-    companion object{
-        const val EXTRA_DETECT_RESULT = "extra_detect_result"
     }
 }

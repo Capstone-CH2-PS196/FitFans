@@ -8,9 +8,9 @@ import android.view.MenuItem
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.Note
 import com.capstonech2.fitfans.databinding.ActivityDetailNoteBinding
-import com.capstonech2.fitfans.ui.note.NoteAdapter.Companion.EXTRA_NOTE_ID
 import com.capstonech2.fitfans.ui.note.NoteViewModel
 import com.capstonech2.fitfans.ui.note.edit.EditNoteActivity
+import com.capstonech2.fitfans.utils.EXTRA_NOTE_ID
 import com.capstonech2.fitfans.utils.dialogDeleteAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

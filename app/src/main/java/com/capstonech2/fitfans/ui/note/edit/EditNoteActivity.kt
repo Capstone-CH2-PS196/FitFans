@@ -5,8 +5,8 @@ import android.os.Bundle
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.Note
 import com.capstonech2.fitfans.databinding.ActivityEditNoteBinding
-import com.capstonech2.fitfans.ui.note.NoteAdapter
 import com.capstonech2.fitfans.ui.note.NoteViewModel
+import com.capstonech2.fitfans.utils.EXTRA_NOTE_ID
 import com.capstonech2.fitfans.utils.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -28,7 +28,7 @@ class EditNoteActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
-        data = intent.getIntExtra(NoteAdapter.EXTRA_NOTE_ID, 0)
+        data = intent.getIntExtra(EXTRA_NOTE_ID, 0)
         viewModel.getNoteById(data!!).observe(this){ note ->
             setData(note)
         }
@@ -58,7 +58,7 @@ class EditNoteActivity : AppCompatActivity() {
                 )
                 onBackPressedDispatcher.onBackPressed()
                 finish()
-            } ?: showToast(this@EditNoteActivity, "ID null")
+            } ?: showToast(this@EditNoteActivity, getString(R.string.id_null_exception))
         }
     }
 }

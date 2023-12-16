@@ -22,6 +22,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="logout">Log Out</string>
     <string name="register_success_message">User Created</string>
     <string name="login_success_message">Login Success</string>
     <string name="login_google_success_message">Login with Google Success</string>
@@ -55,6 +56,8 @@
     <string name="beginner">Beginner :</string>
     <string name="detection_title">Dumbbell</string>
     <string name="detection_image">Detection Image</string>
+    <string name="success_save_result">Success save result</string>
+    <string name="failed_save_result">Cannot save result</string>
 
     <!--profile-->
     <string name="profile_email">name@gmail.com</string>
@@ -88,6 +91,7 @@
     <!--camera-->
     <string name="preview_image">Preview Image</string>
     <string name="detect_image">Detect Image</string>
+    <string name="failed_detect_image">Failed to detect image</string>
 
     <!--actionbar title-->
     <string name="detection_result">Detection Result</string>
@@ -124,4 +128,11 @@
     <string name="edit_note">Edit Note</string>
     <string name="delete_note">Delete Note</string>
     <string name="delete_note_message">Are you sure you want to delete this note?</string>
+    <string name="id_null_exception">ID null</string>
+
+    <!--Collection-->
+    <string name="delete_collection">Delete Collection</string>
+    <string name="delete_collection_message">Are you sure you want to delete Detection Result ?</string>
+    <string name="save_collection">Save to collection</string>
+
 </resources>

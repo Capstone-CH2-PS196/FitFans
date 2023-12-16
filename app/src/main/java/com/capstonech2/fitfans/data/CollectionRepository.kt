@@ -1,6 +1,5 @@
 package com.capstonech2.fitfans.data
 
-import android.media.Image
 import androidx.lifecycle.LiveData
 import com.capstonech2.fitfans.data.local.FitfansDatabase
 import com.capstonech2.fitfans.data.model.Collection

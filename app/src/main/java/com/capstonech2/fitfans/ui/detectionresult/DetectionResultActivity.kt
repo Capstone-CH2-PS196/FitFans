@@ -12,8 +12,8 @@ import com.capstonech2.fitfans.data.model.Collection
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendationEntity
 import com.capstonech2.fitfans.databinding.ActivityDetectionResultBinding
-import com.capstonech2.fitfans.ui.camera.CameraActivity.Companion.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.ui.collection.CollectionViewModel
+import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.dialogDeleteAction
 import com.capstonech2.fitfans.utils.loadImage
 import com.capstonech2.fitfans.utils.showDialog
@@ -59,16 +59,16 @@ class DetectionResultActivity : AppCompatActivity() {
             viewModel.getCollectionByImage(data.image).observe(this){
                 if (it != null){
                     menuItem1?.let { menu1 ->
-                        menu1.isEnabled = false
+                        menu1.isVisible = false
                         menuItem2?.let { menu2 ->
-                            menu2.isEnabled = true
+                            menu2.isVisible = true
                         }
                     }
                 } else {
                     menuItem1?.let { menu1 ->
-                        menu1.isEnabled = true
+                        menu1.isVisible = true
                         menuItem2?.let { menu2 ->
-                            menu2.isEnabled = false
+                            menu2.isVisible = false
                         }
                     }
                 }
@@ -87,9 +87,9 @@ class DetectionResultActivity : AppCompatActivity() {
             R.id.menu_collection -> {
                 if (data != null){
                     collectData(data)
-                    showToast(this, "Success save result")
+                    showToast(this, getString(R.string.success_save_result))
                 } else {
-                    showDialog(this, "Cannot save result")
+                    showDialog(this, getString(R.string.failed_save_result))
                 }
                 true
             }
@@ -97,7 +97,7 @@ class DetectionResultActivity : AppCompatActivity() {
                 if (data != null){
                     viewModel.getCollectionByImage(data.image).observe(this){ result ->
                         if (result != null){
-                            dialogDeleteAction(this, "Delete Collection", "Are you sure you want to delete Detection Result ?") {
+                            dialogDeleteAction(this, getString(R.string.delete_collection), getString(R.string.delete_collection_message)) {
                                 viewModel.deleteCollection(result.image)
                             }
                         }

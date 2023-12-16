@@ -10,8 +10,8 @@ import com.capstonech2.fitfans.databinding.CollectionItemBinding
 import com.capstonech2.fitfans.data.model.Collection
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendation
-import com.capstonech2.fitfans.ui.camera.CameraActivity.Companion.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
+import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.loadImage
 
 class CollectionAdapter: ListAdapter<Collection, CollectionAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -60,6 +60,5 @@ class CollectionAdapter: ListAdapter<Collection, CollectionAdapter.ViewHolder>(D
                 return oldItem == newItem
             }
         }
-        const val EXTRA_COLLECTION = "extra_collection"
     }
 }

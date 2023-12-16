@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.data.model.Note
 import com.capstonech2.fitfans.databinding.NoteItemBinding
 import com.capstonech2.fitfans.ui.note.detail.DetailNoteActivity
+import com.capstonech2.fitfans.utils.EXTRA_NOTE_ID
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 
 class NoteAdapter: ListAdapter<Note, NoteAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -44,7 +45,5 @@ class NoteAdapter: ListAdapter<Note, NoteAdapter.ViewHolder>(DIFF_CALLBACK) {
                 return oldItem == newItem
             }
         }
-
-        const val EXTRA_NOTE_ID = "extra_note_id"
     }
 }

@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Base64
 import android.widget.ImageView
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
@@ -19,7 +18,6 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -78,15 +76,6 @@ fun uriToFile(imageUri: Uri, context: Context): File {
     return myFile
 }
 
-fun urlToBitmap(src: String): Bitmap? {
-    val url = URL(src)
-    val connection = url.openConnection()
-    connection.doInput = true
-    connection.connect()
-    val input = connection.getInputStream()
-    return BitmapFactory.decodeStream(input)
-}
-
 fun File.reduceFileImage(): File {
     val file = this
     val bitmap = BitmapFactory.decodeFile(file.path).getRotatedBitmap(file)
@@ -101,14 +90,6 @@ fun File.reduceFileImage(): File {
     } while (streamLength > MAXIMAL_SIZE)
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
-}
-
-fun encodeImageToBase64(image: File): String {
-    val byteArrayOutputStream = ByteArrayOutputStream()
-    val bitmap = BitmapFactory.decodeFile(image.absolutePath)
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-    val byteArray = byteArrayOutputStream.toByteArray()
-    return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }
 
 fun Bitmap.getRotatedBitmap(file: File): Bitmap {
