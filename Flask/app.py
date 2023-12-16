@@ -288,6 +288,9 @@ def predict_endpoint():
     # Predict the class for the uploaded image
     prediction_result = predict_image_class(file_path)
 
+    # Remove the uploaded image file
+    os.remove(file_path)
+
     # Return the prediction result in the correct order
     return jsonify({
         'tool_name': prediction_result.get('tool_name', ''),
