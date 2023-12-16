@@ -2,162 +2,53 @@ package com.capstonech2.fitfans.ui.timer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import com.capstonech2.fitfans.R
+import androidx.core.content.IntentCompat
+import androidx.lifecycle.ViewModelProvider
+import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.databinding.ActivityTimerBinding
-import com.capstonech2.fitfans.utils.TimerUtil
 
 class TimerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTimerBinding
 
-    enum class TimerState {
-        Stopped, Paused, Running
-    }
-
-    private lateinit var timer: CountDownTimer
-    private var timerLengthSeconds: Long = 0
-    private var timerState = TimerState.Stopped
-
-    private var secondsRemaining: Long = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = "Timer"
 
-        supportActionBar?.title = resources.getString(R.string.timer)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val predict= IntentCompat.getParcelableExtra(intent, Predicts::class.java)
 
-        binding.btStart.setOnClickListener {
-            startTimer()
-            timerState = TimerState.Running
-            updateButtons()
-        }
+        if (predict != null) {
 
-        binding.btPause.setOnClickListener {
-            timer.cancel()
-            timerState = TimerState.Paused
-            updateButtons()
-        }
+            val viewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
 
-        binding.btReset.setOnClickListener {
-            timer.cancel()
-            onTimerFinished()
-        }
-
-        binding.btOk.setOnClickListener{
-
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initTimer()
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        if (timerState == TimerState.Running) {
-            timer.cancel()
-            } else if (timerState == TimerState.Paused) {
-        }
-
-        TimerUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this)
-        TimerUtil.setSecondsRemaining(secondsRemaining, this)
-        TimerUtil.setTimerState(timerState, this)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return super.onSupportNavigateUp()
-    }
-
-    private fun initTimer() {
-        timerState = TimerUtil.getTimerState(this)
-
-        if (timerState == TimerState.Stopped)
-            setNewTimerLength()
-        else
-            setPreviousTimerLength()
-
-        secondsRemaining = if (timerState == TimerState.Running || timerState == TimerState.Paused)
-            TimerUtil.getSecondsRemaining(this)
-        else
-            timerLengthSeconds
-
-        if (timerState == TimerState.Running)
-            startTimer()
-
-        updateButtons()
-        updateCountdownUI()
-    }
-
-    private fun onTimerFinished() {
-        timerState = TimerState.Stopped
-        setNewTimerLength()
-        TimerUtil.setSecondsRemaining(timerLengthSeconds, this)
-        secondsRemaining = timerLengthSeconds
-
-        updateButtons()
-        updateCountdownUI()
-    }
-
-    private fun startTimer() {
-        timerState = TimerState.Running
-        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
-            override fun onFinish() = onTimerFinished()
-            override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
-                updateCountdownUI()
-            }
-        }.start()
-    }
-
-    private fun setNewTimerLength() {
-        val lengthInMinutes = TimerUtil.getTimerLength(this)
-        timerLengthSeconds = (lengthInMinutes * 60L)
-    }
-
-    private fun setPreviousTimerLength() {
-        timerLengthSeconds = TimerUtil.getPreviousTimerLengthSeconds(this)
-    }
-
-    private fun updateCountdownUI() {
-        val minutesUntilFinished = secondsRemaining / 60
-        val secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60
-        val secondsStr = secondsInMinuteUntilFinished.toString()
-        binding.tvTimer.text = "$minutesUntilFinished    :  ${
-            if (secondsStr.length == 2) secondsStr else "0" + secondsStr
-        }"
-    }
-
-    private fun updateButtons() {
-        when (timerState) {
-            TimerState.Running -> {
-                binding.btStart.isEnabled = false
-                binding.btPause.isEnabled = true
-                binding.btReset.isEnabled = true
+            viewModel.setInitialTime(predict.timerRecommendation)
+            viewModel.currentTimeString.observe(this) {
+                binding.tvTimer.text = it
             }
 
-            TimerState.Stopped -> {
-                binding.btStart.isEnabled = true
-                binding.btPause.isEnabled = false
-                binding.btReset.isEnabled = false
+            binding.btStart.setOnClickListener {
+                updateButtonState(true)
+                viewModel.startTimer()
             }
 
-            TimerState.Paused -> {
-                binding.btStart.isEnabled = true
-                binding.btPause.isEnabled = false
-                binding.btReset.isEnabled = true
+            binding.btReset.setOnClickListener {
+                viewModel.resetTimer()
+                updateButtonState(false)
+            }
+
+            binding.btPause.setOnClickListener {
+                viewModel.pauseTimer()
+                updateButtonState(false)
             }
         }
     }
 
-    private fun updateAlert() {
-        }
-    
+    private fun updateButtonState(isRunning: Boolean) {
+        binding.btStart.isEnabled = !isRunning
+        binding.btReset.isEnabled = isRunning
+    }
 }
 
 
