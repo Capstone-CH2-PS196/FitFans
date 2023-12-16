@@ -10,5 +10,5 @@ data class Note (
     val date: String,
     val title: String,
     val description: String,
-    var isChecked: Boolean = false
+    var isChecked: Int = 0
 )

@@ -41,9 +41,11 @@ class NoteActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.select_all_note -> {
+                viewModel.updateAllNoteStatusChecked(true)
                 true
             }
             R.id.action_delete_note -> {
+                viewModel.deleteNoteByCheckedStatus()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -60,7 +62,9 @@ class NoteActivity : AppCompatActivity() {
         binding.listNote.layoutManager = layoutManager
 
         viewModel.getAllNote().observe(this){ listNote ->
-            val adapter = NoteAdapter()
+            val adapter = NoteAdapter{ note ->
+                viewModel.updateNoteCheckedStatus(note.id, note.isChecked)
+            }
             adapter.submitList(listNote)
             binding.listNote.adapter = adapter
         }

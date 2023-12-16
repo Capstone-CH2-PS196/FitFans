@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class NoteRepository(private val database: FitfansDatabase) {
+
     fun getAllNote(): LiveData<List<Note>> = database.noteDao().getAllNote()
 
     fun getNoteById(noteId: Int): LiveData<Note> = database.noteDao().getNoteById(noteId)
@@ -19,8 +20,12 @@ class NoteRepository(private val database: FitfansDatabase) {
         database.noteDao().updateNote(noteId, date, title, description)
     }
 
-    suspend fun updateNoteCheckedStatus(noteId: Int) = withContext(Dispatchers.IO){
-        database.noteDao().updateNoteChecked(noteId)
+    suspend fun updateAllNoteStatusChecked(isChecked: Int) = withContext(Dispatchers.IO){
+        database.noteDao().updateAllNotesCheckedStatus(isChecked)
+    }
+
+    suspend fun updateNoteCheckedStatus(noteId: Int, isChecked: Int) = withContext(Dispatchers.IO){
+        database.noteDao().updateNoteChecked(noteId, isChecked)
     }
 
     suspend fun deleteNoteByCheckedStatus() = withContext(Dispatchers.IO) {

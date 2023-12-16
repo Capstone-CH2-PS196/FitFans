@@ -14,7 +14,7 @@ import com.capstonech2.fitfans.utils.StringListConverter
         Collection::class,
         History::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(StringListConverter::class)

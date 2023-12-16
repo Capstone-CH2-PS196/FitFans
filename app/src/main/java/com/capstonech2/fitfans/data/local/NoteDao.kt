@@ -22,8 +22,11 @@ interface NoteDao {
     @Query("UPDATE tb_note SET date = :date, title = :title, description = :description WHERE id = :noteId")
     suspend fun updateNote(noteId: Int, date: String, title: String, description: String)
 
-    @Query("UPDATE tb_note SET isChecked = 1 WHERE id = :noteId")
-    suspend fun updateNoteChecked(noteId: Int)
+    @Query("UPDATE tb_note SET isChecked = :isChecked WHERE id = :noteId")
+    suspend fun updateNoteChecked(noteId: Int, isChecked: Int)
+
+    @Query("UPDATE tb_note SET isChecked = :isChecked")
+    suspend fun updateAllNotesCheckedStatus(isChecked: Int)
 
     @Query("DELETE FROM tb_note WHERE isChecked = 1")
     suspend fun deleteNoteByChecked()

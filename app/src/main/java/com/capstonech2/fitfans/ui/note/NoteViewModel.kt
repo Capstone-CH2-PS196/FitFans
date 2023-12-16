@@ -19,8 +19,13 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel() {
         repository.updateNote(noteId, date, title, description)
     }
 
-    fun updateNoteCheckedStatus(noteId: Int) = viewModelScope.launch {
-        repository.updateNoteCheckedStatus(noteId)
+    fun updateAllNoteStatusChecked(isChecked: Boolean) = viewModelScope.launch {
+        val isCheckedValue = if (isChecked) 1 else 0
+        repository.updateAllNoteStatusChecked(isCheckedValue)
+    }
+
+    fun updateNoteCheckedStatus(noteId: Int, isChecked: Int) = viewModelScope.launch {
+        repository.updateNoteCheckedStatus(noteId, isChecked)
     }
 
     fun deleteNoteByCheckedStatus() = viewModelScope.launch {
