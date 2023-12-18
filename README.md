@@ -6,12 +6,13 @@
 FitFans is an application that we created for the Bangkit Academy Capstone Project. FitFans is an education for gym beginners. This application is mobile-based and uses Machine Learning and Cloud Computing technology.
 
 ## Team Project
-| Nama | ID | Path | Kampus |
-|---|---|---|---|
-| Fahri Rizki Saputra | M200BSY0577 | Machine Learning | Universitas Diponegoro |
-| Oktavian Nikky Abprianto | M254BSY0349 | Machine Learning | Universitas Mercu Buana |
-| Rega Anton Giapierro |  M701BSY0612 | Machine Learning | Universitas Primagraha |
-| Muhamad Faiz Riyadi | C701BSY3518 | Cloud Computing | Universitas Primagraha |
-| Saifuddaulah Alfarabi | C193BSY3026 | Cloud Computing | Universitas Bina Sarana Informatika |
-| Gerry Satria Halim | A128BSY2321 | Android Development | Politeknik Negeri Jakarta |
-| Muchammad Raja Haikal Fiaugustian | A248BSY2737 | Android Development | Universitas Lampung |
+| Nama                                  | ID           | Path                 | Kampus                               | LinkedIn                             |
+|---------------------------------------|--------------|----------------------|--------------------------------------|--------------------------------------|
+| Fahri Rizki Saputra                   | M200BSY0577  | Machine Learning     | Universitas Diponegoro               | [LinkedIn](https://www.linkedin.com/in/saifuddaulah-alfarabi/)                        |
+| Oktavian Nikky Abprianto              | M254BSY0349  | Machine Learning     | Universitas Mercu Buana               | [LinkedIn](https://www.linkedin.com/in/muhamad-faiz-riyadi-9aa111225/)                        |
+| Rega Anton Giapierro                   | M701BSY0612  | Machine Learning     | Universitas Primagraha                | [LinkedIn](#)                        |
+| Muhamad Faiz Riyadi                    | C701BSY3518  | Cloud Computing      | Universitas Primagraha                | [LinkedIn](#)                        |
+| Saifuddaulah Alfarabi                  | C193BSY3026  | Cloud Computing      | Universitas Bina Sarana Informatika   | [LinkedIn](#)                        |
+| Gerry Satria Halim                     | A128BSY2321  | Android Development  | Politeknik Negeri Jakarta             | [LinkedIn](#)                        |
+| Muchammad Raja Haikal Fiaugustian      | A248BSY2737  | Android Development  | Universitas Lampung                   | [LinkedIn](#)                        |
+
