@@ -10,6 +10,10 @@ fun formatDate(date: Date): String {
     return sdf.format(date)
 }
 
+fun formatDateWithDay(date: String?): String {
+    return date?.let { getDayFromDate(it) }?.let { "$it, $date" } ?: ""
+}
+
 fun getDayFromDate(dateString: String): String {
     return try {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())

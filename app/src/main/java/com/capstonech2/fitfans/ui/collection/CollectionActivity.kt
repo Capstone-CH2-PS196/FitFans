@@ -8,7 +8,6 @@ import com.capstonech2.fitfans.databinding.ActivityCollectionBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CollectionActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityCollectionBinding
     private val viewModel: CollectionViewModel by viewModel()
 

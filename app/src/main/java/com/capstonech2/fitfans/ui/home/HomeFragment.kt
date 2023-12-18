@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
             textUsername.text = data[0].fullName.capitalizeFirstLetter()
             caloriesValue.text = "30.0"
             bmiValue.text = calculateBMI(data[0].weight, data[0].height).toString()
-            if (data[0].image == null || data[0].image == "") imageProfileUser.setImageResource(R.drawable.ic_profile_user)
+            if (data[0].image == "") imageProfileUser.setImageResource(R.drawable.ic_profile_user)
             else imageProfileUser.loadImage(data[0].image)
         }
     }

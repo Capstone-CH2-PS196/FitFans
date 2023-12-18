@@ -120,6 +120,8 @@
     <string name="update_profile_success">Your profile has been updated</string>
     <string name="save_user_success">Failed to save the Data, Please try again</string>
     <string name="oke">Oke</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!--Note-->
     <string name="title">Title</string>
@@ -151,6 +153,7 @@
     <string name="notification_not_granted">Notifications will not show without permission</string>
 
     <!--History-->
+    <string name="detail_history">Detail History</string>
     <string name="total_result">Total calories burn today : </string>
     <string name="total_time">Total activity time today :</string>
 </resources>

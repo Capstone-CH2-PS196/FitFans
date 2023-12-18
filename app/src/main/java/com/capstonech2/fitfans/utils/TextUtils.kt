@@ -3,8 +3,6 @@ package com.capstonech2.fitfans.utils
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.Calendar
-import java.util.Date
 
 fun String.capitalizeFirstLetter(): String {
     return if (this.isEmpty()) {
@@ -25,10 +23,4 @@ class StringListConverter {
     fun toString(value: List<String>): String {
         return Gson().toJson(value)
     }
-}
-
-fun getDayFromDate(date: Date): Int {
-    val calendar = Calendar.getInstance()
-    calendar.time = date
-    return calendar.get(Calendar.DAY_OF_WEEK)
 }

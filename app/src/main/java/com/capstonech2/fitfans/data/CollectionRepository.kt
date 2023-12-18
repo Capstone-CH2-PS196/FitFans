@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CollectionRepository(private val database: FitfansDatabase) {
-
     fun getAllCollection() : LiveData<List<Collection>> =
         database.collectionDao().getAllCollection()
 

@@ -2,12 +2,12 @@ package com.capstonech2.fitfans.ui.profile
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.IntentCompat.getParcelableExtra
 import androidx.core.net.toUri
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.model.User
@@ -52,11 +52,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun getDataFromIntent(){
-        val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra(EXTRA_PROFILE_KEY, User::class.java)
-        } else {
-            intent.getParcelableExtra(EXTRA_PROFILE_KEY)
-        }
+        val data = getParcelableExtra(intent, EXTRA_PROFILE_KEY, User::class.java)
 
         if (data != null){
             binding.apply {

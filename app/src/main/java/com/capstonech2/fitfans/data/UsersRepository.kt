@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class UsersRepository(private val apiService: ApiService) {
-
     suspend fun getUserByEmail(email: String):  List<UsersResponseItem> =
         withContext(Dispatchers.IO){
             apiService.getUserByEmail(email)

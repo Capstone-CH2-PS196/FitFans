@@ -10,7 +10,6 @@ import com.capstonech2.fitfans.data.model.HistoryAndExercise
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() {
-
     fun insertHistory(history: History) = viewModelScope.launch {
         repository.insertHistory(history)
     }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.data.model.History
 import com.capstonech2.fitfans.databinding.HistoryItemBinding
 import com.capstonech2.fitfans.ui.history.detail.DetailHistoryActivity
+import com.capstonech2.fitfans.utils.EXTRA_HISTORY_ID
 import com.capstonech2.fitfans.utils.getDayFromDate
 
 class HistoryAdapter(private val onCheckboxClickListener: (History) -> Unit) : ListAdapter<History, HistoryAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -38,7 +39,7 @@ class HistoryAdapter(private val onCheckboxClickListener: (History) -> Unit) : L
 
             itemBinding.historyLayout.setOnClickListener {
                 val intent = Intent(it.context, DetailHistoryActivity::class.java)
-                intent.putExtra("extra_historyId", data.hisId)
+                intent.putExtra(EXTRA_HISTORY_ID, data.hisId)
                 it.context.startActivity(intent)
             }
         }

@@ -12,7 +12,6 @@ import com.capstonech2.fitfans.ui.note.add.AddNoteActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NoteActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityNoteBinding
     private val viewModel: NoteViewModel by viewModel()
 

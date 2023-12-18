@@ -12,8 +12,9 @@ import com.capstonech2.fitfans.ui.note.detail.DetailNoteActivity
 import com.capstonech2.fitfans.utils.EXTRA_NOTE_ID
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 
-class NoteAdapter(private val onCheckboxClickListener: (Note) -> Unit): ListAdapter<Note, NoteAdapter.ViewHolder>(DIFF_CALLBACK) {
-
+class NoteAdapter(
+    private val onCheckboxClickListener: (Note) -> Unit
+): ListAdapter<Note, NoteAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = NoteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)

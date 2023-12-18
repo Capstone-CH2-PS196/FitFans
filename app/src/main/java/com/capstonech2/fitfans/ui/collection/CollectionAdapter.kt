@@ -15,7 +15,6 @@ import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.loadImage
 
 class CollectionAdapter: ListAdapter<Collection, CollectionAdapter.ViewHolder>(DIFF_CALLBACK) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CollectionItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

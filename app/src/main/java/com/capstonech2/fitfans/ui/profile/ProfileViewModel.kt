@@ -11,7 +11,6 @@ import com.capstonech2.fitfans.utils.State
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(private val repository: UsersRepository): ViewModel(){
-
     private val _userData = MutableLiveData<State<List<UsersResponseItem>>>()
     val userData: LiveData<State<List<UsersResponseItem>>> get() = _userData
 

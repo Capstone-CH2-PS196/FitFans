@@ -1,10 +1,10 @@
 package com.capstonech2.fitfans.ui.detectionresult
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.IntentCompat.getParcelableExtra
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.R
@@ -21,7 +21,6 @@ import com.capstonech2.fitfans.utils.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetectionResultActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityDetectionResultBinding
     private val viewModel: CollectionViewModel by viewModel()
 
@@ -48,13 +47,11 @@ class DetectionResultActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.result_menu, menu)
-        val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT, Predicts::class.java)
-        } else {
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT)
-        }
+
+        val data = getParcelableExtra(intent, EXTRA_DETECT_RESULT, Predicts::class.java)
         val menuItem1 = menu?.findItem(R.id.menu_collection)
         val menuItem2 = menu?.findItem(R.id.action_delete_collection)
+
         if (data != null){
             viewModel.getCollectionByImage(data.image).observe(this){
                 if (it != null){
@@ -78,11 +75,7 @@ class DetectionResultActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT, Predicts::class.java)
-        } else {
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT)
-        }
+        val data = getParcelableExtra(intent, EXTRA_DETECT_RESULT, Predicts::class.java)
         return when (item.itemId) {
             R.id.menu_collection -> {
                 if (data != null){
@@ -108,11 +101,7 @@ class DetectionResultActivity : AppCompatActivity() {
 
     private fun setDataFromIntent() {
         binding.apply {
-            val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                intent.getParcelableExtra(EXTRA_DETECT_RESULT, Predicts::class.java)
-            } else {
-                intent.getParcelableExtra(EXTRA_DETECT_RESULT)
-            }
+            val data = getParcelableExtra(intent, EXTRA_DETECT_RESULT, Predicts::class.java)
 
             if (data != null){
                 resultImage.loadImage(data.image)
@@ -144,13 +133,8 @@ class DetectionResultActivity : AppCompatActivity() {
     }
 
     private fun showRecommendationList(data :List<Recommendation>) {
-        val result = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT, Predicts::class.java)
-        } else {
-            intent.getParcelableExtra(EXTRA_DETECT_RESULT)
-        }
+        val result = getParcelableExtra(intent, EXTRA_DETECT_RESULT, Predicts::class.java)
         binding.recommendationList.layoutManager = LinearLayoutManager(this@DetectionResultActivity)
-
         if (result != null) {
             val adapter = RecommendationAdapter(result)
             adapter.submitList(data)

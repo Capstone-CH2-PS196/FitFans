@@ -33,10 +33,10 @@ fun dialogDeleteAction(context: Context, title: String, message: String, positiv
     MaterialAlertDialogBuilder(context)
         .setTitle(title)
         .setMessage(message)
-        .setNegativeButton("No"){ dialog, _ ->
+        .setNegativeButton(context.getString(R.string.no)){ dialog, _ ->
             dialog.dismiss()
         }
-        .setPositiveButton("Yes") { _, _ ->
+        .setPositiveButton(context.getString(R.string.yes)) { _, _ ->
             positiveAction.invoke()
         }.show()
 }

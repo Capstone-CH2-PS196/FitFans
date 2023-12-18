@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class NoteRepository(private val database: FitfansDatabase) {
-
     fun getAllNote(): LiveData<List<Note>> = database.noteDao().getAllNote()
 
     fun getNoteById(noteId: Int): LiveData<Note> = database.noteDao().getNoteById(noteId)

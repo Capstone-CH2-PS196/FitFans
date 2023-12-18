@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class HistoryRepository(private val database: FitfansDatabase) {
-
     suspend fun insertHistory(history: History) = withContext(Dispatchers.IO) {
         database.historyDao().insertHistory(history)
     }
@@ -42,15 +41,15 @@ class HistoryRepository(private val database: FitfansDatabase) {
         database.historyDao().deleteExerciseByChecked()
     }
 
-    fun getHistoryByDate(date: String) : LiveData<History> =
-        database.historyDao().getHistoryByDate(date)
+    fun getHistoryByDate(date: String) : LiveData<History> = database.historyDao().getHistoryByDate(date)
 
     fun getAllHistory() : LiveData<List<History>> = database.historyDao().getAllHistory()
 
     fun getAllExerciseByIdHistory(hisId: Int) : LiveData<List<HistoryAndExercise>> =
         database.historyDao().getAllExerciseByIdHistory(hisId)
 
-    fun getTotalCaloriesExercise(hisId: Int): LiveData<Double> = database.historyDao().getTotalCaloriesExercise(hisId)
+    fun getTotalCaloriesExercise(hisId: Int): LiveData<Double> =
+        database.historyDao().getTotalCaloriesExercise(hisId)
 
     fun getTotalTimeExercise(hisId: Int): LiveData<Long> = database.historyDao().getTotalTimeExercise(hisId)
 }

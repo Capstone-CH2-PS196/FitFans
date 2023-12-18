@@ -9,9 +9,7 @@ import com.capstonech2.fitfans.ui.collection.CollectionActivity
 import com.capstonech2.fitfans.ui.history.HistoryActivity
 import com.capstonech2.fitfans.ui.note.NoteActivity
 
-class MenuAdapter(private val menuList: List<Menu>)
-    : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
-
+class MenuAdapter(private val menuList: List<Menu>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MenuListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

@@ -16,7 +16,6 @@ import com.capstonech2.fitfans.utils.FITFANS_TITLE
 import com.capstonech2.fitfans.utils.NOTIFICATION_CHANNEL_ID
 
 class NotificationWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
-
     private val fitfansTitle = inputData.getString(FITFANS_TITLE)
 
     override fun doWork(): Result {
