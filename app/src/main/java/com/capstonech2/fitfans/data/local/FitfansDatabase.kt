@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.capstonech2.fitfans.data.model.Collection
+import com.capstonech2.fitfans.data.model.Exercise
 import com.capstonech2.fitfans.data.model.History
 import com.capstonech2.fitfans.data.model.Note
 import com.capstonech2.fitfans.utils.StringListConverter
@@ -12,9 +13,10 @@ import com.capstonech2.fitfans.utils.StringListConverter
     entities = [
         Note::class,
         Collection::class,
-        History::class
+        History::class,
+        Exercise::class
     ],
-    version = 3,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(StringListConverter::class)

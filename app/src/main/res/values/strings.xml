@@ -140,9 +140,16 @@
     <!--Timer-->
     <string name="alert_msg">Please follow the usage instructions and avoid excessive exercise</string>
     <string name="timer_recom">Recommendation: 2 set x 12 times</string>
+    <string name="timer_recommendation_temp">Recommendation : %1\$s</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="pause">Pause</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="notify_channel_name">Activity Reminder</string>
+    <string name="notify_content">Time Up!</string>
+    <string name="notification_granted">Notifications permission granted</string>
+    <string name="notification_not_granted">Notifications will not show without permission</string>
 
+    <!--History-->
+    <string name="total_cal_temp">%1\$s Cal</string>
 </resources>

@@ -5,69 +5,81 @@ import kotlin.math.round
 
 fun calculateBMI(weight: Double, height: Double): Double = round((weight / (height / 100).pow(2)) * 10) / 10.0
 
+fun convertMillisToMinutesSeconds(milliseconds: Long): String {
+    val totalSeconds = milliseconds / 1000
+    val minutes = totalSeconds / 60
+    val seconds = totalSeconds % 60
+    return String.format("%02d m %02d s", minutes, seconds)
+}
+
+fun convertToMinutes(milliseconds: Long): Long {
+    val totalSeconds = milliseconds / 1000
+    return totalSeconds / 60
+}
+
 fun calculateCalories(minutes: Long, equipment: String, level: String, weight: Double): Double {
     val met: Double = when (equipment) {
-        "Barbell", "Dumbell" -> {
+        "Barbell", "Dumbbell" -> {
             when (level) {
-                "Ringan" -> 3.0
-                "Sedang" -> 4.0
-                "Tinggi" -> 6.0
+                "Beginner" -> 3.0
+                "Ideal" -> 4.0
+                "Expert" -> 6.0
                 else -> 0.0
             }
         }
-        "Gym-ball" -> {
+        "Gym Ball" -> {
             when (level) {
-                "Ringan" -> 2.5
-                "Sedang" -> 3.0
-                "Tinggi" -> 5.0
+                "Beginner" -> 2.5
+                "Ideal" -> 3.0
+                "Expert" -> 5.0
                 else -> 0.0
             }
         }
-        "Kattle-ball", "Roller-abs" -> {
+        "Kettlebell", "Roller Abs" -> {
             when (level) {
-                "Ringan" -> 4.0
-                "Sedang" -> 5.0
-                "Tinggi" -> 7.0
+                "Beginner" -> 4.0
+                "Ideal" -> 5.0
+                "Expert" -> 7.0
                 else -> 0.0
             }
         }
-        "Leg-press" -> {
+        "Leg Press" -> {
             when (level) {
-                "Ringan" -> 3.5
-                "Sedang" -> 4.0
-                "Tinggi" -> 6.0
+                "Beginner" -> 3.5
+                "Ideal" -> 4.0
+                "Expert" -> 6.0
                 else -> 0.0
             }
         }
-        "Punching-bag" -> {
+        "Punching Bag" -> {
             when (level) {
-                "Ringan" -> 5.5
-                "Sedang" -> 6.0
-                "Tinggi" -> 8.0
+                "Beginner" -> 5.5
+                "Ideal" -> 6.0
+                "Expert" -> 8.0
                 else -> 0.0
             }
         }
-        "Statis-bicycle" -> {
+        "Static Bicycle" -> {
             when (level) {
-                "Ringan" -> 3.5
-                "Sedang" -> 4.0
-                "Tinggi" -> 7.0
+                "Beginner" -> 3.5
+                "Ideal" -> 4.0
+                "Expert" -> 7.0
                 else -> 0.0
             }
         }
         "Step" -> {
             when (level) {
-                "Ringan" -> 4.5
-                "Sedang" -> 5.0
-                "Tinggi" -> 8.0
+                "Beginner" -> 4.5
+                "Ideal" -> 5.0
+                "Expert" -> 8.0
                 else -> 0.0
             }
         }
         "Treadmill" -> {
             when (level) {
-                "Ringan" -> 3.0
-                "Sedang" -> 5.0
-                "Tinggi" -> 9.0
+                "Beginner" -> 3.0
+                "Ideal" -> 5.0
+                "Expert" -> 9.0
                 else -> 0.0
             }
         }

@@ -10,6 +10,7 @@ import androidx.lifecycle.map
 class TimerViewModel : ViewModel() {
 
     private var timer: CountDownTimer? = null
+    private var finalTime: Long? = null
 
     private val initialTime = MutableLiveData<Long>()
     private val currentTime = MutableLiveData<Long>()
@@ -21,17 +22,18 @@ class TimerViewModel : ViewModel() {
     private val _eventCountDownFinish = MutableLiveData<Boolean>()
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
+    fun getInitialTime() = initialTime.value
+    fun getFinalTime() = finalTime
+
     fun setInitialTime(minuteFocus: Long) {
         val initialTimeMillis = minuteFocus * 60 * 1000
         initialTime.value = initialTimeMillis
         currentTime.value = initialTimeMillis
 
         timer = object : CountDownTimer(initialTimeMillis, 1000) {
-
             override fun onTick(millisUntilFinished: Long) {
                 currentTime.value = millisUntilFinished
             }
-
             override fun onFinish() {
                 resetTimer()
             }
@@ -59,7 +61,7 @@ class TimerViewModel : ViewModel() {
     }
 
     fun startTimer() {
-        if(isPaused == true){
+        if(isPaused){
             continueTime(currentTime.value)
         }
         timer?.start()
@@ -67,6 +69,9 @@ class TimerViewModel : ViewModel() {
 
     fun resetTimer() {
         timer?.cancel()
+        finalTime = currentTime.value?.let {
+            initialTime.value?.minus(it)
+        }
         currentTime.value = initialTime.value
         _eventCountDownFinish.value = true
     }

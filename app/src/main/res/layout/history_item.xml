@@ -9,10 +9,12 @@
     android:orientation="horizontal">
 
     <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkbox_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/history_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/secondary"
@@ -47,46 +49,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="10 November 2023"
                 tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/result_title"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/result"
-                android:textSize="12sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/day_history"/>
-
-            <TextView
-                android:id="@+id/result_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textSize="12sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/result_title"
-                tools:text="-30 Cal"/>
-
-            <TextView
-                android:id="@+id/time_title"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:text="@string/time"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/date_history"/>
-
-            <TextView
-                android:id="@+id/time_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/time_title"
-                tools:text="18m 00s"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
