@@ -59,8 +59,8 @@ class CameraActivity : AppCompatActivity() {
 
     private fun detectPhoto(){
         startLoadingState()
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
+        if(currentImageUri != null){
+            val imageFile = uriToFile(currentImageUri!!, this).reduceFileImage()
             viewModel.uploadImage(imageFile).observe(this){ result ->
                 if (result != null){
                     when(result){
@@ -88,7 +88,15 @@ class CameraActivity : AppCompatActivity() {
                     }
                 }
             }
+        } else {
+            finishLoadingState()
+            showDialog(this, getString(R.string.empty_image))
         }
+//        currentImageUri?.let { uri ->
+//
+//        } ?: {
+//
+//        }
     }
 
     private fun detectionResult(data: Predicts){

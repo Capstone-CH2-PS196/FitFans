@@ -49,4 +49,7 @@ interface HistoryDao {
 
     @Query("SELECT SUM(exeTime) FROM tb_exercise WHERE historyId = :hisId")
     fun getTotalTimeExercise(hisId: Int): LiveData<Long>
+
+    @Query("SELECT SUM(exeCal) FROM tb_exercise")
+    fun getTotalCaloriesBurnUser(): LiveData<Double>
 }

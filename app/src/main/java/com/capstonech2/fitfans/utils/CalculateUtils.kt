@@ -19,7 +19,15 @@ fun convertToMinutes(milliseconds: Long): Long {
 
 fun calculateCalories(minutes: Long, equipment: String, level: String, weight: Double): Double {
     val met: Double = when (equipment) {
-        "Barbell", "Dumbbell" -> {
+        "Barbell" -> {
+            when (level) {
+                "Beginner" -> 3.0
+                "Ideal" -> 4.0
+                "Expert" -> 6.0
+                else -> 0.0
+            }
+        }
+        "Dumbbell" -> {
             when (level) {
                 "Beginner" -> 3.0
                 "Ideal" -> 4.0
@@ -35,7 +43,15 @@ fun calculateCalories(minutes: Long, equipment: String, level: String, weight: D
                 else -> 0.0
             }
         }
-        "Kettlebell", "Roller Abs" -> {
+        "Kettlebell" -> {
+            when (level) {
+                "Beginner" -> 4.0
+                "Ideal" -> 5.0
+                "Expert" -> 7.0
+                else -> 0.0
+            }
+        }
+        "Roller Abs" -> {
             when (level) {
                 "Beginner" -> 4.0
                 "Ideal" -> 5.0

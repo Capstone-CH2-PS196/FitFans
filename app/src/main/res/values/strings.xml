@@ -92,6 +92,7 @@
     <string name="preview_image">Preview Image</string>
     <string name="detect_image">Detect Image</string>
     <string name="failed_detect_image">Failed to detect image</string>
+    <string name="empty_image">No Image Data</string>
 
     <!--actionbar title-->
     <string name="detection_result">Detection Result</string>
@@ -154,6 +155,7 @@
 
     <!--History-->
     <string name="detail_history">Detail History</string>
-    <string name="total_result">Total calories burn today : </string>
-    <string name="total_time">Total activity time today :</string>
+    <string name="total_result">Total calories burn</string>
+    <string name="total_time">Total time</string>
+
 </resources>

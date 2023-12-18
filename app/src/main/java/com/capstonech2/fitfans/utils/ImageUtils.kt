@@ -14,6 +14,7 @@ import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import com.bumptech.glide.Glide
 import com.capstonech2.fitfans.BuildConfig
+import com.capstonech2.fitfans.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -30,6 +31,22 @@ fun ImageView.loadImage(url: String) {
     Glide.with(this.context)
         .load(url)
         .into(this)
+}
+
+fun getIconTool(toolName: String) : Int {
+    return when(toolName){
+        "Barbell" -> R.drawable.ic_barbell
+        "Dumbbell" -> R.drawable.ic_kettle_bell
+        "Gym Ball" -> R.drawable.ic_gym_ball
+        "Kettlebell" -> R.drawable.ic_kettle_bell
+        "Roller Abs" -> R.drawable.ic_roller_abs
+        "Leg Press" -> R.drawable.ic_leg_press
+        "Punching Bag" -> R.drawable.ic_punching_bag
+        "Static Bicycle" -> R.drawable.ic_static_bike
+        "Step" -> R.drawable.ic_step
+        "Treadmill" -> R.drawable.ic_treadmill
+        else -> 0
+    }
 }
 
 fun getImageUri(context: Context): Uri {

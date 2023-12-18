@@ -12,6 +12,7 @@ import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendation
 import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
 import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
+import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.loadImage
 
 class CollectionAdapter: ListAdapter<Collection, CollectionAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -28,7 +29,7 @@ class CollectionAdapter: ListAdapter<Collection, CollectionAdapter.ViewHolder>(D
     class ViewHolder(private val itemBinding: CollectionItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
         fun bind(data: Collection){
             itemBinding.imageEquipment.loadImage(data.image)
-            itemBinding.titleEquipment.text = data.toolName
+            itemBinding.titleEquipment.text = data.toolName.capitalizeFirstLetter()
             itemBinding.descEquipment.text = data.toolDescription
             itemView.setOnClickListener {
                 val intent = Intent(it.context, DetectionResultActivity::class.java)

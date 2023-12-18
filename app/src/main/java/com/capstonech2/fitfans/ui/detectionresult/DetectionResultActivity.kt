@@ -14,6 +14,7 @@ import com.capstonech2.fitfans.data.model.TimerRecommendationEntity
 import com.capstonech2.fitfans.databinding.ActivityDetectionResultBinding
 import com.capstonech2.fitfans.ui.collection.CollectionViewModel
 import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
+import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.dialogDeleteAction
 import com.capstonech2.fitfans.utils.loadImage
 import com.capstonech2.fitfans.utils.showDialog
@@ -105,7 +106,7 @@ class DetectionResultActivity : AppCompatActivity() {
 
             if (data != null){
                 resultImage.loadImage(data.image)
-                resultName.text = data.toolName
+                resultName.text = data.toolName.capitalizeFirstLetter()
                 resultDescription.text = data.toolDescription
                 showGuidanceList(data.howToUse)
                 val recommendation = listOf(

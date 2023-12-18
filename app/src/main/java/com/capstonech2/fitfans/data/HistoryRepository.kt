@@ -52,4 +52,6 @@ class HistoryRepository(private val database: FitfansDatabase) {
         database.historyDao().getTotalCaloriesExercise(hisId)
 
     fun getTotalTimeExercise(hisId: Int): LiveData<Long> = database.historyDao().getTotalTimeExercise(hisId)
+
+    fun getTotalCaloriesBurnUser(): LiveData<Double> = database.historyDao().getTotalCaloriesBurnUser()
 }

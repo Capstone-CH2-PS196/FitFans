@@ -15,6 +15,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <ImageView
+        android:id="@+id/history_circle_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="@id/history_circle"
+        app:layout_constraintStart_toStartOf="@id/history_circle"
+        app:layout_constraintBottom_toBottomOf="@id/history_circle"
+        app:layout_constraintEnd_toEndOf="@id/history_circle"
+        tools:src="@drawable/ic_dumbbell"/>
+
     <TextView
         android:id="@+id/text_time"
         android:layout_width="wrap_content"
@@ -84,7 +95,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="13dp"
-                android:text="Result : "
+                android:text="Calories Burn : "
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/tool_name"
                 app:layout_constraintStart_toStartOf="parent"

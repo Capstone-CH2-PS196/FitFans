@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstonech2.fitfans.data.model.HistoryAndExercise
 import com.capstonech2.fitfans.databinding.DetailHistoryItemBinding
+import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.convertMillisToMinutesSeconds
+import com.capstonech2.fitfans.utils.getIconTool
 
 class DetailHistoryAdapter : ListAdapter<HistoryAndExercise, DetailHistoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailHistoryAdapter.ViewHolder {
@@ -22,7 +24,8 @@ class DetailHistoryAdapter : ListAdapter<HistoryAndExercise, DetailHistoryAdapte
 
     inner class ViewHolder(private val itemBinding: DetailHistoryItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
         fun bind(data: HistoryAndExercise){
-            itemBinding.toolName.text = data.exercise.exeToolName
+            itemBinding.historyCircleIcon.setImageResource(getIconTool(data.exercise.exeToolName.capitalizeFirstLetter()))
+            itemBinding.toolName.text = data.exercise.exeToolName.capitalizeFirstLetter()
             itemBinding.timeValue.text = convertMillisToMinutesSeconds(data.exercise.exeTime)
             itemBinding.resultValue.text = String.format("%1\$s Cal", data.exercise.exeCal)
         }

@@ -54,4 +54,6 @@ class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() 
     fun getTotalCaloriesExercise(hisId: Int): LiveData<Double> = repository.getTotalCaloriesExercise(hisId)
 
     fun getTotalTimeExercise(hisId: Int): LiveData<Long> = repository.getTotalTimeExercise(hisId)
+
+    fun getTotalCaloriesBurnUser(): LiveData<Double> = repository.getTotalCaloriesBurnUser()
 }

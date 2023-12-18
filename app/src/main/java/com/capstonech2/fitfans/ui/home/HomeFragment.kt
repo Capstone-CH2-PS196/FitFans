@@ -11,6 +11,7 @@ import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
 import com.capstonech2.fitfans.databinding.FragmentHomeBinding
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
+import com.capstonech2.fitfans.ui.history.HistoryViewModel
 import com.capstonech2.fitfans.ui.home.menulist.MenuAdapter
 import com.capstonech2.fitfans.ui.home.menulist.MenuDataSource
 import com.capstonech2.fitfans.ui.profile.EditProfileActivity
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModel()
+    private val historyViewModel: HistoryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,7 +94,9 @@ class HomeFragment : Fragment() {
         binding.apply {
             progressBarHome.show(false)
             textUsername.text = data[0].fullName.capitalizeFirstLetter()
-            caloriesValue.text = "30.0"
+            historyViewModel.getTotalCaloriesBurnUser().observe(viewLifecycleOwner){
+                caloriesValue.text = it.toString()
+            }
             bmiValue.text = calculateBMI(data[0].weight, data[0].height).toString()
             if (data[0].image == "") imageProfileUser.setImageResource(R.drawable.ic_profile_user)
             else imageProfileUser.loadImage(data[0].image)
