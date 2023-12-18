@@ -18,6 +18,30 @@ class HistoryRepository(private val database: FitfansDatabase) {
         database.historyDao().insertExercise(exercise)
     }
 
+    suspend fun updateHistoryChecked(hisId: Int, isChecked: Int) = withContext(Dispatchers.IO) {
+        database.historyDao().updateHistoryChecked(hisId, isChecked)
+    }
+
+    suspend fun updateExerciseChecked(hisId: Int, isChecked: Int) = withContext(Dispatchers.IO) {
+        database.historyDao().updateExerciseChecked(hisId, isChecked)
+    }
+
+    suspend fun updateAllHistoriesCheckedStatus(isChecked: Int) = withContext(Dispatchers.IO) {
+        database.historyDao().updateAllHistoriesCheckedStatus(isChecked)
+    }
+
+    suspend fun updateAllExerciseCheckedStatus(isChecked: Int) = withContext(Dispatchers.IO) {
+        database.historyDao().updateAllExerciseCheckedStatus(isChecked)
+    }
+
+    suspend fun deleteHistoryByChecked() = withContext(Dispatchers.IO) {
+        database.historyDao().deleteHistoryByChecked()
+    }
+
+    suspend fun deleteExerciseByChecked() = withContext(Dispatchers.IO) {
+        database.historyDao().deleteExerciseByChecked()
+    }
+
     fun getHistoryByDate(date: String) : LiveData<History> =
         database.historyDao().getHistoryByDate(date)
 

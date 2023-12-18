@@ -10,6 +10,7 @@ data class History (
     @PrimaryKey(autoGenerate = true)
     val hisId : Int = 0,
     val date: String,
+    val isChecked: Int = 0,
 )
 
 @Entity(tableName = "tb_exercise")
@@ -19,6 +20,7 @@ data class Exercise (
     val exeToolName: String,
     val exeCal: Double,
     val exeTime: Long,
+    val isChecked: Int = 0,
     val historyId: Int,
 )
 
@@ -28,7 +30,7 @@ data class HistoryAndExercise(
 
     @Relation(
         parentColumn = "historyId",
-        entityColumn = "hisId"
+        entityColumn = "hisId",
     )
     val history: History? = null
 )

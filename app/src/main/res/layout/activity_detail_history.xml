@@ -21,10 +21,53 @@
             android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/list_exercise"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="19 November 2023"/>
+
+        <TextView
+            android:id="@+id/text_totalResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/total_result"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_history_date"/>
+
+        <TextView
+            android:id="@+id/totalResult_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/detail_history_date"
+            app:layout_constraintStart_toEndOf="@id/text_totalResult"
+            tools:text="9.5 Cal"/>
+
+        <TextView
+            android:id="@+id/text_totalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/total_time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_totalResult"/>
+
+        <TextView
+            android:id="@+id/totalTime_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/text_totalTime"
+            app:layout_constraintTop_toBottomOf="@id/text_totalResult"
+            tools:text="01m 00s"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_exercise"
@@ -32,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="32dp"
-            app:layout_constraintTop_toBottomOf="@id/detail_history_date"
+            app:layout_constraintTop_toBottomOf="@id/text_totalTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/detail_history_item"/>

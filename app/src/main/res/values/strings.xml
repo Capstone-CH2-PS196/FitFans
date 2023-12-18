@@ -151,5 +151,6 @@
     <string name="notification_not_granted">Notifications will not show without permission</string>
 
     <!--History-->
-    <string name="total_cal_temp">%1\$s Cal</string>
+    <string name="total_result">Total calories burn today : </string>
+    <string name="total_time">Total activity time today :</string>
 </resources>

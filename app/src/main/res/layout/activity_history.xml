@@ -10,8 +10,8 @@
         android:id="@+id/list_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="22dp"
-        android:layout_marginHorizontal="14dp"
+        android:layout_marginVertical="14dp"
+        android:layout_marginEnd="16dp"
         tools:listitem="@layout/history_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

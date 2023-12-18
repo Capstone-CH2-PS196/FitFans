@@ -2,6 +2,8 @@ package com.capstonech2.fitfans.ui.history
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityHistoryBinding
@@ -28,12 +30,36 @@ class HistoryActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.list_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.select_all_note -> {
+                viewModel.updateAllHistoriesCheckedStatus(true)
+                viewModel.updateAllExerciseCheckedStatus(true)
+                true
+            }
+            R.id.action_delete_note -> {
+                viewModel.deleteHistoryByChecked()
+                viewModel.deleteExerciseByChecked()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun showAllHistories() {
         val layoutManager = LinearLayoutManager(this@HistoryActivity)
         binding.listHistory.layoutManager = layoutManager
 
         viewModel.getAllHistory().observe(this){ listHistory ->
-            val adapter = HistoryAdapter()
+            val adapter = HistoryAdapter{
+                viewModel.updateHistoryChecked(it.hisId, it.isChecked)
+                viewModel.updateExerciseChecked(it.hisId, it.isChecked)
+            }
             adapter.submitList(listHistory)
             binding.listHistory.adapter = adapter
         }

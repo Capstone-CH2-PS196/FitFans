@@ -19,6 +19,32 @@ class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() 
         repository.insertExercise(exercise)
     }
 
+    fun updateHistoryChecked(hisId: Int, isChecked: Int) = viewModelScope.launch {
+        repository.updateHistoryChecked(hisId, isChecked)
+    }
+
+    fun updateExerciseChecked(hisId: Int, isChecked: Int) = viewModelScope.launch {
+        repository.updateExerciseChecked(hisId, isChecked)
+    }
+
+    fun updateAllHistoriesCheckedStatus(isChecked: Boolean) = viewModelScope.launch {
+        val isCheckedValue = if (isChecked) 1 else 0
+        repository.updateAllHistoriesCheckedStatus(isCheckedValue)
+    }
+
+    fun updateAllExerciseCheckedStatus(isChecked: Boolean) = viewModelScope.launch {
+        val isCheckedValue = if (isChecked) 1 else 0
+        repository.updateAllExerciseCheckedStatus(isCheckedValue)
+    }
+
+    fun deleteHistoryByChecked() = viewModelScope.launch {
+        repository.deleteHistoryByChecked()
+    }
+
+    fun deleteExerciseByChecked() = viewModelScope.launch {
+        repository.deleteExerciseByChecked()
+    }
+
     fun getAllHistory() : LiveData<List<History>> = repository.getAllHistory()
 
     fun getHistoryByDate(date: String) : LiveData<History> = repository.getHistoryByDate(date)

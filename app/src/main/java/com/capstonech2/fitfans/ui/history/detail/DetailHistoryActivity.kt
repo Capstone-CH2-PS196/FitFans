@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.databinding.ActivityDetailHistoryBinding
 import com.capstonech2.fitfans.ui.history.HistoryViewModel
+import com.capstonech2.fitfans.utils.convertMillisToMinutesSeconds
 import com.capstonech2.fitfans.utils.getDayFromDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,6 +34,14 @@ class DetailHistoryActivity : AppCompatActivity() {
 
     private fun setData() {
         val data = intent.getIntExtra("extra_historyId", 0)
+        viewModel.getTotalCaloriesExercise(data).observe(this){
+            binding.totalResultValue.text = String.format("%1\$s Cal", it)
+        }
+
+        viewModel.getTotalTimeExercise(data).observe(this) {
+            binding.totalTimeValue.text = convertMillisToMinutesSeconds(it)
+        }
+
         val layoutManager = LinearLayoutManager(this@DetailHistoryActivity)
         binding.listExercise.layoutManager = layoutManager
         viewModel.getAllExerciseByIdHistory(data).observe(this) { result ->

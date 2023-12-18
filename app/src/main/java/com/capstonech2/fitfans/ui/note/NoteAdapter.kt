@@ -29,7 +29,7 @@ class NoteAdapter(private val onCheckboxClickListener: (Note) -> Unit): ListAdap
             itemBinding.titleNote.text = data.title.capitalizeFirstLetter()
             itemBinding.dateNote.text = data.date
 
-            val status = if(data.isChecked == 1) true else false
+            val status = data.isChecked == 1
             itemBinding.checkboxNote.isChecked = status
 
             itemBinding.checkboxNote.setOnCheckedChangeListener { _, isChecked ->
