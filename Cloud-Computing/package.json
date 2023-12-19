@@ -4,20 +4,22 @@
     "description": "Create an API from web server using express framework",
     "main": "server.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": " node src/app.js",
-      "stop": "pkill -f 'node src/app.js'",
-      "dev": "nodemon src/app.js"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": " node src/app.js",
+        "stop": "pkill -f 'node src/app.js'",
+        "dev": "nodemon src/app.js"
     },
     "dependencies": {
-      "@hapi/hapi": "^21.3.2",
-      "@tensorflow/tfjs": "^4.13.0",
-      "@tensorflow/tfjs-node": "^4.13.0",
-      "dotenv": "^16.3.1",
-      "mysql2": "^3.6.5"
+        "@google-cloud/storage": "^7.7.0",
+        "@hapi/hapi": "^21.3.2",
+        "@tensorflow/tfjs": "^4.13.0",
+        "@tensorflow/tfjs-node": "^4.13.0",
+        "dotenv": "^16.3.1",
+        "multer": "^1.4.5-lts.1",
+        "multiparty": "^4.2.3",
+        "mysql2": "^3.6.5"
     },
     "devDependencies": {
-      "nodemon": "^2.0.7"
+        "nodemon": "^2.0.7"
     }
-  }
-  
+}

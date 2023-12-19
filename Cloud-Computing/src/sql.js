@@ -1,13 +1,14 @@
 const mysql = require("mysql2/promise");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
 const config = {
-  user: Process.env.DB_USER,
-  password: Process.env.DB_PASSWORD,
-  database: Process.env.DB_NAME,
-  host: Process.env.DB_HOST,
-  port: Process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database:process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
 };
 
 // Fungsi untuk membuat koneksi ke Google Cloud SQL
@@ -85,7 +86,7 @@ async function addUser(user) {
     const connection = await getConnection();
 
     // Menambahkan data ke tabel users
-    const [result] = await connection.execute("INSERT INTO users (full_name, age, weight, height, gender, email, image) VALUES (?, ?, ?, ?, ?, ?, ?)", [
+    const [result] = await connection.execute("INSERT INTO users (full_name, age, weight, height, gender, email, image, total_calories) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
       user.full_name,
       user.age,
       user.weight,
@@ -93,6 +94,7 @@ async function addUser(user) {
       user.gender,
       user.email,
       user.image,
+      user.total_calories,
     ]);
 
     // Menutup koneksi setelah menambahkan data
@@ -110,7 +112,7 @@ async function editUserById(userId, updatedUser) {
     const connection = await getConnection();
 
     // Mengedit data di tabel users
-    const [result] = await connection.execute("UPDATE users SET full_name=?, age=?, weight=?, height=?, gender=?, email=?, image=? WHERE user_id=?", [
+    const [result] = await connection.execute("UPDATE users SET full_name=?, age=?, weight=?, height=?, gender=?, email=?, image=?, total_calories=? WHERE user_id=?", [
       updatedUser.full_name,
       updatedUser.age,
       updatedUser.weight,
@@ -118,6 +120,7 @@ async function editUserById(userId, updatedUser) {
       updatedUser.gender,
       updatedUser.email,
       updatedUser.image,
+      updatedUser.total_calories,
       userId,
     ]);
 
@@ -129,13 +132,14 @@ async function editUserById(userId, updatedUser) {
     throw err;
   }
 }
+
 // edit by email
 async function editUserByEmail(email, updatedUser) {
   try {
     const connection = await getConnection();
 
     // Mengedit data di tabel users
-    const [result] = await connection.execute("UPDATE users SET full_name=?, age=?, weight=?, height=?, gender=?, email=?, image=? WHERE email=?", [
+    const [result] = await connection.execute("UPDATE users SET full_name=?, age=?, weight=?, height=?, gender=?, email=?, image=?, total_calories=? WHERE email=?", [
       updatedUser.full_name,
       updatedUser.age,
       updatedUser.weight,
@@ -143,18 +147,61 @@ async function editUserByEmail(email, updatedUser) {
       updatedUser.gender,
       updatedUser.email,
       updatedUser.image,
+      updatedUser.total_calories,
       email,
     ]);
-
-    // Menutup koneksi setelah mengedit data
-    connection.release();
-    return result;
-  } catch (err) {
-    console.error("Error editing user in Google Cloud SQL:", err);
-    throw err;
-  }
+   // Menutup koneksi setelah mengedit data
+   connection.release();
+   return result;
+ } catch (err) {
+   console.error("Error editing user in Google Cloud SQL:", err);
+   throw err;
+ }
 }
 
+    //fungsi edit calories by Id
+    async function editUserCaloriesById(userId, newTotalCalories) {
+      try {
+        const connection = await getConnection();
+    
+        try {
+          // Mengedit data di tabel users, updating only total_calories
+          const [result] = await connection.execute("UPDATE users SET total_calories=? WHERE user_id=?", [newTotalCalories, userId]);
+    
+          // Return the result
+          return result;
+        } finally {
+          // Menutup koneksi setelah mengedit data
+          connection.release();
+        }
+      } catch (err) {
+        console.error("Error editing user calories in Google Cloud SQL:", err);
+        throw err;
+      } 
+   }
+
+   //fungsi edit calories by email
+   async function editUserCaloriesByEmail(email, newTotalCalories) {
+    try {
+      const connection = await getConnection();
+  
+      try {
+        // Mengedit data di tabel users, updating only total_calories
+        const [result] = await connection.execute("UPDATE users SET total_calories=? WHERE email=?", [newTotalCalories, email]);
+  
+        // Return the result
+        return result;
+      } finally {
+        // Menutup koneksi setelah mengedit data
+        connection.release();
+      }
+    } catch (err) {
+      console.error("Error editing user calories by email in Google Cloud SQL:", err);
+      throw err;
+    }
+  }
+  
+    
 // Fungsi untuk menghapus pengguna
 async function deleteUser(userId) {
   try {
@@ -182,4 +229,6 @@ module.exports = {
   deleteUser,
   getUserById,
   getUsersByEmail,
+  editUserCaloriesById,
+  editUserCaloriesByEmail,
 };

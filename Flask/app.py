@@ -241,7 +241,7 @@ tool_info = {
 
 # Function to predict the class of an uploaded image
 def predict_image_class(img_path):
-    img = image.load_img(img_path, target_size=(150, 150))
+    img = image.load_img(img_path, target_size=(224, 224))
     img = image.img_to_array(img)
     img = np.expand_dims(img, axis=0)
     img /= 255.
