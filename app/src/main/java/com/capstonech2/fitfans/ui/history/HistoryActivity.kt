@@ -65,6 +65,7 @@ class HistoryActivity : AppCompatActivity() {
         viewModel.getAllHistory().observe(this){ listHistory ->
             if(listHistory.isNotEmpty()){
                 binding.emptyHistoryText.show(false)
+                binding.listHistory.show(true)
                 val adapter = HistoryAdapter{
                     viewModel.updateHistoryChecked(it.hisId, it.isChecked)
                     viewModel.updateExerciseChecked(it.hisId, it.isChecked)
@@ -73,6 +74,7 @@ class HistoryActivity : AppCompatActivity() {
                 binding.listHistory.adapter = adapter
             } else {
                 binding.emptyHistoryText.show(true)
+                binding.listHistory.show(false)
             }
         }
     }

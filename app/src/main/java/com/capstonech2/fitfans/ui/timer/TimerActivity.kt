@@ -34,7 +34,6 @@ import com.capstonech2.fitfans.utils.showDialog
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Date
-import java.util.concurrent.TimeUnit
 
 class TimerActivity : AppCompatActivity() {
 
@@ -145,6 +144,18 @@ class TimerActivity : AppCompatActivity() {
                 }
             }
 
+            viewModel.eventTimeUp.observe(this){
+                if (it){
+                    val data = workDataOf(
+                        FITFANS_TITLE to predict.toolName
+                    )
+                    val request = OneTimeWorkRequestBuilder<NotificationWorker>()
+                        .setInputData(data)
+                        .build()
+                    WorkManager.getInstance(this).enqueue(request)
+                }
+            }
+
             binding.btStart.setOnClickListener {
                 viewModel.startTimer()
                 updateButtonState(true)
@@ -154,18 +165,6 @@ class TimerActivity : AppCompatActivity() {
                     if (history == null){
                         historyViewModel.insertHistory(History(date = formatDate(date)))
                     }
-                }
-
-                val initialTime = viewModel.getInitialTime()
-                if (initialTime != null) {
-                    val data = workDataOf(
-                        FITFANS_TITLE to predict.toolName
-                    )
-                    val request = OneTimeWorkRequestBuilder<NotificationWorker>()
-                        .setInputData(data)
-                        .setInitialDelay(initialTime, TimeUnit.MILLISECONDS)
-                        .build()
-                    WorkManager.getInstance(this).enqueue(request)
                 }
             }
 

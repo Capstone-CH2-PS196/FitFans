@@ -22,7 +22,9 @@ class TimerViewModel : ViewModel() {
     private val _eventCountDownFinish = MutableLiveData<Boolean>()
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
-    fun getInitialTime() = initialTime.value
+    private val _eventTimeUp = MutableLiveData<Boolean>()
+    val eventTimeUp: LiveData<Boolean> = _eventTimeUp
+
     fun getFinalTime() = finalTime
 
     fun setInitialTime(minuteFocus: Long) {
@@ -36,6 +38,7 @@ class TimerViewModel : ViewModel() {
             }
             override fun onFinish() {
                 resetTimer()
+                _eventTimeUp.value = true
             }
         }
     }
@@ -48,6 +51,7 @@ class TimerViewModel : ViewModel() {
                 }
                 override fun onFinish() {
                     resetTimer()
+                    _eventTimeUp.value = true
                 }
             }
         }
