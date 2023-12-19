@@ -81,6 +81,9 @@ class TimerViewModel : ViewModel() {
     fun pauseTimer() {
         timer?.cancel()
         isPaused = true
+        _buttonStart.value = true
+        _buttonPause.value = false
+        _buttonStop.value = false
     }
 
     fun startTimer() {
