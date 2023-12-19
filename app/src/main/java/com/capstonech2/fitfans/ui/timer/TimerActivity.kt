@@ -87,7 +87,7 @@ class TimerActivity : AppCompatActivity() {
         profileViewModel.userData.observe(this){
             if(it != null){
                 when(it){
-                    is State.Loading -> startLoadingState()
+                    is State.Loading -> binding.loadingIndicator.show(true)
                     is State.Success -> {
                         finishLoadingState()
                         weight = it.data[0].weight
@@ -195,7 +195,6 @@ class TimerActivity : AppCompatActivity() {
 
     private fun startLoadingState(){
         binding.apply {
-            loadingIndicator.show(true)
             btStart.isEnabled = false
             btPause.isEnabled = false
             btReset.isEnabled = false
@@ -206,8 +205,8 @@ class TimerActivity : AppCompatActivity() {
         binding.apply {
             loadingIndicator.show(false)
             btStart.isEnabled = true
-            btPause.isEnabled = false
-            btReset.isEnabled = false
+            btPause.isEnabled = true
+            btReset.isEnabled = true
         }
     }
 

@@ -13,7 +13,6 @@ import com.capstonech2.fitfans.databinding.FragmentHomeBinding
 import com.capstonech2.fitfans.ui.auth.basicinformation.BasicInformationActivity
 import com.capstonech2.fitfans.ui.home.menulist.MenuAdapter
 import com.capstonech2.fitfans.ui.home.menulist.MenuDataSource
-import com.capstonech2.fitfans.ui.profile.EditProfileActivity
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
@@ -39,10 +38,6 @@ class HomeFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         showMenuList()
         getUserData()
-
-        binding.imageProfileUser.setOnClickListener {
-            startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
-        }
 
         return binding.root
     }
