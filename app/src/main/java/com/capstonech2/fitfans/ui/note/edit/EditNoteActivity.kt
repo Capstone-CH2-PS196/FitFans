@@ -36,6 +36,11 @@ class EditNoteActivity : AppCompatActivity() {
         binding.buttonEditNote.setOnClickListener { updateNote() }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
     private fun setData(note: Note){
         binding.edEditTitle.setText(note.title)
         binding.edEditDescription.setText(note.description)
@@ -49,7 +54,7 @@ class EditNoteActivity : AppCompatActivity() {
             val title = edEditTitle.text.toString()
             val description = edEditDescription.text.toString()
 
-            val titleError = if (title.isEmpty()) "Title cannot be empty" else null
+            val titleError = if (title.isEmpty()) getString(R.string.title_note_empty) else null
             val descriptionError = if (description.isEmpty()) "Description cannot be empty" else null
 
             data?.let {
