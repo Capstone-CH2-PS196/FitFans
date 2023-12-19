@@ -25,6 +25,15 @@ class TimerViewModel : ViewModel() {
     private val _eventTimeUp = MutableLiveData<Boolean>()
     val eventTimeUp: LiveData<Boolean> = _eventTimeUp
 
+    private val _buttonStart = MutableLiveData<Boolean>()
+    val buttonStart: LiveData<Boolean> = _buttonStart
+
+    private val _buttonPause = MutableLiveData<Boolean>()
+    val buttonPause: LiveData<Boolean> = _buttonPause
+
+    private val _buttonStop = MutableLiveData<Boolean>()
+    val buttonStop: LiveData<Boolean> = _buttonStop
+
     fun getFinalTime() = finalTime
 
     fun setInitialTime(minuteFocus: Long) {
@@ -32,13 +41,23 @@ class TimerViewModel : ViewModel() {
         initialTime.value = initialTimeMillis
         currentTime.value = initialTimeMillis
 
+        _buttonStart.value = true
+        _buttonPause.value = false
+        _buttonStop.value = false
+
         timer = object : CountDownTimer(initialTimeMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 currentTime.value = millisUntilFinished
+                _buttonStart.value = false
+                _buttonPause.value = true
+                _buttonStop.value = true
             }
             override fun onFinish() {
                 resetTimer()
                 _eventTimeUp.value = true
+                _buttonStart.value = true
+                _buttonPause.value = false
+                _buttonStop.value = false
             }
         }
     }
