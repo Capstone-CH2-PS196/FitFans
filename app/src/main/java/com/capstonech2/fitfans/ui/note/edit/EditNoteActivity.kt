@@ -62,6 +62,9 @@ class EditNoteActivity : AppCompatActivity() {
                     )
                     onBackPressedDispatcher.onBackPressed()
                     finish()
+                } else {
+                    edEditTitleLayout.error = titleError
+                    edEditDescription.error = descriptionError
                 }
             } ?: showToast(this@EditNoteActivity, getString(R.string.id_null_exception))
         }

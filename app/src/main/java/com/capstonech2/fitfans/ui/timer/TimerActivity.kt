@@ -131,7 +131,6 @@ class TimerActivity : AppCompatActivity() {
             }
 
             viewModel.eventCountDownFinish.observe(this){
-//                updateButtonState(!it)
                 if(it){
                     val stopTime = viewModel.getFinalTime()
                     if (stopTime != null && weight != 0.0){
@@ -172,7 +171,6 @@ class TimerActivity : AppCompatActivity() {
 
             binding.btStart.setOnClickListener {
                 viewModel.startTimer()
-//                updateButtonState(true)
 
                 val date = Date()
                 historyViewModel.getHistoryByDate(formatDate(date)).observe(this){ history ->
@@ -184,12 +182,10 @@ class TimerActivity : AppCompatActivity() {
 
             binding.btPause.setOnClickListener {
                 viewModel.pauseTimer()
-//                updateButtonState(false)
             }
 
             binding.btReset.setOnClickListener {
                 viewModel.resetTimer()
-//                updateButtonState(false)
                 startActivity(Intent(this@TimerActivity, DetectionResultActivity::class.java))
                 finish()
             }
@@ -202,12 +198,6 @@ class TimerActivity : AppCompatActivity() {
             binding.cardView.setCardBackgroundColor(Color.GRAY)
         }
     }
-
-//    private fun updateButtonState(isRunning: Boolean) {
-//        binding.btStart.isEnabled = !isRunning
-//        binding.btPause.isEnabled = isRunning
-//        binding.btReset.isEnabled = isRunning
-//    }
 
     private fun updateTotalCalories(email: String) {
         historyViewModel.getTotalCaloriesBurnUser().observe(this){

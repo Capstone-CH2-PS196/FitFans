@@ -52,6 +52,9 @@ class AddNoteActivity : AppCompatActivity() {
                 )
                 onBackPressedDispatcher.onBackPressed()
                 finish()
+            } else {
+                edAddTitleLayout.error = titleError
+                edAddDescription.error = descriptionError
             }
         }
     }
