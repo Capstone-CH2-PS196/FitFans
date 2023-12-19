@@ -60,9 +60,9 @@ class EditNoteActivity : AppCompatActivity() {
                         title = title,
                         description = description
                     )
+                    onBackPressedDispatcher.onBackPressed()
+                    finish()
                 }
-                onBackPressedDispatcher.onBackPressed()
-                finish()
             } ?: showToast(this@EditNoteActivity, getString(R.string.id_null_exception))
         }
     }

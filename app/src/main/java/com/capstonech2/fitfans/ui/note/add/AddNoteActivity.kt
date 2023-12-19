@@ -50,9 +50,9 @@ class AddNoteActivity : AppCompatActivity() {
                         description = description
                     )
                 )
+                onBackPressedDispatcher.onBackPressed()
+                finish()
             }
-            onBackPressedDispatcher.onBackPressed()
-            finish()
         }
     }
 }
