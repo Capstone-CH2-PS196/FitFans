@@ -1,6 +1,9 @@
 package com.capstonech2.fitfans
 
 import android.app.Application
+import android.content.res.Configuration
+import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.room.Room
 import com.capstonech2.fitfans.BuildConfig.DEBUG
 import com.capstonech2.fitfans.data.CollectionRepository
@@ -37,6 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        applyLightMode()
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
@@ -47,6 +51,13 @@ class MainApplication : Application() {
     override fun onTerminate() {
         super.onTerminate()
         stopKoin()
+    }
+
+    private fun applyLightMode(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            AppCompatDelegate.setDefaultNightMode(if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     companion object {

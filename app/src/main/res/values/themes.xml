@@ -1,15 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Fitfans" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.Fitfans" parent="Theme.Material3.Light">
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/primary</item>
         <item name="android:statusBarColor">@color/black</item>
         <item name="actionBarStyle">@style/ActionBarStyle</item>
         <item name="actionBarTheme">@style/ActionBarTheme</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
     <style name="ActionBarStyle" parent="Widget.Material3.ActionBar.Solid">
-        <item name="titleTextStyle">@style/ActionBarTitle</item>\
+        <item name="titleTextStyle">@style/ActionBarTitle</item>
         <item name="background">@color/primary</item>
     </style>
 
