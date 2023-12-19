@@ -12,9 +12,6 @@ interface CollectionDao {
     @Query("SELECT * FROM tb_collection")
     fun getAllCollection(): LiveData<List<Collection>>
 
-    @Query("SELECT * FROM tb_collection WHERE id = :colId")
-    fun getCollectionById(colId: Int): LiveData<Collection>
-
     @Query("SELECT * FROM tb_collection WHERE image = :image")
     fun getCollectionByImage(image: String): LiveData<Collection>
 
