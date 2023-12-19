@@ -1,6 +1,7 @@
 package com.capstonech2.fitfans.ui.timer
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.Recommendation
 import com.capstonech2.fitfans.data.model.TotalCalories
 import com.capstonech2.fitfans.databinding.ActivityTimerBinding
+import com.capstonech2.fitfans.ui.detectionresult.DetectionResultActivity
 import com.capstonech2.fitfans.ui.history.HistoryViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
 import com.capstonech2.fitfans.utils.EXTRA_PREDICT
@@ -89,11 +91,11 @@ class TimerActivity : AppCompatActivity() {
                 when(it){
                     is State.Loading -> binding.loadingIndicator.show(true)
                     is State.Success -> {
-                        finishLoadingState()
+                        binding.loadingIndicator.show(false)
                         weight = it.data[0].weight
                     }
                     is State.Error -> {
-                        finishLoadingState()
+                        binding.loadingIndicator.show(false)
                         showDialog(this, "Cannot get user information, Please try again.")
                     }
                 }
@@ -176,6 +178,8 @@ class TimerActivity : AppCompatActivity() {
             binding.btReset.setOnClickListener {
                 viewModel.resetTimer()
                 updateButtonState(false)
+                startActivity(Intent(this@TimerActivity, DetectionResultActivity::class.java))
+                finish()
             }
         }
     }
@@ -193,36 +197,19 @@ class TimerActivity : AppCompatActivity() {
         binding.btReset.isEnabled = isRunning
     }
 
-    private fun startLoadingState(){
-        binding.apply {
-            btStart.isEnabled = false
-            btPause.isEnabled = false
-            btReset.isEnabled = false
-        }
-    }
-
-    private fun finishLoadingState(){
-        binding.apply {
-            loadingIndicator.show(false)
-            btStart.isEnabled = true
-            btPause.isEnabled = true
-            btReset.isEnabled = true
-        }
-    }
-
     private fun updateTotalCalories(email: String) {
         historyViewModel.getTotalCaloriesBurnUser().observe(this){
             val total = TotalCalories(total_calories = it)
             profileViewModel.updateTotalCaloriesUser(email, total).observe(this){ state ->
                 if (state != null) {
                     when(state){
-                        is State.Loading -> startLoadingState()
+                        is State.Loading -> binding.loadingIndicator.show(true)
                         is State.Success -> {
-                            finishLoadingState()
+                            binding.loadingIndicator.show(false)
                             showToast(this, "Success update user data")
                         }
                         is State.Error -> {
-                            finishLoadingState()
+                            binding.loadingIndicator.show(false)
                             showDialog(this,"Unknown error occurred, failed to update user data")
                         }
                     }
