@@ -104,7 +104,8 @@ class ProfileFragment : Fragment() {
                 age = age.toInt(),
                 weight = weight,
                 height = height,
-                image = image
+                image = image,
+                total_calories = 0.0
             )
             val intent = Intent(requireActivity(), EditProfileActivity::class.java)
             intent.putExtra(EXTRA_PROFILE_KEY, data)
