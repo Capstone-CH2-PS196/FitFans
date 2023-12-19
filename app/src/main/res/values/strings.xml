@@ -132,6 +132,7 @@
     <string name="edit_note">Edit Note</string>
     <string name="delete_note">Delete Note</string>
     <string name="title_note_empty">Title cannot be empty</string>
+    <string name="description_note_empty">Description cannot be empty</string>
     <string name="delete_note_message">Are you sure you want to delete this note?</string>
     <string name="delete_selected_note_message">Are you sure want to delete all selected notes ?</string>
     <string name="id_null_exception">ID null</string>

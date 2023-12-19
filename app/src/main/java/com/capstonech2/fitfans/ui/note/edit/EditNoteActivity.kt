@@ -55,7 +55,7 @@ class EditNoteActivity : AppCompatActivity() {
             val description = edEditDescription.text.toString()
 
             val titleError = if (title.isEmpty()) getString(R.string.title_note_empty) else null
-            val descriptionError = if (description.isEmpty()) "Description cannot be empty" else null
+            val descriptionError = if (description.isEmpty()) getString(R.string.description_note_empty) else null
 
             data?.let {
                 if (titleError == null && descriptionError == null) {

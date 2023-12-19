@@ -39,8 +39,8 @@ class AddNoteActivity : AppCompatActivity() {
             val title = edAddTitle.text.toString()
             val description = edAddDescription.text.toString()
 
-            val titleError = if (title.isEmpty()) "Title cannot be empty" else null
-            val descriptionError = if (description.isEmpty()) "Description cannot be empty" else null
+            val titleError = if (title.isEmpty()) getString(R.string.title_note_empty) else null
+            val descriptionError = if (description.isEmpty()) getString(R.string.description_note_empty) else null
 
             if (titleError == null && descriptionError == null) {
                 viewModel.insertNote(
