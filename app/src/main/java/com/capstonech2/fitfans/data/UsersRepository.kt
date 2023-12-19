@@ -1,6 +1,7 @@
 package com.capstonech2.fitfans.data
 
 import androidx.lifecycle.liveData
+import com.capstonech2.fitfans.data.model.TotalCalories
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.data.remote.service.ApiService
 import com.capstonech2.fitfans.data.remote.response.UsersResponseItem
@@ -29,6 +30,17 @@ class UsersRepository(private val apiService: ApiService) {
         emit(State.Loading)
         try {
             val response = apiService.updateUserDataByEmail(email, data)
+            emit(State.Success(response))
+        } catch (e: Exception) {
+            val errorMessage = e.localizedMessage ?: "Unknown error occurred"
+            emit(State.Error(errorMessage))
+        }
+    }
+
+    fun updateTotalCaloriesUser(email: String, totalCaloriesBurn: TotalCalories) = liveData {
+        emit(State.Loading)
+        try {
+            val response = apiService.updateTotalCaloriesUser(email, totalCaloriesBurn)
             emit(State.Success(response))
         } catch (e: Exception) {
             val errorMessage = e.localizedMessage ?: "Unknown error occurred"

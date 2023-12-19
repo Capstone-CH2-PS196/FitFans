@@ -16,6 +16,7 @@ import com.capstonech2.fitfans.data.model.Exercise
 import com.capstonech2.fitfans.data.model.History
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.Recommendation
+import com.capstonech2.fitfans.data.model.TotalCalories
 import com.capstonech2.fitfans.databinding.ActivityTimerBinding
 import com.capstonech2.fitfans.ui.history.HistoryViewModel
 import com.capstonech2.fitfans.ui.profile.ProfileViewModel
@@ -27,7 +28,9 @@ import com.capstonech2.fitfans.utils.calculateCalories
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
 import com.capstonech2.fitfans.utils.convertToMinutes
 import com.capstonech2.fitfans.utils.formatDate
+import com.capstonech2.fitfans.utils.show
 import com.capstonech2.fitfans.utils.showToast
+import com.capstonech2.fitfans.utils.showDialog
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Date
@@ -85,9 +88,15 @@ class TimerActivity : AppCompatActivity() {
         profileViewModel.userData.observe(this){
             if(it != null){
                 when(it){
-                    is State.Loading -> {}
-                    is State.Success -> weight = it.data[0].weight
-                    is State.Error -> {}
+                    is State.Loading -> startLoadingState()
+                    is State.Success -> {
+                        finishLoadingState()
+                        weight = it.data[0].weight
+                    }
+                    is State.Error -> {
+                        finishLoadingState()
+                        showDialog(this, "Cannot get user information, Please try again.")
+                    }
                 }
             }
         }
@@ -129,6 +138,7 @@ class TimerActivity : AppCompatActivity() {
                                         historyId = history.hisId
                                     )
                                 )
+                                updateTotalCalories(auth.currentUser?.email.toString())
                             }
                         }
                     }
@@ -182,6 +192,45 @@ class TimerActivity : AppCompatActivity() {
         binding.btStart.isEnabled = !isRunning
         binding.btPause.isEnabled = isRunning
         binding.btReset.isEnabled = isRunning
+    }
+
+    private fun startLoadingState(){
+        binding.apply {
+            loadingIndicator.show(true)
+            btStart.isEnabled = false
+            btPause.isEnabled = false
+            btReset.isEnabled = false
+        }
+    }
+
+    private fun finishLoadingState(){
+        binding.apply {
+            loadingIndicator.show(false)
+            btStart.isEnabled = true
+            btPause.isEnabled = false
+            btReset.isEnabled = false
+        }
+    }
+
+    private fun updateTotalCalories(email: String) {
+        historyViewModel.getTotalCaloriesBurnUser().observe(this){
+            val total = TotalCalories(total_calories = it)
+            profileViewModel.updateTotalCaloriesUser(email, total).observe(this){ state ->
+                if (state != null) {
+                    when(state){
+                        is State.Loading -> startLoadingState()
+                        is State.Success -> {
+                            finishLoadingState()
+                            showToast(this, "Success update user data")
+                        }
+                        is State.Error -> {
+                            finishLoadingState()
+                            showDialog(this,"Unknown error occurred, failed to update user data")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

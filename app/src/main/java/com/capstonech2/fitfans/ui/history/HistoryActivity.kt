@@ -7,6 +7,8 @@ import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityHistoryBinding
+import com.capstonech2.fitfans.utils.dialogDeleteAction
+import com.capstonech2.fitfans.utils.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryActivity : AppCompatActivity() {
@@ -43,8 +45,13 @@ class HistoryActivity : AppCompatActivity() {
                 true
             }
             R.id.action_delete_note -> {
-                viewModel.deleteHistoryByChecked()
-                viewModel.deleteExerciseByChecked()
+                dialogDeleteAction(this,
+                    getString(R.string.delete_history),
+                    getString(R.string.delete_selected_history_message)
+                ){
+                    viewModel.deleteHistoryByChecked()
+                    viewModel.deleteExerciseByChecked()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -56,12 +63,17 @@ class HistoryActivity : AppCompatActivity() {
         binding.listHistory.layoutManager = layoutManager
 
         viewModel.getAllHistory().observe(this){ listHistory ->
-            val adapter = HistoryAdapter{
-                viewModel.updateHistoryChecked(it.hisId, it.isChecked)
-                viewModel.updateExerciseChecked(it.hisId, it.isChecked)
+            if(listHistory.isNotEmpty()){
+                binding.emptyHistoryText.show(false)
+                val adapter = HistoryAdapter{
+                    viewModel.updateHistoryChecked(it.hisId, it.isChecked)
+                    viewModel.updateExerciseChecked(it.hisId, it.isChecked)
+                }
+                adapter.submitList(listHistory)
+                binding.listHistory.adapter = adapter
+            } else {
+                binding.emptyHistoryText.show(true)
             }
-            adapter.submitList(listHistory)
-            binding.listHistory.adapter = adapter
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.capstonech2.fitfans.data.remote.service
 
+import com.capstonech2.fitfans.data.model.TotalCalories
 import com.capstonech2.fitfans.data.model.User
 import com.capstonech2.fitfans.data.remote.response.AddUsersResponse
 import com.capstonech2.fitfans.data.remote.response.UpdateUserResponse
@@ -26,5 +27,11 @@ interface ApiService {
     suspend fun updateUserDataByEmail(
         @Path("email") email: String,
         @Body user: User
+    ): UpdateUserResponse
+
+    @PUT("users/email/{email}/calories")
+    suspend fun updateTotalCaloriesUser(
+        @Path("email") email: String,
+        @Body totalCalories: TotalCalories
     ): UpdateUserResponse
 }

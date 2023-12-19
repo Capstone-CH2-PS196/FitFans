@@ -29,5 +29,8 @@ data class UsersResponseItem(
 	val height: Double,
 
 	@field:SerializedName("image")
-	val image: String
+	val image: String,
+
+	@field:SerializedName("total_calories")
+	val totalCalories: Double,
 )

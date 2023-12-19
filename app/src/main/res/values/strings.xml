@@ -132,6 +132,7 @@
     <string name="edit_note">Edit Note</string>
     <string name="delete_note">Delete Note</string>
     <string name="delete_note_message">Are you sure you want to delete this note?</string>
+    <string name="delete_selected_note_message">Are you sure want to delete all selected notes ?</string>
     <string name="id_null_exception">ID null</string>
 
     <!--Collection-->
@@ -155,7 +156,14 @@
 
     <!--History-->
     <string name="detail_history">Detail History</string>
+    <string name="delete_history">Delete History</string>
+    <string name="delete_selected_history_message">"Are you sure want to delete all selected histories ?"</string>
     <string name="total_result">Total calories burn</string>
     <string name="total_time">Total time</string>
+
+    <!--view message-->
+    <string name="empty_collection">You have not stored the tools</string>
+    <string name="empty_history">You have not performed any activities</string>
+    <string name="empty_note">You have not added notes</string>
 
 </resources>

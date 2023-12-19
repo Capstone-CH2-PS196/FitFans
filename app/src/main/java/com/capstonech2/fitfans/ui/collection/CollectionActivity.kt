@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityCollectionBinding
+import com.capstonech2.fitfans.utils.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CollectionActivity : AppCompatActivity() {
@@ -34,9 +35,16 @@ class CollectionActivity : AppCompatActivity() {
         binding.listCollection.layoutManager = layoutManager
 
         viewModel.getAllCollection().observe(this){ listCollect ->
-            val adapter = CollectionAdapter()
-            adapter.submitList(listCollect)
-            binding.listCollection.adapter = adapter
+            if(listCollect.isNotEmpty()){
+                binding.emptyCollectionText.show(false)
+                binding.listCollection.show(true)
+                val adapter = CollectionAdapter()
+                adapter.submitList(listCollect)
+                binding.listCollection.adapter = adapter
+            } else {
+                binding.emptyCollectionText.show(true)
+                binding.listCollection.show(false)
+            }
         }
     }
 }

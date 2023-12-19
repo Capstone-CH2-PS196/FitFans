@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonech2.fitfans.R
 import com.capstonech2.fitfans.databinding.ActivityNoteBinding
 import com.capstonech2.fitfans.ui.note.add.AddNoteActivity
+import com.capstonech2.fitfans.utils.dialogDeleteAction
+import com.capstonech2.fitfans.utils.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NoteActivity : AppCompatActivity() {
@@ -44,7 +46,12 @@ class NoteActivity : AppCompatActivity() {
                 true
             }
             R.id.action_delete_note -> {
-                viewModel.deleteNoteByCheckedStatus()
+                dialogDeleteAction(this,
+                    getString(R.string.delete_note),
+                    getString(R.string.delete_selected_note_message)
+                ){
+                    viewModel.deleteNoteByCheckedStatus()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -61,11 +68,18 @@ class NoteActivity : AppCompatActivity() {
         binding.listNote.layoutManager = layoutManager
 
         viewModel.getAllNote().observe(this){ listNote ->
-            val adapter = NoteAdapter{ note ->
-                viewModel.updateNoteCheckedStatus(note.id, note.isChecked)
+            if(listNote.isNotEmpty()){
+                binding.emptyNoteText.show(false)
+                binding.listNote.show(true)
+                val adapter = NoteAdapter{ note ->
+                    viewModel.updateNoteCheckedStatus(note.id, note.isChecked)
+                }
+                adapter.submitList(listNote)
+                binding.listNote.adapter = adapter
+            } else {
+                binding.emptyNoteText.show(true)
+                binding.listNote.show(false)
             }
-            adapter.submitList(listNote)
-            binding.listNote.adapter = adapter
         }
     }
 }

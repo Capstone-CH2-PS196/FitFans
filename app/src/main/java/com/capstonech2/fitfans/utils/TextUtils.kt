@@ -1,5 +1,8 @@
 package com.capstonech2.fitfans.utils
 
+import android.view.View
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -23,4 +26,12 @@ class StringListConverter {
     fun toString(value: List<String>): String {
         return Gson().toJson(value)
     }
+}
+
+fun TextView.show(state: Boolean) {
+    visibility = if (state) View.VISIBLE else View.GONE
+}
+
+fun RecyclerView.show(state: Boolean){
+    visibility = if (state) View.VISIBLE else View.GONE
 }
