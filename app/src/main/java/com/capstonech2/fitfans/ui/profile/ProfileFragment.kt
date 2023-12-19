@@ -130,8 +130,8 @@ class ProfileFragment : Fragment() {
             userHeight.text = String.format(getString(R.string.user_height), height.toString())
             userBmi.text = String.format(getString(R.string.user_bmi), bmi)
 
-            if (currentImage == null || currentImage == "") profileImage.setImageResource(R.drawable.ic_profile_user)
-            else profileImage.loadImage(currentImage!!)
+            if (data[0].image == "") profileImage.setImageResource(R.drawable.ic_profile_user)
+            else profileImage.loadImage(data[0].image)
         }
     }
 

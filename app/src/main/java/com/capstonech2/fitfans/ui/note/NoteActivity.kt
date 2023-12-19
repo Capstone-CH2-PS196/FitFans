@@ -42,7 +42,7 @@ class NoteActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.select_all_note -> {
-                viewModel.updateAllNoteStatusChecked(true)
+                viewModel.updateAllNoteStatusChecked(false)
                 true
             }
             R.id.action_delete_note -> {

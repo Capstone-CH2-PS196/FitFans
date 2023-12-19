@@ -1,5 +1,6 @@
 package com.capstonech2.fitfans.ui.detectionresult
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +13,8 @@ import com.capstonech2.fitfans.data.model.Collection
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendationEntity
 import com.capstonech2.fitfans.databinding.ActivityDetectionResultBinding
+import com.capstonech2.fitfans.ui.MainActivity
+import com.capstonech2.fitfans.ui.collection.CollectionActivity
 import com.capstonech2.fitfans.ui.collection.CollectionViewModel
 import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
@@ -92,6 +95,10 @@ class DetectionResultActivity : AppCompatActivity() {
                     dialogDeleteAction(this, getString(R.string.delete_collection), getString(R.string.delete_collection_message)) {
                         viewModel.deleteCollection(data.image)
                         showToast(this, getString(R.string.success_delete_collection))
+                        val intent = Intent(this, CollectionActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        }
+                        startActivity(intent)
                     }
                 }
                 true
