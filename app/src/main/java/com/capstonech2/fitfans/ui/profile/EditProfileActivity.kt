@@ -134,7 +134,8 @@ class EditProfileActivity : AppCompatActivity() {
                             weight = weight.toDouble(),
                             height = height.toDouble(),
                             email = email,
-                            image = image
+                            image = image,
+                            total_calories = 0.0
                         )
                         updateUser(email, data)
                     } else {
