@@ -94,8 +94,6 @@ class DetectionResultActivity : AppCompatActivity() {
                     dialogDeleteAction(this, getString(R.string.delete_collection), getString(R.string.delete_collection_message)) {
                         viewModel.deleteCollection(data.image)
                         showToast(this, getString(R.string.success_delete_collection))
-                        val intent = Intent(this, CollectionActivity::class.java)
-                        startActivity(intent)
                     }
                 }
                 true
