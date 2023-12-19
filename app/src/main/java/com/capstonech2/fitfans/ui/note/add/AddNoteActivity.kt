@@ -39,13 +39,18 @@ class AddNoteActivity : AppCompatActivity() {
             val title = edAddTitle.text.toString()
             val description = edAddDescription.text.toString()
 
-            viewModel.insertNote(
-                Note(
-                    date = formattedDate.toString(),
-                    title = title,
-                    description = description
+            val titleError = if (title.isEmpty()) "Title cannot be empty" else null
+            val descriptionError = if (description.isEmpty()) "Description cannot be empty" else null
+
+            if (titleError == null && descriptionError == null) {
+                viewModel.insertNote(
+                    Note(
+                        date = formattedDate.toString(),
+                        title = title,
+                        description = description
+                    )
                 )
-            )
+            }
             onBackPressedDispatcher.onBackPressed()
             finish()
         }

@@ -33,7 +33,7 @@ fun ImageView.loadImage(url: String) {
         .into(this)
 }
 
-fun getIconTool(toolName: String) : Int {
+fun getIconTools(toolName: String) : Int {
     return when(toolName){
         "Barbell" -> R.drawable.ic_barbell
         "Dumbbell" -> R.drawable.ic_dumbbell

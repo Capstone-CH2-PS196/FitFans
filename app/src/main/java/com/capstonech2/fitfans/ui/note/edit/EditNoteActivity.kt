@@ -49,13 +49,18 @@ class EditNoteActivity : AppCompatActivity() {
             val title = edEditTitle.text.toString()
             val description = edEditDescription.text.toString()
 
+            val titleError = if (title.isEmpty()) "Title cannot be empty" else null
+            val descriptionError = if (description.isEmpty()) "Description cannot be empty" else null
+
             data?.let {
-                viewModel.updateNote(
-                    noteId = it,
-                    date = formattedDate.toString(),
-                    title = title,
-                    description = description
-                )
+                if (titleError == null && descriptionError == null) {
+                    viewModel.updateNote(
+                        noteId = it,
+                        date = formattedDate.toString(),
+                        title = title,
+                        description = description
+                    )
+                }
                 onBackPressedDispatcher.onBackPressed()
                 finish()
             } ?: showToast(this@EditNoteActivity, getString(R.string.id_null_exception))
