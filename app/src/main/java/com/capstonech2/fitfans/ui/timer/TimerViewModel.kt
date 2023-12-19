@@ -67,10 +67,16 @@ class TimerViewModel : ViewModel() {
             timer = object : CountDownTimer(currentTimeValue, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     currentTime.value = millisUntilFinished
+                    _buttonStart.value = false
+                    _buttonPause.value = true
+                    _buttonStop.value = true
                 }
                 override fun onFinish() {
                     resetTimer()
                     _eventTimeUp.value = true
+                    _buttonStart.value = true
+                    _buttonPause.value = false
+                    _buttonStop.value = false
                 }
             }
         }
