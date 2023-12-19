@@ -11,7 +11,8 @@ data class User(
     val weight: Double,
     val height: Double,
     val email: String,
-    val image: String? = null
+    val image: String? = null,
+    val total_calories: Double
 ) : Parcelable
 
 data class TotalCalories(

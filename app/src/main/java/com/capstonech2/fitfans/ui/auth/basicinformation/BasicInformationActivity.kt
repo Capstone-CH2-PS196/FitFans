@@ -71,7 +71,8 @@ class BasicInformationActivity : AppCompatActivity() {
                         weight = weight.toDouble(),
                         height = height.toDouble(),
                         email = email.toString(),
-                        image = ""
+                        image = "",
+                        total_calories = 0.0
                     )
                     insertData(data)
                 } else {
