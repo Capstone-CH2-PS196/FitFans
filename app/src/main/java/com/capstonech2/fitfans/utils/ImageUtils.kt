@@ -29,7 +29,7 @@ private const val MAXIMAL_SIZE = 1000000
 
 fun ImageView.loadImage(url: String) {
     Glide.with(this.context)
-        .load(url)
+        .load(Uri.parse(url))
         .into(this)
 }
 

@@ -1,6 +1,5 @@
 package com.capstonech2.fitfans.ui.detectionresult
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +12,6 @@ import com.capstonech2.fitfans.data.model.Collection
 import com.capstonech2.fitfans.data.model.Predicts
 import com.capstonech2.fitfans.data.model.TimerRecommendationEntity
 import com.capstonech2.fitfans.databinding.ActivityDetectionResultBinding
-import com.capstonech2.fitfans.ui.collection.CollectionActivity
 import com.capstonech2.fitfans.ui.collection.CollectionViewModel
 import com.capstonech2.fitfans.utils.EXTRA_DETECT_RESULT
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
