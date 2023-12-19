@@ -10,7 +10,7 @@
         android:id="@+id/profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="25dp"
         android:src="@drawable/ic_profile_fixed"
         app:layout_constraintTop_toTopOf="parent"
