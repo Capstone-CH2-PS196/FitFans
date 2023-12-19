@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 function loadModel() {
-  const modelUrl = process.env.MODEL_URL;
+  const modelUrl = process.envModel_URL;
   return tfjs.loadLayersModel(modelUrl);
 }
 
