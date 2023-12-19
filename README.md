@@ -16,6 +16,12 @@ FitFans is an application that we created for the Bangkit Academy Capstone Proje
 | Gerry Satria Halim                     | A128BSY2321  | Android Development  | Politeknik Negeri Jakarta             | [LinkedIn](https://www.linkedin.com/in/gerry-satria-halim-34722a142/)                        |
 | Muchammad Raja Haikal Fiaugustian      | A248BSY2737  | Android Development  | Universitas Lampung                   | [LinkedIn](https://www.linkedin.com/in/muchammad-raja-haikal-f-0799a7280/)                        |
 
+## Architecture Services FitFans App
+<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/architecture%20Service.png">
+
+## Backend API Services FitFans App
+<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/Backend%20API.png">
+
 ## How to install the API backend using Google Cloud Platform
 <b> 1. Create a New Project on Google Cloud Platform</b><br>
 <b>2. Create a Firewall rule </b><br>
