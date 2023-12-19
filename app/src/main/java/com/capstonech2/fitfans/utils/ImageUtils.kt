@@ -36,7 +36,7 @@ fun ImageView.loadImage(url: String) {
 fun getIconTool(toolName: String) : Int {
     return when(toolName){
         "Barbell" -> R.drawable.ic_barbell
-        "Dumbbell" -> R.drawable.ic_kettle_bell
+        "Dumbbell" -> R.drawable.ic_dumbbell
         "Gym Ball" -> R.drawable.ic_gym_ball
         "Kettlebell" -> R.drawable.ic_kettle_bell
         "Roller Abs" -> R.drawable.ic_roller_abs
