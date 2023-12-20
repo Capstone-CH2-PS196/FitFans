@@ -34,6 +34,13 @@ fun ImageView.loadImage(url: String) {
         .into(this)
 }
 
+fun ImageView.loadImageProfile(url: String){
+    Glide.with(this.context)
+        .load(Uri.parse(url))
+        .error(R.drawable.ic_profile_fixed)
+        .into(this)
+}
+
 fun getIconTools(toolName: String) : Int {
     return when(toolName){
         "Barbell" -> R.drawable.ic_barbell

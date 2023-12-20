@@ -17,7 +17,7 @@ import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.calculateBMI
 import com.capstonech2.fitfans.utils.capitalizeFirstLetter
-import com.capstonech2.fitfans.utils.loadImage
+import com.capstonech2.fitfans.utils.loadImageProfile
 import com.capstonech2.fitfans.utils.show
 import com.capstonech2.fitfans.utils.showDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -131,7 +131,7 @@ class ProfileFragment : Fragment() {
             userBmi.text = String.format(getString(R.string.user_bmi), bmi)
 
             if (data[0].image == ""|| data[0].image == null) profileImage.setImageResource(R.drawable.ic_profile_user)
-            else profileImage.loadImage(data[0].image)
+            else profileImage.loadImageProfile(data[0].image)
         }
     }
 
