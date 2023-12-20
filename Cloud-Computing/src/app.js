@@ -1,14 +1,9 @@
 const Hapi = require("@hapi/hapi");
-const { loadModel, predict } = require("./ml");
-const { getUsers, addUser, editUserById,editUserByEmail, deleteUser, getUserById, getUsersByEmail } = require("./sql");
+const { getUsers, addUser, editUserById, editUserByEmail, deleteUser, getUserById, getUsersByEmail, editUserCaloriesById, editUserCaloriesByEmail } = require("./sql");
 const dotenv = require("dotenv");
 dotenv.config();
 
 (async () => {
-  // load and get machine learning model
-  const model = await loadModel();
-  console.log("model loaded!");
-
   // initializing HTTP server
   const server = Hapi.server({
     host: process.env.NODE_ENV !== "production" ? "localhost" : "0.0.0.0",
@@ -58,7 +53,7 @@ dotenv.config();
         const newUser = request.payload;
 
         // Validasi minimal pada data yang dikirimkan
-        if (!newUser || !newUser.full_name || !newUser.age || !newUser.weight || !newUser.height || !newUser.gender || !newUser.email || !newUser.image ) {
+        if (!newUser || !newUser.full_name || !newUser.age || !newUser.weight || !newUser.height || !newUser.gender || !newUser.email) {
           return h.response({ error: "Bad Request - Invalid User Data" }).code(400);
         }
 
@@ -87,7 +82,7 @@ dotenv.config();
         const updatedUser = request.payload;
 
         // Validasi minimal pada data yang dikirimkan
-        if (!updatedUser || !updatedUser.full_name || !updatedUser.age || !updatedUser.weight || !updatedUser.height || !updatedUser.gender || !updatedUser.email || !updatedUser.image) {
+        if (!updatedUser || !updatedUser.full_name || !updatedUser.age || !updatedUser.weight || !updatedUser.height || !updatedUser.gender || !updatedUser.email) {
           return h.response({ error: "Bad Request - Invalid User Data" }).code(400);
         }
 
@@ -103,6 +98,64 @@ dotenv.config();
         return h.response(result).code(200);
       } catch (err) {
         console.error("Error editing user in Google Cloud SQL:", err);
+        return h.response({ error: "Internal Server Error" }).code(500);
+      }
+    },
+    options: {
+      payload: {
+        allow: "application/json",
+      },
+    },
+  });
+
+  // Endpoint untuk mengedit total kalori pengguna berdasarkan user_id
+  server.route({
+    method: "PUT",
+    path: "/users/id/{userId}/calories",
+    handler: async (request, h) => {
+      try {
+        const userId = request.params.userId;
+        const newTotalCalories = request.payload.total_calories;
+
+        // Memastikan total_calories telah diberikan dalam payload
+        if (!newTotalCalories) {
+          return h.response({ error: "Bad Request - Missing total_calories in payload" }).code(400);
+        }
+
+        const result = await editUserCaloriesById(userId, newTotalCalories);
+
+        return h.response(result).code(200);
+      } catch (err) {
+        console.error("Error editing user calories in Google Cloud SQL:", err);
+        return h.response({ error: "Internal Server Error" }).code(500);
+      }
+    },
+    options: {
+      payload: {
+        allow: "application/json",
+      },
+    },
+  });
+
+  // Endpoint untuk mengedit total kalori pengguna berdasarkan email
+  server.route({
+    method: "PUT",
+    path: "/users/email/{email}/calories",
+    handler: async (request, h) => {
+      try {
+        const userEmail = request.params.email;
+        const newTotalCalories = request.payload.total_calories;
+
+        // Memastikan total_calories telah diberikan dalam payload
+        if (!newTotalCalories) {
+          return h.response({ error: "Bad Request - Missing total_calories in payload" }).code(400);
+        }
+
+        const result = await editUserCaloriesByEmail(userEmail, newTotalCalories);
+
+        return h.response(result).code(200);
+      } catch (err) {
+        console.error("Error editing user calories in Google Cloud SQL:", err);
         return h.response({ error: "Internal Server Error" }).code(500);
       }
     },
@@ -129,60 +182,6 @@ dotenv.config();
       }
     },
   });
-
-  // Endpoint untuk melakukan prediksi
-  server.route({
-    method: "POST",
-    path: "/predicts",
-    handler: async (request) => {
-      // get image that uploaded by user
-      const { image } = request.payload;
-      // do and get prediction result by giving model and image
-      const predictions = await predict(model, image);
-
-      const usersData = await getUsers(); // get data from database
-
-      // Check if the maximum value in predictions is above a certain threshold
-      const threshold = 0.5; // You can adjust this threshold based on your needs
-      const maxIndex = predictions.indexOf(Math.max(...predictions));
-      if (predictions[maxIndex] > threshold) {
-        switch (maxIndex) {
-          case 0:
-            return { result: "barbell" };
-          case 1:
-            return { result: "dumbbell" };
-          case 2:
-            return { result: "gym-ball" };
-          case 3:
-            return { result: "kettlebell" };
-          case 4:
-            return { result: "leg-press" };
-          case 5:
-            return { result: "punching-bag" };
-          case 6:
-            return { result: "roller-abs" };
-          case 7:
-            return { result: "static-bicycle" };
-          case 8:
-            return { result: "step" };
-          case 9:
-            return { result: "treadmill" };
-          default:
-            return { result: "Gym equipment is not yet available" };
-        }
-      } else {
-        return { result: "No gym equipment detected" };
-      }
-    },
-    // make request payload as `multipart/form-data` to accept file upload
-    options: {
-      payload: {
-        allow: "multipart/form-data",
-        multipart: true,
-      },
-    },
-  });
-
   // running server
   await server.start();
 
