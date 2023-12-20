@@ -16,6 +16,7 @@ import com.capstonech2.fitfans.ui.MainActivity
 import com.capstonech2.fitfans.utils.EXTRA_PROFILE_KEY
 import com.capstonech2.fitfans.utils.State
 import com.capstonech2.fitfans.utils.loadImage
+import com.capstonech2.fitfans.utils.loadImageProfile
 import com.capstonech2.fitfans.utils.show
 import com.capstonech2.fitfans.utils.showDialog
 import com.capstonech2.fitfans.utils.showDialogWithAction
@@ -60,7 +61,7 @@ class EditProfileActivity : AppCompatActivity() {
 
                 if (currentImageUri == null || currentImageUri.toString() == "")
                     previewEditImage.setImageResource(R.drawable.ic_profile_user)
-                else previewEditImage.loadImage(currentImageUri.toString())
+                else previewEditImage.loadImageProfile(currentImageUri.toString())
 
                 profileEdName.setText(data.full_name)
                 profileEdAge.setText(data.age.toString())
@@ -91,7 +92,7 @@ class EditProfileActivity : AppCompatActivity() {
     ) { uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
-            binding.previewEditImage.loadImage(currentImageUri.toString())
+            binding.previewEditImage.loadImageProfile(currentImageUri.toString())
         } else {
             showToast(this, getString(R.string.no_image))
         }
