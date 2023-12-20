@@ -220,6 +220,3 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
