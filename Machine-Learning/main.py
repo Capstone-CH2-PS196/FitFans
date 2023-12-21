@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # Path ke folder train dan validasi
 train_dir = 'dataset/training'
-validation_dir = 'dataset/testing'
+validation_dir = 'dataset/validasi'
 
 # Parameter untuk model
 input_shape = (224, 224, 3)
