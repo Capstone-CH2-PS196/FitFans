@@ -16,6 +16,29 @@ FitFans is an application that we created for the Bangkit Academy Capstone Proje
 | Gerry Satria Halim                     | A128BSY2321  | Android Development  | Politeknik Negeri Jakarta             | [LinkedIn](https://www.linkedin.com/in/gerry-satria-halim-34722a142/)                        |
 | Muchammad Raja Haikal Fiaugustian      | A248BSY2737  | Android Development  | Universitas Lampung                   | [LinkedIn](https://www.linkedin.com/in/muchammad-raja-haikal-f-0799a7280/)                        |
 
+## UI Design FitFans App
+Here is the link to access the design concept of the FitFans Application.
+[Application UI Concept](https://www.figma.com/file/H60hPxdP5jp60u1Alwq4rU/FitFans?type=design&node-id=125%3A1613&mode=design&t=a2qxyvKOMteg1qD1-1)
+
+| Welcome Page | Sign In | Sign Up |
+|--------------|---------|---------|
+|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|
+
+| Basic Information Form | Home Screen | Profile User |
+|------------------------|-------------|--------------|
+|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/basic_information.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/home_screen.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/profile_user.jpeg">|
+
+| Detection Image Feature | Detection Image Result | Timer Feature |
+|-------------------------|------------------------|---------------|
+|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/detection_image_feature.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/detection_image_result.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/timer_feature.jpeg">|
+
+| Collection Feature | History Feature | Note Feature |
+|--------------------|-----------------|--------------|
+|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/collection_feature.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/history_activity_feature.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/note_feature.jpeg">|
+
+## Application Demonstration
+Feel free to check out a video demonstration of the application by clicking [here](https://drive.google.com/file/d/1o0UD710wYU-AIe6LajiYdanSUPZnGnVZ/view?usp=sharing). 
+
 ## Architecture Services FitFans App
 <img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/architecture%20Service.png">
 
