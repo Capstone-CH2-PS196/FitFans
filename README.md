@@ -22,7 +22,7 @@ Here is the link to access the design concept of the FitFans Application.
 
 | Welcome Page | Sign In | Sign Up |
 |--------------|---------|---------|
-|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|
+|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/welcome_page.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/sign_in.jpeg">|<img src="https://github.com/Capstone-CH2-PS196/FitFans/blob/main/Assets/ui_design/sign_up.jpeg">|
 
 | Basic Information Form | Home Screen | Profile User |
 |------------------------|-------------|--------------|
