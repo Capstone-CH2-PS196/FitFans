@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.welcomepage.WelcomePageActivity">
+
+    <ImageView
+        android:id="@+id/welcome_page_image"
+        android:contentDescription="@string/welcome_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/welcome_page_vector"/>
+
+    <TextView
+        android:id="@+id/welcome_page_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="@string/welcome_title"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/welcome_page_description"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="45dp"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/welcome_description"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textColor="@color/gray_text"/>
+
+    <Button
+        android:id="@+id/welcome_button_login"
+        android:backgroundTint="@color/primary"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/welcome_button_register"
+        android:backgroundTint="@color/primary_variant"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register"/>
+
+</LinearLayout>

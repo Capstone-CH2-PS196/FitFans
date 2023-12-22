@@ -1,0 +1,171 @@
+<resources>
+
+    <string name="app_name">Fitfans</string>
+
+    <!--welcome page-->
+    <string name="welcome_image">Welcome Page Image</string>
+    <string name="welcome_title">Welcome to FitFans</string>
+    <string name="welcome_description">Step into a world of fitness with FitFans. Get ready to explore gym equipment and receive usage recommendations for your workouts.</string>
+
+    <!--login & register-->
+    <string name="sign_in">Sign In</string>
+    <string name="signin_description">Welcome back, Please log in to continue your fitness journey.</string>
+    <string name="signin_message">Don’t have an account ?</string>
+    <string name="signin_google">Sign In with Google</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_description">Create your account and get personalized workout recommendations.</string>
+    <string name="signup_message">Already have an account ?</string>
+    <string name="back">Back</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="email_verification_message">Email Verification has been sent. Please check your email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="logout">Log Out</string>
+    <string name="register_success_message">User Created</string>
+    <string name="login_success_message">Login Success</string>
+    <string name="login_google_success_message">Login with Google Success</string>
+    <string name="login_google_failed_message">Login with Google Failed</string>
+    <string name="email_empty">Email cannot be empty</string>
+    <string name="email_verify_null">Please Verify your Email First</string>
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="password_format">Password must be at least 8 characters</string>
+    <string name="auth_check">Invalid email or password. Please check and try again.</string>
+
+    <!--basic information-->
+    <string name="basic_information_title">Basic Information</string>
+    <string name="basic_information_description">Help us customize your fitness journey by sharing your details.</string>
+    <string name="gender">Gender</string>
+    <string name="male_label">Male</string>
+    <string name="female_label">Female</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="save">Save</string>
+
+    <!--detection result-->
+    <string name="tools_description">Type of exercise equipment used in physical fitness to train muscles, especially those in the arms, shoulders, chest, and back. Dumbbells typically consist of a metal bar with removable weight plates that can be adjusted to vary the load to be lifted.</string>
+    <string name="tips_title">How To Use</string>
+    <string name="tips_description">Pick dumbbells with a weight that you can lift with proper form.</string>
+    <string name="recommend">Recommendation</string>
+    <string name="share">Share</string>
+    <string name="usage_time">15 Minutes</string>
+    <string name="try_out">Try Out</string>
+    <string name="beginner">Beginner :</string>
+    <string name="detection_title">Dumbbell</string>
+    <string name="detection_image">Detection Image</string>
+    <string name="success_save_result">Success save result</string>
+    <string name="failed_save_result">Cannot save result</string>
+
+    <!--profile-->
+    <string name="profile_email">name@gmail.com</string>
+    <string name="user_age">22</string>
+    <string name="user_weight">%1\$s Kg</string>
+    <string name="user_height">%1\$s Cm</string>
+    <string name="bmi">BMI</string>
+    <string name="user_bmi">%1\$s Kg/m²</string>
+    <string name="setting_profile">Setting Profile</string>
+    <string name="no_image">No Image selected</string>
+    <string name="change_image">Change Image</string>
+
+    <!--bottom navigation-->
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+
+    <!--home-->
+    <string name="home_title">Hello,</string>
+    <string name="username">User Name</string>
+    <string name="progress_title">Progress Report</string>
+    <string name="calories_title">Calories Burn</string>
+    <string name="cal_unit">cal</string>
+    <string name="bmi_title">BMI</string>
+    <string name="bmi_unit">Kg/m²</string>
+    <string name="gym_activity_title">Gym Activity</string>
+
+    <!--history list-->
+    <string name="result">Result : </string>
+    <string name="time">Time : </string>
+
+    <!--camera-->
+    <string name="preview_image">Preview Image</string>
+    <string name="detect_image">Detect Image</string>
+    <string name="failed_detect_image">Failed to detect image</string>
+    <string name="empty_image">No Image Data</string>
+
+    <!--actionbar title-->
+    <string name="detection_result">Detection Result</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="timer">Timer</string>
+    <string name="collection">Collection</string>
+    <string name="history">History</string>
+    <string name="note">Note</string>
+    <string name="take_picture">Take Picture</string>
+
+    <!--basic error-->
+    <string name="name_empty">Name cannot be empty</string>
+    <string name="age_empty">Age cannot be empty</string>
+    <string name="weight_empty">Weight cannot be empty</string>
+    <string name="height_empty">Height cannot be empty</string>
+    <string name="connection_error">Failed to load data, Please check your connection !</string>
+    <string name="empty">n/a</string>
+
+    <!--dialog title-->
+    <string name="success">Success</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+    <string name="timer_title">Beginner</string>
+
+    <!--dialog content-->
+    <string name="update_profile_success">Your profile has been updated</string>
+    <string name="save_user_success">Failed to save the Data, Please try again</string>
+    <string name="oke">Oke</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!--Note-->
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="detail_note">Detail Note</string>
+    <string name="create_note">Create Note</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="title_note_empty">Title cannot be empty</string>
+    <string name="description_note_empty">Description cannot be empty</string>
+    <string name="delete_note_message">Are you sure you want to delete this note?</string>
+    <string name="delete_selected_note_message">Are you sure want to delete all selected notes ?</string>
+    <string name="id_null_exception">ID null</string>
+
+    <!--Collection-->
+    <string name="delete_collection">Delete Collection</string>
+    <string name="delete_collection_message">Are you sure you want to delete Detection Result ?</string>
+    <string name="success_delete_collection">Success delete result from collection</string>
+    <string name="save_collection">Save to collection</string>
+
+    <!--Timer-->
+    <string name="alert_msg">Please follow the usage instructions and avoid excessive exercise</string>
+    <string name="timer_recom">Recommendation: 2 set x 12 times</string>
+    <string name="timer_recommendation_temp">Recommendation : %1\$s</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="ok">OK</string>
+    <string name="notify_channel_name">Activity Reminder</string>
+    <string name="notify_content">Time Up!</string>
+    <string name="notification_granted">Notifications permission granted</string>
+    <string name="notification_not_granted">Notifications will not show without permission</string>
+
+    <!--History-->
+    <string name="detail_history">Detail History</string>
+    <string name="delete_history">Delete History</string>
+    <string name="delete_selected_history_message">"Are you sure want to delete all selected histories ?"</string>
+    <string name="total_result">Total calories burn</string>
+    <string name="total_time">Total time</string>
+
+    <!--view message-->
+    <string name="empty_collection">You have not stored the tools</string>
+    <string name="empty_history">You have not performed any activities</string>
+    <string name="empty_note">You have not added notes</string>
+
+</resources>
